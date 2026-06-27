@@ -1,0 +1,4 @@
+ftp.sbbu.edu.pk
+localhost.sbbu.edu.pk
+mail.sbbu.edu.pk
+www.sbbu.edu.pk
