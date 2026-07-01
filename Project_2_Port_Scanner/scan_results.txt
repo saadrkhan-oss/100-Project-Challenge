@@ -1,0 +1,20 @@
+================================================================================
+PORT SCAN RESULTS - Project #2
+================================================================================
+Target:         127.0.0.1
+IP Address:     127.0.0.1
+Scan Started:   2026-07-01 20:56:05
+Scan Duration:  2.05 seconds
+Total Ports:    20
+Open Ports:     3
+================================================================================
+
+PORT     STATE    SERVICE      VERSION/BANNER
+----------------------------------------------------------------------
+ 3306/tcp  OPEN     MySQL        J 8.0.40 "PLYq/EO\%%s8d:?Rcaching_sha2_password#08S01Bad handshake
+  445/tcp  OPEN     SMB          Banner timeout
+  135/tcp  OPEN     MSRPC        Banner timeout
+
+================================================================================
+Scan completed successfully
+Results saved at: 2026-07-01 20:56:05
