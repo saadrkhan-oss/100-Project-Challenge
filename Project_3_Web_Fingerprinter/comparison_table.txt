@@ -1,0 +1,10 @@
+================================================================================
+TARGET COMPARISON TABLE
+================================================================================
+
+Target                         Server          Language        CMS             JS Framework   
+------------------------------------------------------------------------------------------
+http://scanme.nmap.org         Apache/2.4.7 (Ubuntu) Node.js         N/A             No framework detected
+https://example.com            cloudflare      N/A             N/A             No framework detected
+------------------------------------------------------------------------------------------
+Report generated: 2026-07-04 11:08:44
