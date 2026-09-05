@@ -1,0 +1,216 @@
+================================================================================
+SECURITY HEADERS AUDIT REPORT
+================================================================================
+Scan Date: 2026-09-05 21:57:03
+Targets Scanned: 3
+================================================================================
+
+
+================================================================================
+TARGET: https://github.com
+================================================================================
+Status: 200
+Response Time: 1.46s
+
+HEADER ANALYSIS
+------------------------------------------------------------
+✓ HSTS: max-age=31536000; includeSubdomains; preload
+  Score: 10/10
+  Issues: Good: max-age set to 1 year, Good: includeSubDomains enabled, Good: preload enabled
+
+✓ CSP: default-src 'none'; base-uri 'self'; child-src github.githubassets.com github.com/assets-cdn/work...
+  Score: 10/10
+  Issues: Good: default-src defined, Good: script-src defined, Good: style-src defined, Warning: unsafe-inline detected (consider using nonce or hash), Good: using 'self' for CSP
+
+✓ Clickjacking Protection: deny
+  Score: 10/10
+  Issues: Good: DENY prevents all framing
+
+✓ MIME Sniffing Protection: nosniff
+  Score: 10/10
+  Issues: Good: nosniff prevents MIME sniffing
+
+✓ Referrer Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+  Score: 3/5
+  Issues: Warning: Weak policy: origin-when-cross-origin, strict-origin-when-cross-origin
+
+✗ Feature Policy: MISSING
+  Score: 0/5
+  Issues: Missing header
+  Recommendation: Add: Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+✓ XSS Protection: 0
+  Score: 5/5
+  Issues: Warning: XSS protection disabled
+
+✓ Caching Policy: max-age=0, private, must-revalidate
+  Score: 2/5
+  Issues: Good: must-revalidate specified, Warning: private caching allowed
+
+✓ Cookie Security: _gh_sess=aAL5jjVqU8N%2BUfEIu%2FGYmX2Mn5aYyok6%2Fd2vFVE68zsK2IYuG%2Fw1EBDNQXS28Cretg1Uot0S7ML4Cgt8...
+  Score: 7/5
+  Issues: Good: All cookies have HttpOnly flag, Good: All cookies have SameSite attribute
+
+SUMMARY
+------------------------------------------------------------
+Total Score: 57/65
+Percentage: 87.7%
+Grade: B
+
+RECOMMENDATIONS
+------------------------------------------------------------
+  - Improve Referrer-Policy: Add: Referrer-Policy: strict-origin-when-cross-origin
+  - Add: Permissions-Policy: geolocation=(), microphone=(), camera=()
+  - Improve Cache-Control: Add: Cache-Control: no-cache, no-store, must-revalidate
+
+================================================================================
+
+================================================================================
+TARGET: https://google.com
+================================================================================
+Status: 200
+Response Time: 2.52s
+
+HEADER ANALYSIS
+------------------------------------------------------------
+✓ HSTS: max-age=31536000
+  Score: 10/10
+  Issues: Good: max-age set to 1 year
+
+✗ CSP: MISSING
+  Score: 0/10
+  Issues: Missing header
+  Recommendation: Add: Content-Security-Policy: default-src 'self'
+
+✓ Clickjacking Protection: SAMEORIGIN
+  Score: 7/10
+  Issues: Warning: SAMEORIGIN allows same-origin framing
+
+✗ MIME Sniffing Protection: MISSING
+  Score: 0/10
+  Issues: Missing header
+  Recommendation: Add: X-Content-Type-Options: nosniff
+
+✗ Referrer Policy: MISSING
+  Score: 0/5
+  Issues: Missing header
+  Recommendation: Add: Referrer-Policy: strict-origin-when-cross-origin
+
+✓ Feature Policy: unload=()
+  Score: 3/5
+  Issues: Warning: No feature restrictions found
+
+✓ XSS Protection: 0
+  Score: 5/5
+  Issues: Warning: XSS protection disabled
+
+✓ Caching Policy: private, max-age=0
+  Score: 0/5
+  Issues: Warning: private caching allowed
+
+✓ Cookie Security: __Secure-STRP=ANmZwa2UHgOotSnC4ymjzEAV4SJG5YDoVBHl7CgE7rbTYBcca-Kcs5tSOgXMmGvDqwbttYrA740SAJq5-Gb...
+  Score: 10/5
+  Issues: Good: All cookies have Secure flag, Good: All cookies have HttpOnly flag, Good: All cookies have SameSite attribute
+
+SUMMARY
+------------------------------------------------------------
+Total Score: 35/65
+Percentage: 53.8%
+Grade: F
+
+CRITICAL MISSING HEADERS
+------------------------------------------------------------
+  - Content-Security-Policy (Prevents XSS and data injection)
+    Fix: Add: Content-Security-Policy: default-src 'self'
+  - X-Content-Type-Options (Prevents MIME type sniffing)
+    Fix: Add: X-Content-Type-Options: nosniff
+
+RECOMMENDATIONS
+------------------------------------------------------------
+  - Add: Content-Security-Policy: default-src 'self'
+  - Add: X-Content-Type-Options: nosniff
+  - Add: Referrer-Policy: strict-origin-when-cross-origin
+  - Improve Permissions-Policy: Add: Permissions-Policy: geolocation=(), microphone=(), camera=()
+  - Improve Cache-Control: Add: Cache-Control: no-cache, no-store, must-revalidate
+
+================================================================================
+
+================================================================================
+TARGET: https://example.com
+================================================================================
+Status: 200
+Response Time: 0.95s
+
+HEADER ANALYSIS
+------------------------------------------------------------
+✗ HSTS: MISSING
+  Score: 0/10
+  Issues: Missing header
+  Recommendation: Add: Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+✗ CSP: MISSING
+  Score: 0/10
+  Issues: Missing header
+  Recommendation: Add: Content-Security-Policy: default-src 'self'
+
+✗ Clickjacking Protection: MISSING
+  Score: 0/10
+  Issues: Missing header
+  Recommendation: Add: X-Frame-Options: DENY
+
+✗ MIME Sniffing Protection: MISSING
+  Score: 0/10
+  Issues: Missing header
+  Recommendation: Add: X-Content-Type-Options: nosniff
+
+✗ Referrer Policy: MISSING
+  Score: 0/5
+  Issues: Missing header
+  Recommendation: Add: Referrer-Policy: strict-origin-when-cross-origin
+
+✗ Feature Policy: MISSING
+  Score: 0/5
+  Issues: Missing header
+  Recommendation: Add: Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+✗ XSS Protection: MISSING
+  Score: 0/5
+  Issues: Missing header
+  Recommendation: Add: X-XSS-Protection: 1; mode=block
+
+✗ Caching Policy: MISSING
+  Score: 0/5
+  Issues: Missing header
+  Recommendation: Add: Cache-Control: no-cache, no-store, must-revalidate
+
+✗ Cookie Security: MISSING
+  Score: 0/5
+  Issues: Missing header
+  Recommendation: Add Secure, HttpOnly, SameSite attributes to cookies
+
+SUMMARY
+------------------------------------------------------------
+Total Score: 0/65
+Percentage: 0.0%
+Grade: F
+
+CRITICAL MISSING HEADERS
+------------------------------------------------------------
+  - Strict-Transport-Security (Enforces HTTPS connections)
+    Fix: Add: Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  - Content-Security-Policy (Prevents XSS and data injection)
+    Fix: Add: Content-Security-Policy: default-src 'self'
+  - X-Frame-Options (Prevents clickjacking attacks)
+    Fix: Add: X-Frame-Options: DENY
+  - X-Content-Type-Options (Prevents MIME type sniffing)
+    Fix: Add: X-Content-Type-Options: nosniff
+
+RECOMMENDATIONS
+------------------------------------------------------------
+  - Add: Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  - Add: Content-Security-Policy: default-src 'self'
+  - Add: X-Frame-Options: DENY
+  - Add: X-Content-Type-Options: nosniff
+  - Add: Referrer-Policy: strict-origin-when-cross-origin
+
+================================================================================
