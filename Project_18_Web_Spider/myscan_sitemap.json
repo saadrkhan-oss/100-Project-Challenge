@@ -1,0 +1,205 @@
+{
+  "target": "http://scanme.nmap.org",
+  "crawled_at": "2026-09-15T19:47:04.010223",
+  "base_domain": "scanme.nmap.org",
+  "stats": {
+    "pages_crawled": 1,
+    "internal_urls": 1,
+    "external_urls": 34,
+    "forms": 1,
+    "js_files": 1,
+    "css_files": 3,
+    "images": 8,
+    "api_endpoints": 0,
+    "sensitive_found": 5
+  },
+  "internal_urls": [
+    "http://scanme.nmap.org/"
+  ],
+  "external_urls": [
+    "https://facebook.com/nmap",
+    "https://github.com/nmap/",
+    "https://insecure.org/",
+    "https://insecure.org/advertising.html",
+    "https://insecure.org/fyodor",
+    "https://insecure.org/fyodor/",
+    "https://insecure.org/privacy.html",
+    "https://nmap.org",
+    "https://nmap.org/",
+    "https://nmap.org/book/install.html",
+    "https://nmap.org/book/man.html",
+    "https://nmap.org/docs.html",
+    "https://nmap.org/download.html",
+    "https://nmap.org/npsl/",
+    "https://nmap.org/oem/",
+    "https://npcap.com/",
+    "https://npcap.com/#download",
+    "https://npcap.com/guide/",
+    "https://npcap.com/guide/npcap-devguide.html#npcap-api",
+    "https://npcap.com/oem/",
+    "https://reddit.com/r/nmap/",
+    "https://seclists.org/",
+    "https://seclists.org/dataloss/",
+    "https://seclists.org/fulldisclosure/",
+    "https://seclists.org/nmap-announce/",
+    "https://seclists.org/nmap-dev/",
+    "https://seclists.org/oss-sec/",
+    "https://sectools.org",
+    "https://sectools.org/tag/pass-audit/",
+    "https://sectools.org/tag/sploits/",
+    "https://sectools.org/tag/vuln-scanners/",
+    "https://sectools.org/tag/web-scanners/",
+    "https://sectools.org/tag/wireless/",
+    "https://twitter.com/nmap"
+  ],
+  "api_endpoints": [],
+  "js_files": [
+    "http://scanme.nmap.org/shared/js/nst.js?v=2"
+  ],
+  "css_files": [
+    "http://scanme.nmap.org/shared/css/nst-foot.css?v=2",
+    "http://scanme.nmap.org/shared/css/nst.css?v=2",
+    "http://scanme.nmap.org/site.css"
+  ],
+  "images": [
+    "http://scanme.nmap.org/images/sitelogo.png",
+    "http://scanme.nmap.org/shared/images/nst-icons.svg#close",
+    "http://scanme.nmap.org/shared/images/nst-icons.svg#facebook",
+    "http://scanme.nmap.org/shared/images/nst-icons.svg#github",
+    "http://scanme.nmap.org/shared/images/nst-icons.svg#menu",
+    "http://scanme.nmap.org/shared/images/nst-icons.svg#reddit",
+    "http://scanme.nmap.org/shared/images/nst-icons.svg#search",
+    "http://scanme.nmap.org/shared/images/nst-icons.svg#twitter"
+  ],
+  "forms": [
+    {
+      "action": "http://scanme.nmap.org/search/",
+      "method": "GET",
+      "inputs": [
+        {
+          "name": "q",
+          "type": "search",
+          "value": ""
+        }
+      ],
+      "page": "http://scanme.nmap.org/"
+    }
+  ],
+  "sensitive_files": [
+    {
+      "url": "http://scanme.nmap.org/images/",
+      "path": "images/",
+      "status": 200,
+      "size": 947
+    },
+    {
+      "url": "http://scanme.nmap.org/.htpasswd",
+      "path": ".htpasswd",
+      "status": 403,
+      "size": 291
+    },
+    {
+      "url": "http://scanme.nmap.org/.htaccess",
+      "path": ".htaccess",
+      "status": 403,
+      "size": 291
+    },
+    {
+      "url": "http://scanme.nmap.org/shared/",
+      "path": "shared/",
+      "status": 403,
+      "size": 289
+    },
+    {
+      "url": "http://scanme.nmap.org/shared/css/",
+      "path": "shared/css/",
+      "status": 403,
+      "size": 293
+    }
+  ],
+  "technologies": {
+    "server": "Apache/2.4.7 (Ubuntu)"
+  },
+  "pages": [
+    {
+      "url": "http://scanme.nmap.org/",
+      "status": 200,
+      "content_type": "text/html",
+      "title": "Go ahead and ScanMe!",
+      "depth": 0,
+      "size": 6974,
+      "links": [
+        "http://scanme.nmap.org/",
+        "https://nmap.org/",
+        "https://npcap.com/",
+        "https://seclists.org/",
+        "https://sectools.org",
+        "https://insecure.org/",
+        "https://nmap.org",
+        "https://insecure.org/fyodor",
+        "https://nmap.org/",
+        "https://nmap.org/book/man.html",
+        "https://nmap.org/book/install.html",
+        "https://nmap.org/docs.html",
+        "https://nmap.org/download.html",
+        "https://nmap.org/oem/",
+        "https://npcap.com/",
+        "https://npcap.com/guide/",
+        "https://npcap.com/guide/npcap-devguide.html#npcap-api",
+        "https://npcap.com/#download",
+        "https://npcap.com/oem/",
+        "https://seclists.org/",
+        "https://seclists.org/nmap-announce/",
+        "https://seclists.org/nmap-dev/",
+        "https://seclists.org/fulldisclosure/",
+        "https://seclists.org/oss-sec/",
+        "https://seclists.org/dataloss/",
+        "https://sectools.org",
+        "https://sectools.org/tag/vuln-scanners/",
+        "https://sectools.org/tag/pass-audit/",
+        "https://sectools.org/tag/web-scanners/",
+        "https://sectools.org/tag/wireless/",
+        "https://sectools.org/tag/sploits/",
+        "https://insecure.org/",
+        "https://insecure.org/fyodor/",
+        "https://insecure.org/privacy.html",
+        "https://insecure.org/advertising.html",
+        "https://nmap.org/npsl/",
+        "https://twitter.com/nmap",
+        "https://facebook.com/nmap",
+        "https://github.com/nmap/",
+        "https://reddit.com/r/nmap/"
+      ],
+      "forms": [
+        {
+          "action": "http://scanme.nmap.org/search/",
+          "method": "GET",
+          "inputs": [
+            {
+              "name": "q",
+              "type": "search",
+              "value": ""
+            }
+          ],
+          "page": "http://scanme.nmap.org/"
+        },
+        {
+          "action": "http://scanme.nmap.org/search/",
+          "method": "GET",
+          "inputs": [
+            {
+              "name": "q",
+              "type": "search",
+              "value": ""
+            }
+          ],
+          "page": "http://scanme.nmap.org/"
+        }
+      ],
+      "scripts": [
+        "http://scanme.nmap.org/shared/js/nst.js?v=2"
+      ]
+    }
+  ],
+  "errors": []
+}
