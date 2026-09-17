@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head>
+<title>Bug Bounty Recon — example.com</title>
+<style>
+    body { font-family: -apple-system, sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
+    h1, h2, h3 { color: #58a6ff; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 16px; margin: 12px 0; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+    .badge.high { background: #da3633; color: white; }
+    .badge.med { background: #d29922; color: black; }
+    .badge.low { background: #2ea043; color: white; }
+    .badge.info { background: #1f6feb; color: white; }
+    ul { line-height: 1.6; }
+    code { background: #21262d; padding: 2px 4px; border-radius: 3px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #30363d; }
+    th { color: #58a6ff; }
+    </style>
+</head><body>
+<h1>🎯 Bug Bounty Recon Report</h1>
+<p><strong>Target:</strong> <code>example.com</code></p>
+<p><strong>Date:</strong> 2026-09-17 20:29:00</p>
+<div class="card"><h2>📊 Phase 1: Passive Recon</h2>
+<p><strong>Subdomains found:</strong> 2</p>
+<ul><li><code>example.com</code></li><li><code>www.example.com</code></li></ul>
+<h3>DNS Records</h3><ul>
+<li><strong>AAAA:</strong> 2606:4700:10::ac42:93f3, 2606:4700:10::6814:179a</li>
+<li><strong>MX:</strong> 0 .</li>
+<li><strong>NS:</strong> hera.ns.cloudflare.com., elliott.ns.cloudflare.com.</li>
+<li><strong>TXT:</strong> "v=spf1 -all", "_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9"</li>
+<li><strong>SOA:</strong> elliott.ns.cloudflare.com. dns.cloudflare.com. 2414908178 10000 2400 604800 1800</li>
+</ul>
+<h3>WHOIS</h3><ul>
+<li><strong>registrar:</strong> RESERVED-Internet Assigned Numbers Authority</li>
+<li><strong>creation_date:</strong> 1995-08-14 04:00:00+00:00</li>
+<li><strong>expiration_date:</strong> 2027-08-13 04:00:00+00:00</li>
+<li><strong>name_servers:</strong> ['ELLIOTT.NS.CLOUDFLARE.COM', 'HERA.NS.CLOUDFLARE.COM']</li>
+</ul>
+</div>
+<div class="card"><h2>📊 Phase 2: Active Recon</h2>
+<p><strong>Live hosts:</strong> 2</p>
+<table><tr><th>Host</th><th>IP</th><th>Open Ports</th></tr>
+<tr><td><code>www.example.com</code></td><td>172.66.147.243</td><td>21/FTP, 80/HTTP, 443/HTTPS, 2082/Unknown, 2083/Unknown, 2086/Unknown, 2087/Unknown, 2095/Unknown, 2096/Unknown</td></tr>
+<tr><td><code>example.com</code></td><td>172.66.147.243</td><td>21/FTP, 80/HTTP, 443/HTTPS, 2082/Unknown, 2083/Unknown, 2086/Unknown, 2087/Unknown, 2095/Unknown, 2096/Unknown, 8080/HTTP-Proxy</td></tr>
+</table>
+</div>
+<div class="card"><h2>📊 Phase 3: Content Discovery</h2>
+<p><strong>URLs discovered:</strong> 0</p>
+<p><strong>Interesting URLs:</strong> 0</p>
+<p><strong>Parameters:</strong> 0</p>
+</div>
+<div class="card"><h2>📊 Phase 4: Vulnerability Scan</h2>
+<p>No vulnerabilities found. ✅</p>
+</div>
+<div class="card"><h2>📋 Summary</h2><ul>
+<li>Subdomains: 2</li>
+<li>Live hosts: 2</li>
+<li>URLs: 0</li>
+<li>Vulnerabilities: 0</li>
+</ul></div>
+</body></html>
