@@ -1,0 +1,648 @@
+{
+  "target": "binaries/vulnerable",
+  "file_size": 14948,
+  "file_type": "ELF 32-bit LSB",
+  "hashes": {
+    "md5": "631ce36f9843562bb0e911d33860f27e",
+    "sha1": "74bc2699698ca8394e1f929c7f243b5666ae1959",
+    "sha256": "6256a8021068cded02d2d3d8415716d8de998087130e22bfa7f5147a44e0cec7"
+  },
+  "headers": {
+    "type": "ET_EXEC",
+    "machine": "EM_386",
+    "entry": "0x8049080",
+    "endianness": "Little",
+    "class": "32-bit"
+  },
+  "sections": [
+    {
+      "name": "",
+      "addr": "0x0",
+      "offset": "0x0",
+      "size": 0,
+      "type": "SHT_NULL"
+    },
+    {
+      "name": ".note.gnu.build-id",
+      "addr": "0x80481b4",
+      "offset": "0x1b4",
+      "size": 36,
+      "type": "SHT_NOTE"
+    },
+    {
+      "name": ".interp",
+      "addr": "0x80481d8",
+      "offset": "0x1d8",
+      "size": 19,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".gnu.hash",
+      "addr": "0x80481ec",
+      "offset": "0x1ec",
+      "size": 32,
+      "type": "SHT_GNU_HASH"
+    },
+    {
+      "name": ".dynsym",
+      "addr": "0x804820c",
+      "offset": "0x20c",
+      "size": 128,
+      "type": "SHT_DYNSYM"
+    },
+    {
+      "name": ".dynstr",
+      "addr": "0x804828c",
+      "offset": "0x28c",
+      "size": 106,
+      "type": "SHT_STRTAB"
+    },
+    {
+      "name": ".gnu.version",
+      "addr": "0x80482f6",
+      "offset": "0x2f6",
+      "size": 16,
+      "type": "SHT_GNU_versym"
+    },
+    {
+      "name": ".gnu.version_r",
+      "addr": "0x8048308",
+      "offset": "0x308",
+      "size": 48,
+      "type": "SHT_GNU_verneed"
+    },
+    {
+      "name": ".rel.dyn",
+      "addr": "0x8048338",
+      "offset": "0x338",
+      "size": 8,
+      "type": "SHT_REL"
+    },
+    {
+      "name": ".rel.plt",
+      "addr": "0x8048340",
+      "offset": "0x340",
+      "size": 40,
+      "type": "SHT_REL"
+    },
+    {
+      "name": ".init",
+      "addr": "0x8049000",
+      "offset": "0x1000",
+      "size": 32,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".plt",
+      "addr": "0x8049020",
+      "offset": "0x1020",
+      "size": 96,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".text",
+      "addr": "0x8049080",
+      "offset": "0x1080",
+      "size": 503,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".fini",
+      "addr": "0x8049278",
+      "offset": "0x1278",
+      "size": 20,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".rodata",
+      "addr": "0x804a000",
+      "offset": "0x2000",
+      "size": 64,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".eh_frame_hdr",
+      "addr": "0x804a040",
+      "offset": "0x2040",
+      "size": 52,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".eh_frame",
+      "addr": "0x804a074",
+      "offset": "0x2074",
+      "size": 224,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".note.ABI-tag",
+      "addr": "0x804a154",
+      "offset": "0x2154",
+      "size": 32,
+      "type": "SHT_NOTE"
+    },
+    {
+      "name": ".init_array",
+      "addr": "0x804bf00",
+      "offset": "0x2f00",
+      "size": 4,
+      "type": "SHT_INIT_ARRAY"
+    },
+    {
+      "name": ".fini_array",
+      "addr": "0x804bf04",
+      "offset": "0x2f04",
+      "size": 4,
+      "type": "SHT_FINI_ARRAY"
+    },
+    {
+      "name": ".dynamic",
+      "addr": "0x804bf08",
+      "offset": "0x2f08",
+      "size": 232,
+      "type": "SHT_DYNAMIC"
+    },
+    {
+      "name": ".got",
+      "addr": "0x804bff0",
+      "offset": "0x2ff0",
+      "size": 4,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".got.plt",
+      "addr": "0x804bff4",
+      "offset": "0x2ff4",
+      "size": 32,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".data",
+      "addr": "0x804c014",
+      "offset": "0x3014",
+      "size": 8,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".bss",
+      "addr": "0x804c01c",
+      "offset": "0x301c",
+      "size": 4,
+      "type": "SHT_NOBITS"
+    },
+    {
+      "name": ".comment",
+      "addr": "0x0",
+      "offset": "0x301c",
+      "size": 30,
+      "type": "SHT_PROGBITS"
+    },
+    {
+      "name": ".symtab",
+      "addr": "0x0",
+      "offset": "0x303c",
+      "size": 656,
+      "type": "SHT_SYMTAB"
+    },
+    {
+      "name": ".strtab",
+      "addr": "0x0",
+      "offset": "0x32cc",
+      "size": 527,
+      "type": "SHT_STRTAB"
+    },
+    {
+      "name": ".shstrtab",
+      "addr": "0x0",
+      "offset": "0x34db",
+      "size": 257,
+      "type": "SHT_STRTAB"
+    }
+  ],
+  "symbols": {
+    "functions": [
+      {
+        "name": "deregister_tm_clones",
+        "addr": "0x80490e0"
+      },
+      {
+        "name": "register_tm_clones",
+        "addr": "0x8049120"
+      },
+      {
+        "name": "__do_global_dtors_aux",
+        "addr": "0x8049160"
+      },
+      {
+        "name": "frame_dummy",
+        "addr": "0x8049190"
+      },
+      {
+        "name": "__x86.get_pc_thunk.bx",
+        "addr": "0x80490d0"
+      },
+      {
+        "name": "_fini",
+        "addr": "0x8049278"
+      },
+      {
+        "name": "vulnerable_function",
+        "addr": "0x8049196"
+      },
+      {
+        "name": "_dl_relocate_static_pie",
+        "addr": "0x80490c0"
+      },
+      {
+        "name": "_start",
+        "addr": "0x8049080"
+      },
+      {
+        "name": "main",
+        "addr": "0x80491d6"
+      },
+      {
+        "name": "_init",
+        "addr": "0x8049000"
+      }
+    ],
+    "imports": [
+      "__gmon_start__",
+      "__libc_start_main",
+      "printf",
+      "puts",
+      "strcpy",
+      "strlen"
+    ],
+    "exports": []
+  },
+  "strings": [
+    {
+      "value": "td@ ",
+      "count": 1
+    },
+    {
+      "value": "</lib/ld-linux.so.2",
+      "count": 1
+    },
+    {
+      "value": "_IO_stdin_used",
+      "count": 2
+    },
+    {
+      "value": "strcpy",
+      "count": 1
+    },
+    {
+      "value": "puts",
+      "count": 1
+    },
+    {
+      "value": "strlen",
+      "count": 1
+    },
+    {
+      "value": "__libc_start_main",
+      "count": 1
+    },
+    {
+      "value": "printf",
+      "count": 1
+    },
+    {
+      "value": "libc.so.6",
+      "count": 1
+    },
+    {
+      "value": "GLIBC_2.0",
+      "count": 1
+    },
+    {
+      "value": "GLIBC_2.34",
+      "count": 1
+    },
+    {
+      "value": "__gmon_start__",
+      "count": 2
+    },
+    {
+      "value": "Y[^]",
+      "count": 1
+    },
+    {
+      "value": "Buffer: %s",
+      "count": 1
+    },
+    {
+      "value": "Usage: %s <input>",
+      "count": 1
+    },
+    {
+      "value": "Input length: %zu",
+      "count": 1
+    },
+    {
+      "value": "Done!",
+      "count": 1
+    },
+    {
+      "value": ";*2$\" ",
+      "count": 1
+    },
+    {
+      "value": "GCC: (Debian 16.2.0-1) 16.2.0",
+      "count": 1
+    },
+    {
+      "value": "crt1.o",
+      "count": 1
+    },
+    {
+      "value": "__wrap_main",
+      "count": 1
+    },
+    {
+      "value": "__abi_tag",
+      "count": 1
+    },
+    {
+      "value": "crtstuff.c",
+      "count": 1
+    },
+    {
+      "value": "deregister_tm_clones",
+      "count": 1
+    },
+    {
+      "value": "__do_global_dtors_aux",
+      "count": 1
+    },
+    {
+      "value": "completed.0",
+      "count": 1
+    },
+    {
+      "value": "__do_global_dtors_aux_fini_array_entry",
+      "count": 1
+    },
+    {
+      "value": "frame_dummy",
+      "count": 1
+    },
+    {
+      "value": "__frame_dummy_init_array_entry",
+      "count": 1
+    },
+    {
+      "value": "vulnerable.c",
+      "count": 1
+    },
+    {
+      "value": "__FRAME_END__",
+      "count": 1
+    },
+    {
+      "value": "_DYNAMIC",
+      "count": 1
+    },
+    {
+      "value": "__GNU_EH_FRAME_HDR",
+      "count": 1
+    },
+    {
+      "value": "_GLOBAL_OFFSET_TABLE_",
+      "count": 1
+    },
+    {
+      "value": "__libc_start_main@GLIBC_2.34",
+      "count": 1
+    },
+    {
+      "value": "__x86.get_pc_thunk.bx",
+      "count": 1
+    },
+    {
+      "value": "printf@GLIBC_2.0",
+      "count": 1
+    },
+    {
+      "value": "_edata",
+      "count": 1
+    },
+    {
+      "value": "_fini",
+      "count": 1
+    },
+    {
+      "value": "strcpy@GLIBC_2.0",
+      "count": 1
+    },
+    {
+      "value": "vulnerable_function",
+      "count": 1
+    },
+    {
+      "value": "__data_start",
+      "count": 1
+    },
+    {
+      "value": "puts@GLIBC_2.0",
+      "count": 1
+    },
+    {
+      "value": "__dso_handle",
+      "count": 1
+    },
+    {
+      "value": "strlen@GLIBC_2.0",
+      "count": 1
+    },
+    {
+      "value": "_end",
+      "count": 1
+    },
+    {
+      "value": "_dl_relocate_static_pie",
+      "count": 1
+    },
+    {
+      "value": "_fp_hw",
+      "count": 1
+    },
+    {
+      "value": "__bss_start",
+      "count": 1
+    },
+    {
+      "value": "__TMC_END__",
+      "count": 1
+    },
+    {
+      "value": "_init",
+      "count": 1
+    },
+    {
+      "value": ".symtab",
+      "count": 1
+    },
+    {
+      "value": ".strtab",
+      "count": 1
+    },
+    {
+      "value": ".shstrtab",
+      "count": 1
+    },
+    {
+      "value": ".note.gnu.build-id",
+      "count": 1
+    },
+    {
+      "value": ".interp",
+      "count": 1
+    },
+    {
+      "value": ".gnu.hash",
+      "count": 1
+    },
+    {
+      "value": ".dynsym",
+      "count": 1
+    },
+    {
+      "value": ".dynstr",
+      "count": 1
+    },
+    {
+      "value": ".gnu.version",
+      "count": 1
+    },
+    {
+      "value": ".gnu.version_r",
+      "count": 1
+    },
+    {
+      "value": ".rel.dyn",
+      "count": 1
+    },
+    {
+      "value": ".rel.plt",
+      "count": 1
+    },
+    {
+      "value": ".init",
+      "count": 1
+    },
+    {
+      "value": ".text",
+      "count": 1
+    },
+    {
+      "value": ".fini",
+      "count": 1
+    },
+    {
+      "value": ".rodata",
+      "count": 1
+    },
+    {
+      "value": ".eh_frame_hdr",
+      "count": 1
+    },
+    {
+      "value": ".eh_frame",
+      "count": 1
+    },
+    {
+      "value": ".note.ABI-tag",
+      "count": 1
+    },
+    {
+      "value": ".init_array",
+      "count": 1
+    },
+    {
+      "value": ".fini_array",
+      "count": 1
+    },
+    {
+      "value": ".dynamic",
+      "count": 1
+    },
+    {
+      "value": ".got",
+      "count": 1
+    },
+    {
+      "value": ".got.plt",
+      "count": 1
+    },
+    {
+      "value": ".data",
+      "count": 1
+    },
+    {
+      "value": ".bss",
+      "count": 1
+    },
+    {
+      "value": ".comment",
+      "count": 1
+    }
+  ],
+  "interesting_strings": [],
+  "dangerous_calls": [
+    {
+      "name": "printf",
+      "risk": "HIGH",
+      "category": "Format String",
+      "desc": "If format is user-controlled"
+    },
+    {
+      "name": "strcpy",
+      "risk": "CRITICAL",
+      "category": "Buffer Overflow",
+      "desc": "No bounds check \u2014 classic overflow"
+    }
+  ],
+  "protections": {
+    "NX": "Disabled",
+    "PIE": "Disabled",
+    "Canary": "Disabled",
+    "RELRO": "Partial",
+    "Fortify": "Disabled"
+  },
+  "vulnerabilities": [
+    {
+      "severity": "HIGH",
+      "title": "printf() \u2014 Format String",
+      "detail": "If format is user-controlled"
+    },
+    {
+      "severity": "CRITICAL",
+      "title": "strcpy() \u2014 Buffer Overflow",
+      "detail": "No bounds check \u2014 classic overflow"
+    },
+    {
+      "severity": "HIGH",
+      "title": "NX disabled",
+      "detail": "Stack is executable \u2014 shellcode injection possible"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "PIE disabled",
+      "detail": "Fixed addresses \u2014 ROP/overflow easier to exploit"
+    },
+    {
+      "severity": "HIGH",
+      "title": "Stack canary disabled",
+      "detail": "Buffer overflows not detected at runtime"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "RELRO Partial",
+      "detail": "GOT overwrite possible"
+    }
+  ],
+  "entropy": null
+}
