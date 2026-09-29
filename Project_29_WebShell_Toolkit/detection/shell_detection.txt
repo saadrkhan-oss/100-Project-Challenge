@@ -1,0 +1,128 @@
+======================================================================
+WEB SHELL DETECTION REPORT
+======================================================================
+
+File: aspx_basic.aspx
+  Risk: LOW
+  [aspx_dangerous] System.Diagnostics.Process
+  [aspx_dangerous] System.Diagnostics.Process
+
+File: jsp_basic.jsp
+  Risk: LOW
+  [jsp_dangerous] Runtime.getRuntime().exec
+
+File: jsp_eval.jsp
+  Risk: LOW
+  [jsp_dangerous] ScriptEngine
+  [jsp_dangerous] ScriptEngine
+  [jsp_dangerous] ScriptEngine
+
+File: php_assert.php
+  Risk: CRITICAL
+  [php_dangerous] assert(
+  [php_superglobals] $_POST[
+
+File: php_basic.php
+  Risk: CRITICAL
+  [php_dangerous] system(
+  [php_superglobals] $_GET[
+
+File: php_bypass_base64_wrapped.php
+  Risk: CRITICAL
+  [php_dangerous] eval(
+  [php_obfuscation] base64_decode(
+
+File: php_bypass_gzip_wrapped.php
+  Risk: CRITICAL
+  [php_dangerous] eval(
+  [php_obfuscation] base64_decode(
+  [php_obfuscation] gzuncompress(
+
+File: php_bypass_rot13_wrapped.php
+  Risk: CRITICAL
+  [php_dangerous] eval(
+  [php_obfuscation] str_rot13(
+
+File: php_bypass_split_functions.php
+  Risk: MEDIUM
+  [php_superglobals] $_GET[
+
+File: php_bypass_xor_wrapped.php
+  Risk: CRITICAL
+  [php_dangerous] eval(
+
+File: php_case_variation.php
+  Risk: CRITICAL
+  [php_dangerous] SyStEm(
+  [php_superglobals] $_GET[
+
+File: php_comment_injection.php
+  Risk: MEDIUM
+  [php_superglobals] $_GET[
+
+File: php_create_function.php
+  Risk: CRITICAL
+  [php_dangerous] create_function(
+  [php_superglobals] $_POST[
+
+File: php_eval.php
+  Risk: CRITICAL
+  [php_dangerous] eval(
+  [php_superglobals] $_POST[
+
+File: php_file_manager.php
+  Risk: CRITICAL
+  [php_dangerous] shell_exec(
+  [php_superglobals] $_POST[
+  [php_superglobals] $_GET[
+  [php_superglobals] $_GET[
+  [php_superglobals] $_GET[
+  [php_superglobals] $_GET[
+  [php_superglobals] $_GET[
+  [php_superglobals] $_GET[
+  [php_file_ops] file_put_contents(
+  [php_file_ops] unlink(
+
+File: php_obfuscated_base64.php
+  Risk: HIGH
+  [php_obfuscation] base64_decode(
+  [php_superglobals] $_GET[
+
+File: php_passthru.php
+  Risk: CRITICAL
+  [php_dangerous] passthru(
+  [php_superglobals] $_GET[
+
+File: php_preg_replace_e.php
+  Risk: CRITICAL
+  [php_dangerous] preg_replace('/.*/e
+  [php_superglobals] $_GET[
+
+File: php_shell_exec.php
+  Risk: CRITICAL
+  [php_dangerous] shell_exec(
+  [php_superglobals] $_GET[
+
+File: php_stealth_variable.php
+  Risk: MEDIUM
+  [php_superglobals] $_GET[
+  [php_superglobals] $_GET[
+
+File: php_string_concat.php
+  Risk: MEDIUM
+  [php_superglobals] $_GET[
+
+File: python_b64_wrapper.py
+  Risk: CRITICAL
+  [python_dangerous] exec(
+
+File: python_basic_flask.py
+  Risk: CRITICAL
+  [python_dangerous] subprocess.
+  [python_dangerous] subprocess.
+
+File: python_inline_cmd.py
+  Risk: CRITICAL
+  [python_dangerous] os.system(
+  [python_dangerous] __import__(
+

