@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:9000",
+  "timestamp": "2026-10-02T18:52:23.009546",
+  "vulnerable": true,
+  "tests": [
+    {
+      "type": "coupon_abuse",
+      "url": "http://localhost:9000/apply-coupon",
+      "sequential_success": 1,
+      "parallel_success": 20,
+      "total": 20,
+      "race_condition": true
+    },
+    {
+      "type": "double_spend",
+      "url": "http://localhost:9000/transfer",
+      "successful_transfers": 10,
+      "final_balance": -900,
+      "race_condition": true
+    },
+    {
+      "type": "vote_manipulation",
+      "url": "http://localhost:9000/vote",
+      "votes_counted": 50,
+      "total": 50,
+      "race_condition": true
+    },
+    {
+      "type": "rate_limit_bypass",
+      "url": "http://localhost:9000/login",
+      "sequential_blocked_at": null,
+      "parallel_got_through": 0,
+      "bypass": false
+    }
+  ],
+  "timing": {
+    "baseline_single": 0.046,
+    "parallel_20": 0.09,
+    "speedup": 10.25
+  },
+  "pocs": [
+    {
+      "name": "coupon",
+      "python": "./race_pocs/poc_coupon.py",
+      "shell": "./race_pocs/poc_coupon.sh",
+      "threads": 20
+    },
+    {
+      "name": "transfer",
+      "python": "./race_pocs/poc_transfer.py",
+      "shell": "./race_pocs/poc_transfer.sh",
+      "threads": 10
+    },
+    {
+      "name": "vote",
+      "python": "./race_pocs/poc_vote.py",
+      "shell": "./race_pocs/poc_vote.sh",
+      "threads": 50
+    },
+    {
+      "name": "login",
+      "python": "./race_pocs/poc_login.py",
+      "shell": "./race_pocs/poc_login.sh",
+      "threads": 100
+    }
+  ],
+  "error": null
+}
