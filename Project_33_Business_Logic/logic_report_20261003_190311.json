@@ -1,0 +1,145 @@
+{
+  "target": "http://localhost:7000",
+  "timestamp": "2026-10-03T19:03:00.633172",
+  "vulnerable": true,
+  "findings": [
+    {
+      "category": "price_manipulation",
+      "payload": "-100",
+      "status_code": 200,
+      "response_excerpt": "{\"price_each\":-100.0,\"qty\":1,\"success\":true,\"total\":-100.0}\n",
+      "detail": "total=-100.0"
+    },
+    {
+      "category": "price_manipulation",
+      "payload": "0",
+      "status_code": 200,
+      "response_excerpt": "{\"price_each\":0.0,\"qty\":1,\"success\":true,\"total\":0.0}\n",
+      "detail": "total=0.0"
+    },
+    {
+      "category": "price_manipulation",
+      "payload": "0.001",
+      "status_code": 200,
+      "response_excerpt": "{\"price_each\":0.001,\"qty\":1,\"success\":true,\"total\":0.001}\n",
+      "detail": "total=0.001"
+    },
+    {
+      "category": "price_manipulation",
+      "payload": "1e-10",
+      "status_code": 200,
+      "response_excerpt": "{\"price_each\":1e-10,\"qty\":1,\"success\":true,\"total\":1e-10}\n",
+      "detail": "total=1e-10"
+    },
+    {
+      "category": "quantity_bypass",
+      "payload": "-1",
+      "status_code": 200,
+      "response_excerpt": "{\"cart_total\":-100.0,\"item\":{\"price\":100.0,\"product_id\":\"1\",\"qty\":-1.0,\"subtotal\":-100.0},\"success\":true}\n",
+      "detail": "subtotal=-100.0"
+    },
+    {
+      "category": "quantity_bypass",
+      "payload": "-999",
+      "status_code": 200,
+      "response_excerpt": "{\"cart_total\":-99900.0,\"item\":{\"price\":100.0,\"product_id\":\"1\",\"qty\":-999.0,\"subtotal\":-99900.0},\"success\":true}\n",
+      "detail": "subtotal=-99900.0"
+    },
+    {
+      "category": "quantity_bypass",
+      "payload": "0",
+      "status_code": 200,
+      "response_excerpt": "{\"cart_total\":0.0,\"item\":{\"price\":100.0,\"product_id\":\"1\",\"qty\":0.0,\"subtotal\":0.0},\"success\":true}\n",
+      "detail": "subtotal=0.0"
+    },
+    {
+      "category": "coupon_abuse",
+      "payload": "ADMIN100",
+      "status_code": 200,
+      "response_excerpt": "{\"cart_total\":-150.0,\"coupon\":\"ADMIN100\",\"discount_applied\":100,\"success\":true}\n",
+      "detail": "total=-150.0"
+    },
+    {
+      "category": "coupon_abuse",
+      "payload": "EXPIRED2020",
+      "status_code": 200,
+      "response_excerpt": "{\"cart_total\":-180.0,\"coupon\":\"EXPIRED2020\",\"discount_applied\":30,\"success\":true}\n",
+      "detail": ""
+    },
+    {
+      "category": "coupon_abuse",
+      "payload": "REFER_SELF",
+      "status_code": 200,
+      "response_excerpt": "{\"cart_total\":-190.0,\"coupon\":\"REFER_SELF\",\"discount_applied\":10,\"success\":true}\n",
+      "detail": ""
+    },
+    {
+      "category": "workflow_bypass",
+      "payload": "/api/checkout",
+      "status_code": 200,
+      "response_excerpt": "{\"order\":{\"order_id\":1,\"paid\":false,\"status\":\"placed\",\"total\":-190.0},\"success\":true}\n",
+      "detail": ""
+    },
+    {
+      "category": "workflow_bypass",
+      "payload": "/api/admin/users",
+      "status_code": 200,
+      "response_excerpt": "{\"admin_access\":true,\"users\":[\"admin\"]}\n",
+      "detail": ""
+    },
+    {
+      "category": "currency_bypass",
+      "payload": "rate=-1",
+      "status_code": 200,
+      "response_excerpt": "{\"amount\":100.0,\"converted\":-100.0,\"currency\":\"USD\",\"rate\":-1.0}\n",
+      "detail": "converted=-100.0"
+    },
+    {
+      "category": "currency_bypass",
+      "payload": "amount=0.001",
+      "status_code": 200,
+      "response_excerpt": "{\"amount\":0.001,\"converted\":0.001,\"currency\":\"USD\",\"rate\":1.0}\n",
+      "detail": "converted=0.001"
+    },
+    {
+      "category": "parameter_tampering",
+      "payload": "price=1",
+      "status_code": 200,
+      "response_excerpt": "{\"price_each\":1.0,\"qty\":1,\"success\":true,\"total\":1.0}\n",
+      "detail": "total=1.0"
+    }
+  ],
+  "pocs": [
+    {
+      "name": "price_negative",
+      "python": "./logic_pocs/poc_price_negative.py",
+      "shell": "./logic_pocs/poc_price_negative.sh"
+    },
+    {
+      "name": "qty_negative",
+      "python": "./logic_pocs/poc_qty_negative.py",
+      "shell": "./logic_pocs/poc_qty_negative.sh"
+    },
+    {
+      "name": "coupon_stack",
+      "python": "./logic_pocs/poc_coupon_stack.py",
+      "shell": "./logic_pocs/poc_coupon_stack.sh"
+    },
+    {
+      "name": "workflow_skip",
+      "python": "./logic_pocs/poc_workflow_skip.py",
+      "shell": "./logic_pocs/poc_workflow_skip.sh"
+    },
+    {
+      "name": "admin_direct",
+      "python": "./logic_pocs/poc_admin_direct.py",
+      "shell": "./logic_pocs/poc_admin_direct.sh"
+    },
+    {
+      "name": "currency_neg",
+      "python": "./logic_pocs/poc_currency_neg.py",
+      "shell": "./logic_pocs/poc_currency_neg.sh"
+    }
+  ],
+  "error": null
+}
