@@ -1,0 +1,166 @@
+{
+  "target": "http://localhost:6000",
+  "timestamp": "2026-10-04T21:38:47.130514",
+  "vulnerable": true,
+  "cache_headers_found": {
+    "X-Cache": "MISS",
+    "X-Cache-Status": "MISS",
+    "Age": "0",
+    "Cache-Control": "public, max-age=60"
+  },
+  "cache_detected": true,
+  "unkeyed_inputs": [
+    {
+      "header": "X-Forwarded-Host",
+      "value": "evil.example.com",
+      "signature": "plain_reflection"
+    }
+  ],
+  "poisoning_findings": [
+    {
+      "type": "xss_injection",
+      "description": "Inject XSS via X-Forwarded-Host",
+      "severity": "CRITICAL",
+      "signatures": [
+        "plain_reflection",
+        "script_src",
+        "link_href",
+        "anchor_href",
+        "canonical_url",
+        "og_url"
+      ]
+    },
+    {
+      "type": "redirect_poison",
+      "description": "Poison redirect to attacker host",
+      "severity": "HIGH",
+      "signatures": [
+        "plain_reflection",
+        "script_src",
+        "link_href",
+        "anchor_href",
+        "canonical_url",
+        "og_url"
+      ]
+    },
+    {
+      "type": "script_src_poison",
+      "description": "Poison <script src> URL",
+      "severity": "CRITICAL",
+      "signatures": [
+        "plain_reflection",
+        "script_src",
+        "link_href",
+        "anchor_href",
+        "canonical_url",
+        "og_url"
+      ]
+    },
+    {
+      "type": "link_href_poison",
+      "description": "Poison <link href>",
+      "severity": "HIGH",
+      "signatures": [
+        "plain_reflection",
+        "script_src",
+        "link_href",
+        "anchor_href",
+        "canonical_url",
+        "og_url"
+      ]
+    },
+    {
+      "type": "cache_key_confusion",
+      "description": "Confuse cache key with header",
+      "severity": "MEDIUM",
+      "signatures": [
+        "plain_reflection",
+        "script_src",
+        "link_href",
+        "anchor_href",
+        "canonical_url",
+        "og_url"
+      ]
+    }
+  ],
+  "deception_findings": [
+    {
+      "path": "/api/user/1/..%2f..%2fstatic/style.css",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    },
+    {
+      "path": "/api/user/1.css",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    },
+    {
+      "path": "/api/user/1;.css",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    },
+    {
+      "path": "/api/user/1%20.css",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    },
+    {
+      "path": "/api/user/1/.css",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    },
+    {
+      "path": "/api/user/1.js",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    },
+    {
+      "path": "/api/user/1.png",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    },
+    {
+      "path": "/api/user/1%00.css",
+      "cache_control": "public, max-age=3600",
+      "content_type": "text/css; charset=utf-8",
+      "has_sensitive_data": true
+    }
+  ],
+  "bypass_findings": [],
+  "pocs": [
+    {
+      "name": "xss_injection",
+      "python": "./cache_pocs/poc_xss_injection.py",
+      "shell": "./cache_pocs/poc_xss_injection.sh"
+    },
+    {
+      "name": "redirect_poison",
+      "python": "./cache_pocs/poc_redirect_poison.py",
+      "shell": "./cache_pocs/poc_redirect_poison.sh"
+    },
+    {
+      "name": "script_src_poison",
+      "python": "./cache_pocs/poc_script_src_poison.py",
+      "shell": "./cache_pocs/poc_script_src_poison.sh"
+    },
+    {
+      "name": "link_href_poison",
+      "python": "./cache_pocs/poc_link_href_poison.py",
+      "shell": "./cache_pocs/poc_link_href_poison.sh"
+    },
+    {
+      "name": "cache_key_confusion",
+      "python": "./cache_pocs/poc_cache_key_confusion.py",
+      "shell": "./cache_pocs/poc_cache_key_confusion.sh"
+    }
+  ],
+  "error": null,
+  "cache_ttl": 60
+}
