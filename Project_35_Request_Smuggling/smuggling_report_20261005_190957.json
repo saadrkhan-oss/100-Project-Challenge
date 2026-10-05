@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:8080",
+  "timestamp": "2026-10-05T19:09:57.868695",
+  "vulnerable": false,
+  "tests": [
+    {
+      "technique": "cl_te",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": false,
+      "reasons": []
+    },
+    {
+      "technique": "te_cl",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": false,
+      "reasons": []
+    },
+    {
+      "technique": "te_te_obfuscated",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": false,
+      "reasons": []
+    },
+    {
+      "technique": "te_space",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.002,
+      "suspicious": false,
+      "reasons": []
+    },
+    {
+      "technique": "te_xchunked",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": false,
+      "reasons": []
+    },
+    {
+      "technique": "cl_te_double",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": false,
+      "reasons": []
+    }
+  ],
+  "findings": [],
+  "pocs": [
+    {
+      "name": "cl_te",
+      "python": "./smuggling_pocs/poc_cl_te.py",
+      "shell": "./smuggling_pocs/poc_cl_te.sh"
+    },
+    {
+      "name": "te_cl",
+      "python": "./smuggling_pocs/poc_te_cl.py",
+      "shell": "./smuggling_pocs/poc_te_cl.sh"
+    },
+    {
+      "name": "te_te_obfuscated",
+      "python": "./smuggling_pocs/poc_te_te_obfuscated.py",
+      "shell": "./smuggling_pocs/poc_te_te_obfuscated.sh"
+    }
+  ],
+  "error": null
+}

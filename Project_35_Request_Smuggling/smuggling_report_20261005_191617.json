@@ -1,0 +1,123 @@
+{
+  "target": "http://localhost:8080",
+  "timestamp": "2026-10-05T19:16:08.250147",
+  "vulnerable": true,
+  "tests": [
+    {
+      "technique": "cl_te",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": true,
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ]
+    },
+    {
+      "technique": "te_cl",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": false,
+      "reasons": []
+    },
+    {
+      "technique": "te_te_obfuscated",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": false,
+      "reasons": []
+    },
+    {
+      "technique": "te_space",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": true,
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ]
+    },
+    {
+      "technique": "te_xchunked",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": true,
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ]
+    },
+    {
+      "technique": "cl_te_double",
+      "status": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-",
+      "elapsed": 0.001,
+      "suspicious": true,
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "type": "cl_te_suspicious",
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ],
+      "elapsed": 0.001
+    },
+    {
+      "type": "te_space_suspicious",
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ],
+      "elapsed": 0.001
+    },
+    {
+      "type": "te_xchunked_suspicious",
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ],
+      "elapsed": 0.001
+    },
+    {
+      "type": "cl_te_double_suspicious",
+      "reasons": [
+        "admin content reflected",
+        "admin_access"
+      ],
+      "elapsed": 0.001
+    },
+    {
+      "type": "desync_admin",
+      "detail": "Smuggled GET /admin returned admin content",
+      "response": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 44\r\nConnection: keep-alive\r\n\r\n<html><body><h1>Home Page</h1></body></html>HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 59\r\nConnection: keep-alive\r\n\r\n<html><body><h1>ADMIN PANEL - RESTRICTED</h1></body></html>"
+    },
+    {
+      "type": "admin_access_via_smuggling",
+      "detail": "CL.TE smuggled GET /admin \u2014 admin content returned",
+      "response": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 44\r\nConnection: keep-alive\r\n\r\n<html><body><h1>Home Page</h1></body></html>HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 59\r\nConnection: keep-alive\r\n\r\n<html><body><h1>ADMIN PANEL - RESTRICTED</h1></body></html>"
+    }
+  ],
+  "pocs": [
+    {
+      "name": "cl_te",
+      "python": "./smuggling_pocs/poc_cl_te.py",
+      "shell": "./smuggling_pocs/poc_cl_te.sh"
+    },
+    {
+      "name": "te_cl",
+      "python": "./smuggling_pocs/poc_te_cl.py",
+      "shell": "./smuggling_pocs/poc_te_cl.sh"
+    },
+    {
+      "name": "te_te_obfuscated",
+      "python": "./smuggling_pocs/poc_te_te_obfuscated.py",
+      "shell": "./smuggling_pocs/poc_te_te_obfuscated.sh"
+    }
+  ],
+  "error": null
+}
