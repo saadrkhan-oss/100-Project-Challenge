@@ -1,0 +1,9 @@
+{
+  "target": "http://localhost:5001",
+  "timestamp": "2026-10-07T17:54:12.105335",
+  "endpoints": [],
+  "handshake": {},
+  "findings": [],
+  "pocs": [],
+  "error": null
+}
