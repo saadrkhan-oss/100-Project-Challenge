@@ -1,0 +1,45 @@
+2026-10-13 23:37:07,027 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-10-13 23:37:07,030 | [33mPress CTRL+C to quit[0m
+2026-10-13 23:37:21,267 | VULN_ENDPOINT received 117 bytes
+2026-10-13 23:37:21,272 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,292 | VULN_ENDPOINT received 213 bytes
+2026-10-13 23:37:21,293 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "[31m[1mPOST /api/xml-vulnerable HTTP/1.1[0m" 400 -
+2026-10-13 23:37:21,297 | VULN_ENDPOINT received 179 bytes
+2026-10-13 23:37:21,300 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,304 | VULN_ENDPOINT received 117 bytes
+2026-10-13 23:37:21,305 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,316 | VULN_ENDPOINT received 119 bytes
+2026-10-13 23:37:21,318 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,331 | VULN_ENDPOINT received 116 bytes
+2026-10-13 23:37:21,333 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,350 | VULN_ENDPOINT received 124 bytes
+2026-10-13 23:37:21,351 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "[31m[1mPOST /api/xml-vulnerable HTTP/1.1[0m" 400 -
+2026-10-13 23:37:21,360 | VULN_ENDPOINT received 124 bytes
+2026-10-13 23:37:21,362 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "[31m[1mPOST /api/xml-vulnerable HTTP/1.1[0m" 400 -
+2026-10-13 23:37:21,366 | VULN_ENDPOINT received 139 bytes
+2026-10-13 23:37:21,371 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,377 | VULN_ENDPOINT received 164 bytes
+2026-10-13 23:37:21,379 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,383 | VULN_ENDPOINT received 150 bytes
+2026-10-13 23:37:21,385 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,392 | VULN_ENDPOINT received 121 bytes
+2026-10-13 23:37:21,394 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,399 | VULN_ENDPOINT received 110 bytes
+2026-10-13 23:37:21,401 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,406 | VULN_ENDPOINT received 154 bytes
+2026-10-13 23:37:21,410 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,428 | VULN_ENDPOINT received 179 bytes
+2026-10-13 23:37:21,431 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,438 | VULN_ENDPOINT received 236 bytes
+2026-10-13 23:37:21,443 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,448 | VULN_ENDPOINT received 236 bytes
+2026-10-13 23:37:21,449 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,453 | VULN_ENDPOINT received 149 bytes
+2026-10-13 23:37:21,454 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,461 | VULN_ENDPOINT received 129 bytes
+2026-10-13 23:37:21,462 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,465 | VULN_ENDPOINT received 220 bytes
+2026-10-13 23:37:21,466 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -
+2026-10-13 23:37:21,470 | VULN_ENDPOINT received 250 bytes
+2026-10-13 23:37:21,471 | 127.0.0.1 - - [13/Oct/2026 23:37:21] "POST /api/xml-vulnerable HTTP/1.1" 200 -

