@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Guestbook</title></head>
+<body>
+<h1>Guestbook</h1>
+<p>Current date: <!--#echo var="DATE_LOCAL" --></p>
+<p>Document root: <!--#echo var="DOCUMENT_ROOT" --></p>
+<hr>
+<h2>Latest comment:</h2>
+<p><!--#echo var="QUERY_STRING" --></p>
+<hr>
+<h2>Leave a comment:</h2>
+<form method="GET" action="guestbook.shtml">
+  <input type="text" name="comment" size="50">
+  <input type="submit" value="Post">
+</form>
+</body>
+</html>

