@@ -1,0 +1,13 @@
+2026-10-18 19:34:02,438 | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2026-10-18 19:34:02,440 | [33mPress CTRL+C to quit[0m
+2026-10-18 19:45:59,296 | PICKLE_ATTEMPT received 4 bytes
+2026-10-18 19:45:59,314 | 127.0.0.1 - - [18/Oct/2026 19:45:59] "[35m[1mPOST /deserialize HTTP/1.1[0m" 500 -
+2026-10-18 19:46:10,455 | PICKLE_ATTEMPT received 88 bytes
+2026-10-18 19:46:10,464 | 127.0.0.1 - - [18/Oct/2026 19:46:10] "POST /deserialize HTTP/1.1" 200 -
+2026-10-18 19:46:12,476 | PICKLE_ATTEMPT received 84 bytes
+2026-10-18 19:46:12,485 | 127.0.0.1 - - [18/Oct/2026 19:46:12] "POST /deserialize HTTP/1.1" 200 -
+2026-10-18 19:46:14,500 | PICKLE_ATTEMPT received 92 bytes
+2026-10-18 19:46:14,507 | 127.0.0.1 - - [18/Oct/2026 19:46:14] "POST /deserialize HTTP/1.1" 200 -
+2026-10-18 19:46:16,518 | PICKLE_ATTEMPT received 96 bytes
+2026-10-18 19:46:16,525 | 127.0.0.1 - - [18/Oct/2026 19:46:16] "POST /deserialize HTTP/1.1" 200 -

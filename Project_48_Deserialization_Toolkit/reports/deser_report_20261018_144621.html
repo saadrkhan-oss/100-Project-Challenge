@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><title>Deserialization Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Deserialization Exploitation Report</h1>
+<p><b>Java URL:</b> http://127.0.0.1:9090/deserialize</p>
+<p><b>Pickle URL:</b> http://127.0.0.1:5001/deserialize</p>
+<p><b>Timestamp:</b> 2026-10-18T14:45:58.829918Z</p>
+<p>Confirmed: 7</p>
+<ul><li>detection.java_reachable</li><li>detection.pickle_reachable</li><li>java_rce.touch</li><li>pickle_rce.touch</li><li>pickle_rce.id</li><li>pickle_rce.whoami</li><li>pickle_rce.uname</li></ul>
+<h3>detection</h3><pre>{
+  "java_reachable": {
+    "hit": true,
+    "status": 200,
+    "snippet": "Error: java.io.EOFException: null"
+  },
+  "pickle_reachable": {
+    "hit": true,
+    "status": 500,
+    "snippet": "Error: UnpicklingError: pickle data was truncated\n"
+  }
+}</pre><h3>java_rce</h3><pre>{
+  "touch": {
+    "hit": true,
+    "snippet": "Deserialized OK: java.util.HashSet"
+  },
+  "id": {
+    "hit": false,
+    "output": null
+  },
+  "whoami": {
+    "hit": false,
+    "output": null
+  },
+  "uname": {
+    "hit": false,
+    "output": null
+  }
+}</pre><h3>pickle_rce</h3><pre>{
+  "touch": {
+    "hit": true,
+    "output": "",
+    "snippet": "Deserialized: int\n"
+  },
+  "id": {
+    "hit": true,
+    "output": "uid=1000(saad) gid=1000(saad) groups=1000(saad),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),118(docker)",
+    "snippet": "Deserialized: int\n"
+  },
+  "whoami": {
+    "hit": true,
+    "output": "saad",
+    "snippet": "Deserialized: int\n"
+  },
+  "uname": {
+    "hit": true,
+    "output": "Linux Faded-PC 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+    "snippet": "Deserialized: int\n"
+  }
+}</pre><h3>payload_gen</h3><pre>{
+  "java_cc6": {
+    "size": 1275,
+    "path": "extracted/cc6_id.bin"
+  },
+  "CommonsCollections7": {
+    "size": 1268,
+    "path": "extracted/CommonsCollections7_id.bin"
+  },
+  "CommonsBeanutils1": {
+    "size": 2763,
+    "path": "extracted/CommonsBeanutils1_id.bin"
+  },
+  "pickle": {
+    "path": "extracted/pickle_id.b64"
+  }
+}</pre><h3>blind_detection</h3><pre>{
+  "java_urldns": {
+    "path": "extracted/urldns_callback.bin",
+    "size": 304
+  }
+}</pre>
+</body></html>

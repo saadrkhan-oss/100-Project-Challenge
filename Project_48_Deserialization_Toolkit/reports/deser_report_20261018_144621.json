@@ -1,0 +1,82 @@
+{
+  "java_url": "http://127.0.0.1:9090/deserialize",
+  "pickle_url": "http://127.0.0.1:5001/deserialize",
+  "timestamp": "2026-10-18T14:45:58.829918Z",
+  "phases": {
+    "detection": {
+      "java_reachable": {
+        "hit": true,
+        "status": 200,
+        "snippet": "Error: java.io.EOFException: null"
+      },
+      "pickle_reachable": {
+        "hit": true,
+        "status": 500,
+        "snippet": "Error: UnpicklingError: pickle data was truncated\n"
+      }
+    },
+    "java_rce": {
+      "touch": {
+        "hit": true,
+        "snippet": "Deserialized OK: java.util.HashSet"
+      },
+      "id": {
+        "hit": false,
+        "output": null
+      },
+      "whoami": {
+        "hit": false,
+        "output": null
+      },
+      "uname": {
+        "hit": false,
+        "output": null
+      }
+    },
+    "pickle_rce": {
+      "touch": {
+        "hit": true,
+        "output": "",
+        "snippet": "Deserialized: int\n"
+      },
+      "id": {
+        "hit": true,
+        "output": "uid=1000(saad) gid=1000(saad) groups=1000(saad),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),118(docker)",
+        "snippet": "Deserialized: int\n"
+      },
+      "whoami": {
+        "hit": true,
+        "output": "saad",
+        "snippet": "Deserialized: int\n"
+      },
+      "uname": {
+        "hit": true,
+        "output": "Linux Faded-PC 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+        "snippet": "Deserialized: int\n"
+      }
+    },
+    "payload_gen": {
+      "java_cc6": {
+        "size": 1275,
+        "path": "extracted/cc6_id.bin"
+      },
+      "CommonsCollections7": {
+        "size": 1268,
+        "path": "extracted/CommonsCollections7_id.bin"
+      },
+      "CommonsBeanutils1": {
+        "size": 2763,
+        "path": "extracted/CommonsBeanutils1_id.bin"
+      },
+      "pickle": {
+        "path": "extracted/pickle_id.b64"
+      }
+    },
+    "blind_detection": {
+      "java_urldns": {
+        "path": "extracted/urldns_callback.bin",
+        "size": 304
+      }
+    }
+  }
+}
