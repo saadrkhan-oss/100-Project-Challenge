@@ -1,0 +1,87 @@
+{
+  "endpoint": "http://127.0.0.1:4566",
+  "timestamp": "2026-10-19T14:14:20.030340Z",
+  "phases": {
+    "enumeration": {
+      "s3_buckets": {
+        "count": 1,
+        "names": [
+          "company-backup"
+        ]
+      },
+      "iam_users": {
+        "count": 1,
+        "names": [
+          "dev-user"
+        ]
+      },
+      "iam_roles": {
+        "count": 1,
+        "names": [
+          "lambda-role"
+        ]
+      },
+      "ec2_sgs": {
+        "count": 3,
+        "names": [
+          "default",
+          "default",
+          "open-ssh"
+        ]
+      }
+    },
+    "misconfigurations": {
+      "public_s3": {
+        "count": 1,
+        "buckets": [
+          "company-backup"
+        ]
+      },
+      "open_sgs": {
+        "count": 1,
+        "entries": [
+          "open-ssh:22"
+        ]
+      },
+      "overprivileged_iam": {
+        "count": 1,
+        "entries": [
+          "user:dev-user/FullAccess"
+        ]
+      }
+    },
+    "iam_privesc": {
+      "escalation_perms": {
+        "count": 1,
+        "entries": [
+          "dev-user:*"
+        ]
+      },
+      "escalation_confirmed": {
+        "hit": true
+      }
+    },
+    "metadata": {
+      "note": "LocalStack no IMDS support. Real AWS uses IMDSv1/v2.",
+      "imds_v1_url": "http://169.254.169.254/latest/meta-data/",
+      "imds_v2_url": "PUT http://169.254.169.254/latest/api/token"
+    },
+    "compliance": {
+      "cis_1_1_root_mfa": {
+        "status": "FAIL"
+      },
+      "cis_2_1_password_policy": {
+        "status": "FAIL",
+        "reason": "no policy"
+      },
+      "cis_3_1_2_s3_public": {
+        "status": "FAIL",
+        "public": 1
+      },
+      "cis_6_1_sg": {
+        "status": "FAIL",
+        "open": 1
+      }
+    }
+  }
+}

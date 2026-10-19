@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head><title>Cloud Security Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Cloud Security Assessment Report</h1>
+<p><b>Endpoint:</b> http://127.0.0.1:4566</p>
+<p><b>Timestamp:</b> 2026-10-19T14:14:20.030340Z</p>
+<p>Confirmed: 13</p>
+<ul><li>enumeration.s3_buckets</li><li>enumeration.iam_users</li><li>enumeration.iam_roles</li><li>enumeration.ec2_sgs</li><li>misconfigurations.public_s3</li><li>misconfigurations.open_sgs</li><li>misconfigurations.overprivileged_iam</li><li>iam_privesc.escalation_perms</li><li>iam_privesc.escalation_confirmed</li><li>compliance.cis_1_1_root_mfa</li><li>compliance.cis_2_1_password_policy</li><li>compliance.cis_3_1_2_s3_public</li><li>compliance.cis_6_1_sg</li></ul>
+<h3>enumeration</h3><pre>{
+  "s3_buckets": {
+    "count": 1,
+    "names": [
+      "company-backup"
+    ]
+  },
+  "iam_users": {
+    "count": 1,
+    "names": [
+      "dev-user"
+    ]
+  },
+  "iam_roles": {
+    "count": 1,
+    "names": [
+      "lambda-role"
+    ]
+  },
+  "ec2_sgs": {
+    "count": 3,
+    "names": [
+      "default",
+      "default",
+      "open-ssh"
+    ]
+  }
+}</pre><h3>misconfigurations</h3><pre>{
+  "public_s3": {
+    "count": 1,
+    "buckets": [
+      "company-backup"
+    ]
+  },
+  "open_sgs": {
+    "count": 1,
+    "entries": [
+      "open-ssh:22"
+    ]
+  },
+  "overprivileged_iam": {
+    "count": 1,
+    "entries": [
+      "user:dev-user/FullAccess"
+    ]
+  }
+}</pre><h3>iam_privesc</h3><pre>{
+  "escalation_perms": {
+    "count": 1,
+    "entries": [
+      "dev-user:*"
+    ]
+  },
+  "escalation_confirmed": {
+    "hit": true
+  }
+}</pre><h3>metadata</h3><pre>{
+  "note": "LocalStack no IMDS support. Real AWS uses IMDSv1/v2.",
+  "imds_v1_url": "http://169.254.169.254/latest/meta-data/",
+  "imds_v2_url": "PUT http://169.254.169.254/latest/api/token"
+}</pre><h3>compliance</h3><pre>{
+  "cis_1_1_root_mfa": {
+    "status": "FAIL"
+  },
+  "cis_2_1_password_policy": {
+    "status": "FAIL",
+    "reason": "no policy"
+  },
+  "cis_3_1_2_s3_public": {
+    "status": "FAIL",
+    "public": 1
+  },
+  "cis_6_1_sg": {
+    "status": "FAIL",
+    "open": 1
+  }
+}</pre>
+</body></html>

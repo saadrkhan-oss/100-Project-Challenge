@@ -1,0 +1,2 @@
+FLAG{public_bucket_data_exposed}
+DB_PASSWORD=admin123
