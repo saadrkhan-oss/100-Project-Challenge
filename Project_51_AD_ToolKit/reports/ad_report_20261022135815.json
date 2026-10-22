@@ -1,0 +1,14 @@
+{
+  "target": "10.10.10.161",
+  "domain": "htb.local",
+  "timestamp": "2026-10-22T13:57:10.283467Z",
+  "phases": {
+    "enumeration": {
+      "null_session_users": [],
+      "asrep_hashes": 0
+    },
+    "kerberoasting": {
+      "error": "no creds"
+    }
+  }
+}
