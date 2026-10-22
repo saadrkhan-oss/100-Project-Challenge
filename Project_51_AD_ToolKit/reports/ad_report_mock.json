@@ -1,0 +1,15 @@
+{
+  "target": "10.48.150.187",
+  "domain": "spookysec.local",
+  "phases": {
+    "enumeration": {
+      "null_session_users": 12,
+      "asrep_hashes": 1,
+      "hash_preview": "$krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:8a47f1d0c6c6e7a2d5b3f9a1e8d7c4b2$d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "cracking": {
+      "success": true,
+      "creds": "$krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:8a47f1d0c6c6e7a2d5b3f9a1e8d7c4b2$d41d8cd98f00b204e9800998ecf8427e:management2005"
+    }
+  }
+}
