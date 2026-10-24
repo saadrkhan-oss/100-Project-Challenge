@@ -1,0 +1,137 @@
+<!DOCTYPE html><html><head><title>Linux Privesc Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Linux Privilege Escalation Report</h1>
+<p><b>Hostname:</b> Faded-PC</p>
+<p><b>User:</b> saad</p>
+<p><b>Root:</b> False</p>
+<p><b>Timestamp:</b> 2026-10-24T17:51:15.690619</p>
+<p><b>Findings:</b> 3</p>
+<ul><li>creds.bash_history (19)</li><li>creds.ssh_keys (3)</li><li>kernel.pwnkit</li></ul>
+<h3>system_enum</h3><pre>{
+  "kernel": "6.6.87.2-microsoft-standard-WSL2",
+  "uname": "Linux Faded-PC 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+  "os": "Ubuntu 20.04.6 LTS",
+  "user_count": 30,
+  "users": [
+    "root",
+    "daemon",
+    "bin",
+    "sys",
+    "sync",
+    "games",
+    "man",
+    "lp",
+    "mail",
+    "news",
+    "uucp",
+    "proxy",
+    "www-data",
+    "backup",
+    "list",
+    "irc",
+    "gnats",
+    "nobody",
+    "systemd-network",
+    "systemd-resolve",
+    "systemd-timesync",
+    "messagebus",
+    "syslog",
+    "_apt",
+    "uuidd",
+    "tcpdump",
+    "landscape",
+    "systemd-coredump",
+    "saad",
+    "dnsmasq"
+  ],
+  "group_count": 60,
+  "sudo": "N/A"
+}</pre><h3>suid_sgid</h3><pre>{
+  "suid_count": 0,
+  "suid_vulnerable": [],
+  "sgid_count": 0,
+  "capabilities": []
+}</pre><h3>weak_perms</h3><pre>{
+  "nopasswd": [],
+  "world_writable_dirs": [],
+  "tmp_files": [
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-0.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-16.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-20.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-11.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-12.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-15.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-13.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-14.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-17.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-21.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-23.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-8.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-2.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-24.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-5.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-18.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-7.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-22.tmp",
+    "/tmp/python-languageserver-cancellation/9799fab1e4260bd009c537924109b44aa20eb51de6/cancellation-bg-19.tmp",
+    "/tmp/python-languageserver-cancellation/8430acbc8a647f18fa69b05a41c1e08dec73a6b37c/cancellation-bg-4.tmp"
+  ]
+}</pre><h3>cron</h3><pre>{
+  "user_crontab": [],
+  "system_cron_files": [
+    "/etc/crontab",
+    "/etc/cron.d/e2scrub_all",
+    "/etc/cron.d/popularity-contest",
+    "/etc/cron.d/.placeholder"
+  ]
+}</pre><h3>creds</h3><pre>{
+  "bash_history": [
+    "            GroupName=\"open-ssh\", Description=\"Open SSH to world\", VpcId=vpc_id",
+    "            GroupName=\"open-ssh\",",
+    "        print(\"  [+] EC2 security group 'open-ssh' (0.0.0.0/0:22)\")",
+    "            aws_access_key_id=\"test\",",
+    "            aws_secret_access_key=\"test\",",
+    "                        obj = s3.get_object(Bucket=name, Key=\"secret.txt\")",
+    "            \"iam:CreateAccessKey\", \"iam:CreateLoginProfile\",",
+    "            \"imds_v2_url\": \"PUT http://169.254.169.254/latest/api/token\",",
+    "        # CIS 2.1 \u2014 Password policy",
+    "            pw = iam.get_account_password_policy().get(\"PasswordPolicy\", {})",
+    "            min_len = pw.get(\"MinimumPasswordLength\", 0)",
+    "            print(f\"    [{color}CIS 2.1 Password length >= 14: {status} (len={min_len}){Colors.RESET}\")",
+    "            results[\"cis_2_1_password_policy\"] = {\"status\": status, \"length\": min_len}",
+    "            print(f\"    {Colors.RED}CIS 2.1 Password policy: FAIL (none set){Colors.RESET}\")",
+    "            results[\"cis_2_1_password_policy\"] = {\"status\": \"FAIL\", \"reason\": \"no policy\"}",
+    "        \"remediation\": \"Validate input types, reject $-prefixed keys, use schema validation\",",
+    "    findings.sort(key=lambda x: x[\"id\"])",
+    "echo \"your_thm_password\" >> ~/thm_creds.txt",
+    "echo \"your_thm_password\" >> ~/thm_creds.txt"
+  ],
+  "ssh_keys": [
+    "/home/saad/re_env/lib/python3.8/site-packages/graphene/relay/id_type.py",
+    "/home/saad/re_env/lib/python3.8/site-packages/graphene/relay/__pycache__/id_type.cpython-38.pyc",
+    "/home/saad/.vscode-server/extensions/openai.chatgpt-26.1021.22027-linux-x64/webview/assets/id_card-c640061c8e06.svg"
+  ],
+  "config_secrets": [
+    "/etc/maven/settings.xml",
+    "/etc/default/useradd",
+    "/etc/default/nss",
+    "/etc/services",
+    "/etc/cloud/cloud.cfg",
+    "/etc/java-17-openjdk/net.properties",
+    "/etc/java-17-openjdk/security/java.security",
+    "/etc/java-17-openjdk/management/management.properties",
+    "/etc/java-17-openjdk/management/jmxremote.access",
+    "/etc/java-11-openjdk/net.properties"
+  ]
+}</pre><h3>kernel</h3><pre>{
+  "dirty_pipe": false,
+  "pwnkit": true,
+  "dirty_cow": false,
+  "overlayfs": false,
+  "kernel": "6.6.87.2-microsoft-standard-WSL2"
+}</pre>
+</body></html>
