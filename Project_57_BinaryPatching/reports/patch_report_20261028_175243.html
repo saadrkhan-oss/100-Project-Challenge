@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><title>Patch Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Binary Patching Report</h1>
+<p><b>Binary:</b> ./licensed</p>
+<p><b>Arch:</b> i386</p>
+<p><b>Timestamp:</b> 2026-10-28T17:52:43.577126</p>
+<p><b>Findings:</b> 4</p>
+<ul><li>jump_found</li><li>binary_patched</li><li>license_bypassed</li><li>restored</li></ul>
+<h3>analyze</h3><pre>{
+  "size": 15592,
+  "arch": "i386",
+  "check_license": "0x80491d6"
+}</pre><h3>disassemble</h3><pre>{
+  "jump_address": "0x8049204",
+  "jump_mnemonic": "jne",
+  "jump_bytes": "7507",
+  "jump_size": 2
+}</pre><h3>patch</h3><pre>{
+  "file_offset": "0x1204",
+  "original_bytes": "7507",
+  "patched_bytes": "9090"
+}</pre><h3>test</h3><pre>{
+  "output": "License valid! Full access granted.",
+  "bypassed": true
+}</pre><h3>restore</h3><pre>{
+  "restored": true
+}</pre>
+</body></html>

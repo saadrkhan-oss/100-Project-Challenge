@@ -1,0 +1,30 @@
+{
+  "binary": "./licensed",
+  "timestamp": "2026-10-28T17:52:43.577126",
+  "arch": "i386",
+  "phases": {
+    "analyze": {
+      "size": 15592,
+      "arch": "i386",
+      "check_license": "0x80491d6"
+    },
+    "disassemble": {
+      "jump_address": "0x8049204",
+      "jump_mnemonic": "jne",
+      "jump_bytes": "7507",
+      "jump_size": 2
+    },
+    "patch": {
+      "file_offset": "0x1204",
+      "original_bytes": "7507",
+      "patched_bytes": "9090"
+    },
+    "test": {
+      "output": "License valid! Full access granted.",
+      "bypassed": true
+    },
+    "restore": {
+      "restored": true
+    }
+  }
+}
