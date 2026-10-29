@@ -1,0 +1,113 @@
+{
+  "binary": "./vm",
+  "timestamp": "2026-10-29T18:43:29.421555",
+  "arch": "amd64",
+  "phases": {
+    "analyze": {
+      "size": 16656,
+      "arch": "amd64",
+      "run_vm": "0x401136",
+      "main": "0x4012e8"
+    },
+    "opcode_mapping": {
+      "PUSH": "0x01",
+      "ADD": "0x02",
+      "CMP": "0x03",
+      "JMP": "0x04",
+      "JZ": "0x05",
+      "PRINT": "0x06",
+      "HALT": "0xff"
+    },
+    "extract": {
+      "length": 19,
+      "hex": "015306014506014306015206014506015406ff"
+    },
+    "disassembly": [
+      {
+        "pc": 0,
+        "op": "PUSH",
+        "arg": 83,
+        "char": "S"
+      },
+      {
+        "pc": 2,
+        "op": "PRINT"
+      },
+      {
+        "pc": 3,
+        "op": "PUSH",
+        "arg": 69,
+        "char": "E"
+      },
+      {
+        "pc": 5,
+        "op": "PRINT"
+      },
+      {
+        "pc": 6,
+        "op": "PUSH",
+        "arg": 67,
+        "char": "C"
+      },
+      {
+        "pc": 8,
+        "op": "PRINT"
+      },
+      {
+        "pc": 9,
+        "op": "PUSH",
+        "arg": 82,
+        "char": "R"
+      },
+      {
+        "pc": 11,
+        "op": "PRINT"
+      },
+      {
+        "pc": 12,
+        "op": "PUSH",
+        "arg": 69,
+        "char": "E"
+      },
+      {
+        "pc": 14,
+        "op": "PRINT"
+      },
+      {
+        "pc": 15,
+        "op": "PUSH",
+        "arg": 84,
+        "char": "T"
+      },
+      {
+        "pc": 17,
+        "op": "PRINT"
+      },
+      {
+        "pc": 18,
+        "op": "HALT"
+      }
+    ],
+    "simulate": {
+      "flag": "SECRET",
+      "steps": [
+        "PUSH S \u2192 stack=1",
+        "PRINT \u2192 'S'",
+        "PUSH E \u2192 stack=1",
+        "PRINT \u2192 'SE'",
+        "PUSH C \u2192 stack=1",
+        "PRINT \u2192 'SEC'",
+        "PUSH R \u2192 stack=1",
+        "PRINT \u2192 'SECR'",
+        "PUSH E \u2192 stack=1",
+        "PRINT \u2192 'SECRE'",
+        "PUSH T \u2192 stack=1",
+        "PRINT \u2192 'SECRET'",
+        "HALT"
+      ]
+    },
+    "solve_script": {
+      "file": "solve_vm.py"
+    }
+  }
+}
