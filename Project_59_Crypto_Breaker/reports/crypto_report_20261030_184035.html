@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><title>Crypto Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Custom Cryptography Breaking Report</h1>
+<p><b>Ciphertext:</b> 150902153e17650a15171d1a1d640c03161c38</p>
+<p><b>Timestamp:</b> 2026-10-30T18:40:34.872772</p>
+<p><b>Findings:</b> 3</p>
+<ul><li>xor_encryption_found</li><li>key_recovered</li><li>flag_found</li></ul>
+<h3>binary</h3><pre>{
+  "arch": "amd64",
+  "encrypt": "0x401176"
+}</pre><h3>algorithm</h3><pre>{
+  "type": "XOR_with_repeating_key",
+  "xor_instructions": 1
+}</pre><h3>known_prefix</h3><pre>{
+  "known_plaintext": "FLAG{",
+  "recovered_key_partial": "5345435245",
+  "recovered_key_partial_ascii": "SECRE"
+}</pre><h3>key_completion</h3><pre>{
+  "key_hex": "53454352455437",
+  "key_ascii": "SECRET7",
+  "plaintext": "FLAG{CRYPTO_IS_FUN}",
+  "score": 195
+}</pre><h3>flag</h3><pre>{
+  "flag": "FLAG{CRYPTO_IS_FUN}"
+}</pre><h3>solve_script</h3><pre>{
+  "file": "solve_crypto.py"
+}</pre>
+</body></html>

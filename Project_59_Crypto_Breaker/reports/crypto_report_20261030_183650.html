@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><title>Crypto Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Custom Cryptography Breaking Report</h1>
+<p><b>Ciphertext:</b> 150902153e17650a15171d1a1d640c03161c38</p>
+<p><b>Timestamp:</b> 2026-10-30T18:36:50.517571</p>
+<p><b>Findings:</b> 2</p>
+<ul><li>xor_encryption_found</li><li>key_recovered</li></ul>
+<h3>binary</h3><pre>{
+  "arch": "amd64",
+  "encrypt": "0x401176"
+}</pre><h3>algorithm</h3><pre>{
+  "type": "XOR_with_repeating_key",
+  "xor_instructions": 1
+}</pre><h3>key_length</h3><pre>{
+  "detected": 7,
+  "candidates": [
+    [
+      7,
+      2.429
+    ],
+    [
+      9,
+      2.556
+    ],
+    [
+      6,
+      2.917
+    ],
+    [
+      5,
+      3.0
+    ],
+    [
+      3,
+      3.067
+    ]
+  ]
+}</pre><h3>key_recovery</h3><pre>{
+  "key_hex": "00000000000000",
+  "key_ascii": "......."
+}</pre><h3>decryption</h3><pre>{
+  "plaintext": "\u0015\t\u0002\u0015>\u0017e\n\u0015\u0017\u001d\u001a\u001dd\f\u0003\u0016\u001c8",
+  "flag": "(not found)"
+}</pre><h3>solve_script</h3><pre>{
+  "file": "solve_crypto.py"
+}</pre>
+</body></html>

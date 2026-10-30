@@ -1,0 +1,32 @@
+{
+  "ciphertext_hex": "150902153e17650a15171d1a1d640c03161c38",
+  "ciphertext_len": 19,
+  "timestamp": "2026-10-30T18:40:34.872772",
+  "phases": {
+    "binary": {
+      "arch": "amd64",
+      "encrypt": "0x401176"
+    },
+    "algorithm": {
+      "type": "XOR_with_repeating_key",
+      "xor_instructions": 1
+    },
+    "known_prefix": {
+      "known_plaintext": "FLAG{",
+      "recovered_key_partial": "5345435245",
+      "recovered_key_partial_ascii": "SECRE"
+    },
+    "key_completion": {
+      "key_hex": "53454352455437",
+      "key_ascii": "SECRET7",
+      "plaintext": "FLAG{CRYPTO_IS_FUN}",
+      "score": 195
+    },
+    "flag": {
+      "flag": "FLAG{CRYPTO_IS_FUN}"
+    },
+    "solve_script": {
+      "file": "solve_crypto.py"
+    }
+  }
+}
