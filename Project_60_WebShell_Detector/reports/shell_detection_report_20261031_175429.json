@@ -1,0 +1,117 @@
+{
+  "target": "webroot",
+  "timestamp": "2026-10-31T17:54:29.484150",
+  "phases": {
+    "scan": {
+      "count": 6,
+      "files": [
+        "webroot/about.php",
+        "webroot/shell4.php",
+        "webroot/shell1.php",
+        "webroot/shell3.php",
+        "webroot/index.php",
+        "webroot/shell2.php"
+      ]
+    },
+    "analysis": {
+      "total_files": 6,
+      "detected_shells": 4,
+      "findings": [
+        {
+          "file": "webroot/shell4.php",
+          "type": "FILE MANAGER SHELL",
+          "severity": "CRITICAL",
+          "sha256": "d01c4eb97213f35dc4a567e4d61117e3b9a7aeee1546af8270b65889631851cb",
+          "matches": [
+            {
+              "pattern": "\\bshell_exec\\s*\\(",
+              "category": "direct_exec",
+              "severity": "HIGH"
+            },
+            {
+              "pattern": "move_uploaded_file\\s*\\(",
+              "category": "file_manager",
+              "severity": "CRITICAL"
+            }
+          ],
+          "quarantined": true,
+          "quarantine_path": "quarantine/shell4.php.quarantined"
+        },
+        {
+          "file": "webroot/shell1.php",
+          "type": "BASIC SHELL",
+          "severity": "HIGH",
+          "sha256": "ac5b099b97c6536012276c5e61c50d4f4fe6fd606bd861c5c15f769153452e68",
+          "matches": [
+            {
+              "pattern": "\\bsystem\\s*\\(",
+              "category": "direct_exec",
+              "severity": "HIGH"
+            }
+          ],
+          "quarantined": true,
+          "quarantine_path": "quarantine/shell1.php.quarantined"
+        },
+        {
+          "file": "webroot/shell3.php",
+          "type": "STEALTH SHELL",
+          "severity": "HIGH",
+          "sha256": "32dad4b4a17189ce3bc536530f9e34f076b0806c621cf9bb9a80d59cc1152154",
+          "matches": [
+            {
+              "pattern": "\\$\\w+\\s*=\\s*\\$_GET\\[",
+              "category": "stealth_var",
+              "severity": "HIGH"
+            },
+            {
+              "pattern": "\\$[a-zA-Z_]\\w*\\s*\\([^)]*\\)\\s*;",
+              "category": "variable_function",
+              "severity": "MEDIUM"
+            }
+          ],
+          "quarantined": true,
+          "quarantine_path": "quarantine/shell3.php.quarantined"
+        },
+        {
+          "file": "webroot/shell2.php",
+          "type": "OBFUSCATED SHELL",
+          "severity": "CRITICAL",
+          "sha256": "c22ecef24bc2a028e0bdcebbb83b6f2797fe5789d140bbc97c13e70b0a1adc08",
+          "matches": [
+            {
+              "pattern": "base64_decode\\s*\\(",
+              "category": "obfuscation",
+              "severity": "CRITICAL"
+            },
+            {
+              "pattern": "\\$[a-zA-Z_]\\w*\\s*\\([^)]*\\)\\s*;",
+              "category": "variable_function",
+              "severity": "MEDIUM"
+            }
+          ],
+          "quarantined": true,
+          "quarantine_path": "quarantine/shell2.php.quarantined"
+        }
+      ]
+    },
+    "summary": {
+      "by_type": {
+        "FILE MANAGER SHELL": 1,
+        "BASIC SHELL": 1,
+        "STEALTH SHELL": 1,
+        "OBFUSCATED SHELL": 1
+      },
+      "by_severity": {
+        "CRITICAL": 2,
+        "HIGH": 2
+      }
+    },
+    "quarantine": {
+      "dir": "quarantine",
+      "moved": 4
+    },
+    "cleanup_script": {
+      "file": "cleanup_shells.sh"
+    }
+  }
+}
