@@ -1,0 +1,122 @@
+{
+  "log_file": "logs/access.log",
+  "timestamp": "2026-11-01T18:44:52.593927",
+  "phases": {
+    "parse": {
+      "total_lines": 88,
+      "failed_lines": 0,
+      "unique_ips": 34,
+      "time_range": "01/Nov/2026:10:00:00 +0000 \u2192 01/Nov/2026:10:58:00 +0000"
+    },
+    "detect": {
+      "192.168.1.50": {
+        "SQLi": 15,
+        "XSS": 0,
+        "BruteForce": 0,
+        "PortScan": 0
+      },
+      "192.168.1.60": {
+        "XSS": 8,
+        "SQLi": 0,
+        "BruteForce": 0,
+        "PortScan": 0
+      },
+      "192.168.1.70": {
+        "BruteForce": 30,
+        "SQLi": 0,
+        "XSS": 0,
+        "PortScan": 0
+      },
+      "192.168.1.80": {
+        "PortScan": 5,
+        "SQLi": 0,
+        "XSS": 0,
+        "BruteForce": 0
+      }
+    },
+    "correlate": {
+      "192.168.1.50": {
+        "total_attacks": 15,
+        "attack_types": [
+          "SQLi"
+        ],
+        "counts": {
+          "SQLi": 15,
+          "XSS": 0,
+          "BruteForce": 0,
+          "PortScan": 0
+        }
+      },
+      "192.168.1.60": {
+        "total_attacks": 8,
+        "attack_types": [
+          "XSS"
+        ],
+        "counts": {
+          "XSS": 8,
+          "SQLi": 0,
+          "BruteForce": 0,
+          "PortScan": 0
+        }
+      },
+      "192.168.1.70": {
+        "total_attacks": 30,
+        "attack_types": [
+          "BruteForce"
+        ],
+        "counts": {
+          "BruteForce": 30,
+          "SQLi": 0,
+          "XSS": 0,
+          "PortScan": 0
+        }
+      },
+      "192.168.1.80": {
+        "total_attacks": 5,
+        "attack_types": [
+          "PortScan"
+        ],
+        "counts": {
+          "PortScan": 5,
+          "SQLi": 0,
+          "XSS": 0,
+          "BruteForce": 0
+        }
+      }
+    },
+    "alerts": [
+      {
+        "timestamp": "2026-11-01T18:44:52.603438",
+        "ip": "192.168.1.70",
+        "attack_type": "BruteForce",
+        "count": 30,
+        "severity": "CRITICAL",
+        "message": "BruteForce from 192.168.1.70 (30 attempts)"
+      },
+      {
+        "timestamp": "2026-11-01T18:44:52.603404",
+        "ip": "192.168.1.50",
+        "attack_type": "SQLi",
+        "count": 15,
+        "severity": "CRITICAL",
+        "message": "SQLi from 192.168.1.50 (15 attempts)"
+      },
+      {
+        "timestamp": "2026-11-01T18:44:52.603434",
+        "ip": "192.168.1.60",
+        "attack_type": "XSS",
+        "count": 8,
+        "severity": "CRITICAL",
+        "message": "XSS from 192.168.1.60 (8 attempts)"
+      },
+      {
+        "timestamp": "2026-11-01T18:44:52.603442",
+        "ip": "192.168.1.80",
+        "attack_type": "PortScan",
+        "count": 5,
+        "severity": "HIGH",
+        "message": "PortScan from 192.168.1.80 (5 attempts)"
+      }
+    ]
+  }
+}

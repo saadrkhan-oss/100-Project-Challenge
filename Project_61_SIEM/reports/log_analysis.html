@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><title>SIEM Log Analysis Report</title>
+<style>
+body { font-family: monospace; background:#0a0a0a; color:#e0e0e0; padding:20px; }
+h1 { color:#ff4444; }
+table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+th { background: #1a1a1a; color: #ff4444; }
+tr:nth-child(even) { background: #0f0f0f; }
+</style></head><body>
+<h1>SIEM Log Analysis Report</h1>
+<p><b>Log file:</b> logs/access.log</p>
+<p><b>Timestamp:</b> 2026-11-01T18:44:52.593927</p>
+<p><b>Total lines parsed:</b> 88</p>
+<p><b>Alerts:</b> 4</p>
+<h2>Alerts</h2>
+<table>
+<tr><th>Severity</th><th>IP</th><th>Attack Type</th><th>Count</th></tr>
+<tr>
+                <td style="color:#ff4444;font-weight:bold">CRITICAL</td>
+                <td>192.168.1.70</td>
+                <td>BruteForce</td>
+                <td>30</td>
+            </tr><tr>
+                <td style="color:#ff4444;font-weight:bold">CRITICAL</td>
+                <td>192.168.1.50</td>
+                <td>SQLi</td>
+                <td>15</td>
+            </tr><tr>
+                <td style="color:#ff4444;font-weight:bold">CRITICAL</td>
+                <td>192.168.1.60</td>
+                <td>XSS</td>
+                <td>8</td>
+            </tr><tr>
+                <td style="color:#ff8800;font-weight:bold">HIGH</td>
+                <td>192.168.1.80</td>
+                <td>PortScan</td>
+                <td>5</td>
+            </tr>
+</table>
+</body></html>

@@ -1,0 +1,5 @@
+severity,ip,attack_type,count,message
+CRITICAL,192.168.1.70,BruteForce,30,BruteForce from 192.168.1.70 (30 attempts)
+CRITICAL,192.168.1.50,SQLi,15,SQLi from 192.168.1.50 (15 attempts)
+CRITICAL,192.168.1.60,XSS,8,XSS from 192.168.1.60 (8 attempts)
+HIGH,192.168.1.80,PortScan,5,PortScan from 192.168.1.80 (5 attempts)
