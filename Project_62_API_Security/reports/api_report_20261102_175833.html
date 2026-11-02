@@ -1,0 +1,121 @@
+<!DOCTYPE html><html><head><title>API Security Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>API Security Report</h1>
+<p><b>Target:</b> http://127.0.0.1:5001</p>
+<p><b>Timestamp:</b> 2026-11-02T17:58:33.209639</p>
+<p><b>Confirmed vulnerabilities:</b> 9</p>
+<ul><li>discovery.endpoints (14)</li><li>auth.no_auth</li><li>auth.alg_none</li><li>auth.api_key_url</li><li>authz.idor</li><li>authz.admin_access</li><li>injection.sqli</li><li>injection.nosqli</li><li>injection.cmdi</li></ul>
+<h3>discovery</h3><pre>[
+  {
+    "path": "/swagger.json",
+    "status": 404
+  },
+  {
+    "path": "/api-docs",
+    "status": 404
+  },
+  {
+    "path": "/openapi.json",
+    "status": 404
+  },
+  {
+    "path": "/graphql",
+    "status": 404
+  },
+  {
+    "path": "/api/graphql",
+    "status": 404
+  },
+  {
+    "path": "/api/v1",
+    "status": 404
+  },
+  {
+    "path": "/api/v2",
+    "status": 404
+  },
+  {
+    "path": "/rest",
+    "status": 404
+  },
+  {
+    "path": "/api/docs",
+    "status": 200
+  },
+  {
+    "path": "/api/users",
+    "status": 200
+  },
+  {
+    "path": "/api/login",
+    "status": 405
+  },
+  {
+    "path": "/api/search",
+    "status": 405
+  },
+  {
+    "path": "/api/ping",
+    "status": 200
+  },
+  {
+    "path": "/api/admin/users",
+    "status": 200
+  }
+]</pre><h3>auth</h3><pre>{
+  "no_auth": {
+    "vulnerable": true,
+    "size": 503
+  },
+  "alg_none": {
+    "vulnerable": true
+  },
+  "api_key_url": {
+    "vulnerable": true
+  }
+}</pre><h3>authz</h3><pre>{
+  "idor": {
+    "vulnerable": true,
+    "users": [
+      1,
+      2,
+      3
+    ]
+  },
+  "admin_access": {
+    "vulnerable": true,
+    "size": 525
+  }
+}</pre><h3>injection</h3><pre>{
+  "sqli": {
+    "vulnerable": true,
+    "size": 302
+  },
+  "nosqli": {
+    "vulnerable": true,
+    "size": 538
+  },
+  "cmdi": {
+    "vulnerable": true
+  }
+}</pre><h3>rate_limit</h3><pre>{
+  "bruteforce": {
+    "vulnerable": false,
+    "rate": 248.1256747683234
+  }
+}</pre><h3>data_exposure</h3><pre>{
+  "pii": [
+    "email",
+    "phone",
+    "ssn"
+  ],
+  "secrets": [
+    "api_key",
+    "password"
+  ]
+}</pre>
+</body></html>

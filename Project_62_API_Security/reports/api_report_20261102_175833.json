@@ -1,0 +1,120 @@
+{
+  "target": "http://127.0.0.1:5001",
+  "timestamp": "2026-11-02T17:58:33.209639",
+  "phases": {
+    "discovery": [
+      {
+        "path": "/swagger.json",
+        "status": 404
+      },
+      {
+        "path": "/api-docs",
+        "status": 404
+      },
+      {
+        "path": "/openapi.json",
+        "status": 404
+      },
+      {
+        "path": "/graphql",
+        "status": 404
+      },
+      {
+        "path": "/api/graphql",
+        "status": 404
+      },
+      {
+        "path": "/api/v1",
+        "status": 404
+      },
+      {
+        "path": "/api/v2",
+        "status": 404
+      },
+      {
+        "path": "/rest",
+        "status": 404
+      },
+      {
+        "path": "/api/docs",
+        "status": 200
+      },
+      {
+        "path": "/api/users",
+        "status": 200
+      },
+      {
+        "path": "/api/login",
+        "status": 405
+      },
+      {
+        "path": "/api/search",
+        "status": 405
+      },
+      {
+        "path": "/api/ping",
+        "status": 200
+      },
+      {
+        "path": "/api/admin/users",
+        "status": 200
+      }
+    ],
+    "auth": {
+      "no_auth": {
+        "vulnerable": true,
+        "size": 503
+      },
+      "alg_none": {
+        "vulnerable": true
+      },
+      "api_key_url": {
+        "vulnerable": true
+      }
+    },
+    "authz": {
+      "idor": {
+        "vulnerable": true,
+        "users": [
+          1,
+          2,
+          3
+        ]
+      },
+      "admin_access": {
+        "vulnerable": true,
+        "size": 525
+      }
+    },
+    "injection": {
+      "sqli": {
+        "vulnerable": true,
+        "size": 302
+      },
+      "nosqli": {
+        "vulnerable": true,
+        "size": 538
+      },
+      "cmdi": {
+        "vulnerable": true
+      }
+    },
+    "rate_limit": {
+      "bruteforce": {
+        "vulnerable": false,
+        "rate": 248.1256747683234
+      }
+    },
+    "data_exposure": {
+      "pii": [
+        "email",
+        "phone",
+        "ssn"
+      ],
+      "secrets": [
+        "api_key",
+        "password"
+      ]
+    }
+  }
+}
