@@ -1,0 +1,15 @@
+{
+  "apk": "vulnerable.apk",
+  "timestamp": "2026-11-03T17:30:46.865405",
+  "phases": {
+    "extract": {
+      "file_count": 4,
+      "files": [
+        "AndroidManifest.xml",
+        "res/values/strings.xml",
+        "res/xml/network_security_config.xml",
+        "classes.dex"
+      ]
+    }
+  }
+}

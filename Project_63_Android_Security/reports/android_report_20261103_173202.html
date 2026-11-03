@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><title>Android Security Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff5555; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff5555; overflow:auto; }
+</style></head><body>
+<h1>Android Security Report</h1>
+<p><b>APK:</b> vulnerable.apk</p>
+<p><b>Timestamp:</b> 2026-11-03T17:32:02.376630</p>
+<p><b>Vulnerabilities:</b> 8</p>
+<ul><li>manifest.debuggable</li><li>manifest.allow_backup</li><li>manifest.cleartext</li><li>manifest.exported (5)</li><li>secrets.aws</li><li>secrets.passwords</li><li>secrets.firebase</li><li>network.cleartext</li></ul>
+<h3>extract</h3><pre>{
+  "file_count": 4,
+  "files": [
+    "AndroidManifest.xml",
+    "res/values/strings.xml",
+    "res/xml/network_security_config.xml",
+    "classes.dex"
+  ]
+}</pre><h3>manifest</h3><pre>{
+  "package": "com.vulnerable.app",
+  "debuggable": true,
+  "allow_backup": true,
+  "cleartext": true,
+  "exported_components": [
+    {
+      "type": "activity",
+      "name": ".MainActivity"
+    },
+    {
+      "type": "activity",
+      "name": ".AdminActivity"
+    },
+    {
+      "type": "service",
+      "name": ".BackupService"
+    },
+    {
+      "type": "receiver",
+      "name": ".SMSReceiver"
+    },
+    {
+      "type": "provider",
+      "name": ".UserProvider"
+    }
+  ]
+}</pre><h3>secrets</h3><pre>{
+  "aws_keys": [
+    "AKIAIOSFODNN7EXAMPLE"
+  ],
+  "passwords": [
+    "admin123"
+  ],
+  "firebase": [
+    "https://vulnerable-app.firebaseio.com"
+  ]
+}</pre><h3>network</h3><pre>{
+  "cleartext_allowed": true
+}</pre>
+</body></html>

@@ -1,0 +1,57 @@
+{
+  "apk": "vulnerable.apk",
+  "timestamp": "2026-11-03T17:32:02.376630",
+  "phases": {
+    "extract": {
+      "file_count": 4,
+      "files": [
+        "AndroidManifest.xml",
+        "res/values/strings.xml",
+        "res/xml/network_security_config.xml",
+        "classes.dex"
+      ]
+    },
+    "manifest": {
+      "package": "com.vulnerable.app",
+      "debuggable": true,
+      "allow_backup": true,
+      "cleartext": true,
+      "exported_components": [
+        {
+          "type": "activity",
+          "name": ".MainActivity"
+        },
+        {
+          "type": "activity",
+          "name": ".AdminActivity"
+        },
+        {
+          "type": "service",
+          "name": ".BackupService"
+        },
+        {
+          "type": "receiver",
+          "name": ".SMSReceiver"
+        },
+        {
+          "type": "provider",
+          "name": ".UserProvider"
+        }
+      ]
+    },
+    "secrets": {
+      "aws_keys": [
+        "AKIAIOSFODNN7EXAMPLE"
+      ],
+      "passwords": [
+        "admin123"
+      ],
+      "firebase": [
+        "https://vulnerable-app.firebaseio.com"
+      ]
+    },
+    "network": {
+      "cleartext_allowed": true
+    }
+  }
+}
