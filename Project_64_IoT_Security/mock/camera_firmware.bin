@@ -1,0 +1,13 @@
+
+MOCK_FIRMWARE_V1.0
+Build: 2024-01-15
+Device: Hikvision Camera
+Config:
+  admin_password=admin123
+  root_password=toor
+  wifi_ssid=HomeNetwork
+  wifi_password=MySecretWiFi2024
+  api_key=AKIAIOSFODNN7EXAMPLE
+Debug:
+  debug_port=9000
+  telnet_enabled=true

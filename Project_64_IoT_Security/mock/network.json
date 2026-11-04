@@ -1,0 +1,132 @@
+{
+  "devices": [
+    {
+      "ip": "192.168.1.1",
+      "type": "router",
+      "vendor": "TP-Link",
+      "open_ports": [
+        80,
+        22,
+        23,
+        1900
+      ],
+      "services": {
+        "http": "TP-Link Admin",
+        "ssh": "OpenSSH 7.4",
+        "telnet": "BusyBox telnetd",
+        "upnp": "UPnP/1.0"
+      },
+      "default_creds": [
+        [
+          "admin",
+          "admin"
+        ],
+        [
+          "admin",
+          "password"
+        ]
+      ],
+      "vulnerabilities": [
+        "telnet_enabled",
+        "upnp_exposed",
+        "http_no_https"
+      ]
+    },
+    {
+      "ip": "192.168.1.10",
+      "type": "camera",
+      "vendor": "Hikvision",
+      "open_ports": [
+        80,
+        554,
+        23,
+        8443
+      ],
+      "services": {
+        "http": "Hikvision Web",
+        "rtsp": "Hikvision RTSP",
+        "telnet": "BusyBox telnetd"
+      },
+      "default_creds": [
+        [
+          "admin",
+          "12345"
+        ]
+      ],
+      "vulnerabilities": [
+        "telnet_enabled",
+        "rtsp_unauthenticated",
+        "http_no_https"
+      ]
+    },
+    {
+      "ip": "192.168.1.11",
+      "type": "smart_plug",
+      "vendor": "TP-Link",
+      "open_ports": [
+        80,
+        1883,
+        9999
+      ],
+      "services": {
+        "http": "TP-Link Smart Plug",
+        "mqtt": "Mosquitto MQTT"
+      },
+      "default_creds": [
+        [
+          "admin",
+          "admin"
+        ]
+      ],
+      "vulnerabilities": [
+        "mqtt_unauthenticated",
+        "http_no_https"
+      ]
+    },
+    {
+      "ip": "192.168.1.12",
+      "type": "thermostat",
+      "vendor": "Nest",
+      "open_ports": [
+        80,
+        443,
+        8080
+      ],
+      "services": {
+        "http": "Nest Web",
+        "https": "Nest HTTPS"
+      },
+      "default_creds": [],
+      "vulnerabilities": [
+        "debug_exposed"
+      ]
+    },
+    {
+      "ip": "192.168.1.13",
+      "type": "raspberry_pi",
+      "vendor": "Raspberry Pi Foundation",
+      "open_ports": [
+        22,
+        80,
+        1883,
+        9000
+      ],
+      "services": {
+        "ssh": "OpenSSH 8.2",
+        "http": "Node-RED",
+        "mqtt": "Mosquitto",
+        "debug": "Node-RED debug"
+      },
+      "default_creds": [
+        [
+          "pi",
+          "raspberry"
+        ]
+      ],
+      "vulnerabilities": [
+        "mqtt_unauthenticated",
+        "debug_exposed"
+      ]
+    }
+  ]
+}
