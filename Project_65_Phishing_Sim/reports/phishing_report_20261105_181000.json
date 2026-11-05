@@ -1,0 +1,33 @@
+{
+  "target": "target@example.com",
+  "timestamp": "2026-11-05T18:10:00.043728",
+  "breaches_exposed": [
+    {
+      "name": "Adobe",
+      "year": 2013,
+      "records": "153M"
+    },
+    {
+      "name": "LinkedIn",
+      "year": 2012,
+      "records": "117M"
+    }
+  ],
+  "simulated_submissions": 1,
+  "email_templates_generated": 3,
+  "findings": [
+    "Email exposed in 2 breaches",
+    "Simulated credential submission captured",
+    "Phishing email templates created",
+    "Link not flagged by simulated filters"
+  ],
+  "recommendations": [
+    "Security awareness training for all staff",
+    "Enable MFA on all accounts",
+    "Implement SPF, DKIM, DMARC",
+    "Use password manager",
+    "Deploy phishing simulation program (GoPhish, KnowBe4)",
+    "Email attachment sandboxing",
+    "Report-phishing button in email client"
+  ]
+}

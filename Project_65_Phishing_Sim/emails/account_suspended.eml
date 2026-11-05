@@ -1,0 +1,11 @@
+To: target@example.com
+Subject: Account Suspended - Action Required
+Date: 2026-11-05T18:10:00.039618
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Your account has been suspended due to suspicious activity.
+
+Verify here: http://127.0.0.1:5002/login
+
+- Security Team

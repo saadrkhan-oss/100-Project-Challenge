@@ -1,0 +1,13 @@
+To: target@example.com
+Subject: Invoice #12345 - Payment Due
+Date: 2026-11-05T18:10:00.025294
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Please review the attached invoice.
+
+Click here: http://127.0.0.1:5002/login
+
+Payment due within 7 days.
+
+- Accounts Payable
