@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html><head><title>Red Team Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ff4444; }
+h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ff4444; overflow:auto; }
+.safety { background:#1a3a1a; border-left:4px solid #55ff55; padding:15px; margin:20px 0; }
+</style></head><body>
+<h1>Red Team Operations Report (Simulation)</h1>
+<p><b>Target:</b> 10.10.10.0/24 (simulated)</p>
+<p><b>Timestamp:</b> 2026-11-06T17:42:06.835976</p>
+<div class="safety"><b>⚠️ SAFETY NOTICE:</b> This is a SIMULATION. No exploits were run, no phishing sent, no data exfiltrated.</div>
+<h2>Findings (12)</h2>
+<ul><li>recon.osint_emails (5)</li><li>recon.network_hosts (5)</li><li>recon.vulnerabilities (3)</li><li>initial_access.phishing_template</li><li>initial_access.exploit_reference</li><li>execution.technique_T1059</li><li>persistence.technique_T1053</li><li>privesc.local_CVE-2021-4034</li><li>privesc.domain_kerberoasting</li><li>lateral.method_ssh_or_pth</li><li>exfil.simulated_150KB</li><li>mitre_attack.8_techniques</li></ul>
+<h3>recon</h3><pre>{
+  "osint_emails": [
+    "admin@corp.local",
+    "it@corp.local",
+    "dev@corp.local",
+    "hr@corp.local",
+    "finance@corp.local"
+  ],
+  "network_hosts": [
+    {
+      "ip": "10.10.10.1",
+      "role": "gateway",
+      "os": "Cisco IOS"
+    },
+    {
+      "ip": "10.10.10.5",
+      "role": "web",
+      "os": "Ubuntu 20.04",
+      "port": 8080
+    },
+    {
+      "ip": "10.10.10.6",
+      "role": "db",
+      "os": "Ubuntu 20.04",
+      "port": 3306
+    },
+    {
+      "ip": "10.10.10.7",
+      "role": "workstation",
+      "os": "Windows 10",
+      "port": 445
+    },
+    {
+      "ip": "10.10.10.10",
+      "role": "dc",
+      "os": "Windows Server 2019",
+      "port": 88
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "cve": "CVE-2021-44228",
+      "name": "Log4Shell",
+      "host": "10.10.10.5",
+      "severity": "CRITICAL",
+      "note": "JNDI injection in Log4j 2.x"
+    },
+    {
+      "cve": "CVE-2021-4034",
+      "name": "PwnKit",
+      "host": "10.10.10.6",
+      "severity": "CRITICAL",
+      "note": "pkexec local root"
+    },
+    {
+      "cve": "CVE-2020-1472",
+      "name": "Zerologon",
+      "host": "10.10.10.10",
+      "severity": "CRITICAL",
+      "note": "Netlogon elevation"
+    }
+  ]
+}</pre><h3>initial_access</h3><pre>{
+  "vector_a": "phishing_template",
+  "vector_b": "CVE-2021-44228"
+}</pre><h3>execution</h3><pre>{
+  "technique": "T1059",
+  "payload": "NOT_GENERATED"
+}</pre><h3>persistence</h3><pre>{
+  "linux": "cron",
+  "windows": "run_key",
+  "installed": false
+}</pre><h3>privilege_escalation</h3><pre>{
+  "local": "CVE-2021-4034",
+  "domain": "kerberoasting",
+  "executed": false
+}</pre><h3>lateral_movement</h3><pre>{
+  "method": "ssh_or_pth",
+  "hosts": [
+    "10.10.10.6",
+    "10.10.10.7"
+  ],
+  "executed": false
+}</pre><h3>exfiltration</h3><pre>{
+  "bytes": 153600,
+  "real_data": false
+}</pre><h3>mitre_attack</h3><pre>{
+  "recon": {
+    "T1595": "Active Scanning",
+    "T1589": "Gather Victim Identity Info"
+  },
+  "initial": {
+    "T1566": "Phishing",
+    "T1190": "Exploit Public-Facing Application"
+  },
+  "execution": {
+    "T1059": "Command and Scripting Interpreter"
+  },
+  "persistence": {
+    "T1053": "Scheduled Task/Job",
+    "T1543": "Create or Modify System Process"
+  },
+  "privesc": {
+    "T1068": "Exploitation for Privilege Escalation",
+    "T1548": "Abuse Elevation Control"
+  },
+  "lateral": {
+    "T1021": "Remote Services",
+    "T1550": "Use Alternate Authentication Material"
+  },
+  "exfil": {
+    "T1048": "Exfiltration Over Alternative Protocol",
+    "T1041": "Exfiltration Over C2 Channel"
+  }
+}</pre>
+</body></html>

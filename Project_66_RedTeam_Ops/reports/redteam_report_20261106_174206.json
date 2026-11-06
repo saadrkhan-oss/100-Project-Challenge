@@ -1,0 +1,143 @@
+{
+  "target": "10.10.10.0/24 (simulated)",
+  "timestamp": "2026-11-06T17:42:06.835976",
+  "safety_notice": "This is a SIMULATION. No exploits were run, no phishing sent, no data exfiltrated.",
+  "phases": {
+    "recon": {
+      "osint_emails": [
+        "admin@corp.local",
+        "it@corp.local",
+        "dev@corp.local",
+        "hr@corp.local",
+        "finance@corp.local"
+      ],
+      "network_hosts": [
+        {
+          "ip": "10.10.10.1",
+          "role": "gateway",
+          "os": "Cisco IOS"
+        },
+        {
+          "ip": "10.10.10.5",
+          "role": "web",
+          "os": "Ubuntu 20.04",
+          "port": 8080
+        },
+        {
+          "ip": "10.10.10.6",
+          "role": "db",
+          "os": "Ubuntu 20.04",
+          "port": 3306
+        },
+        {
+          "ip": "10.10.10.7",
+          "role": "workstation",
+          "os": "Windows 10",
+          "port": 445
+        },
+        {
+          "ip": "10.10.10.10",
+          "role": "dc",
+          "os": "Windows Server 2019",
+          "port": 88
+        }
+      ],
+      "vulnerabilities": [
+        {
+          "cve": "CVE-2021-44228",
+          "name": "Log4Shell",
+          "host": "10.10.10.5",
+          "severity": "CRITICAL",
+          "note": "JNDI injection in Log4j 2.x"
+        },
+        {
+          "cve": "CVE-2021-4034",
+          "name": "PwnKit",
+          "host": "10.10.10.6",
+          "severity": "CRITICAL",
+          "note": "pkexec local root"
+        },
+        {
+          "cve": "CVE-2020-1472",
+          "name": "Zerologon",
+          "host": "10.10.10.10",
+          "severity": "CRITICAL",
+          "note": "Netlogon elevation"
+        }
+      ]
+    },
+    "initial_access": {
+      "vector_a": "phishing_template",
+      "vector_b": "CVE-2021-44228"
+    },
+    "execution": {
+      "technique": "T1059",
+      "payload": "NOT_GENERATED"
+    },
+    "persistence": {
+      "linux": "cron",
+      "windows": "run_key",
+      "installed": false
+    },
+    "privilege_escalation": {
+      "local": "CVE-2021-4034",
+      "domain": "kerberoasting",
+      "executed": false
+    },
+    "lateral_movement": {
+      "method": "ssh_or_pth",
+      "hosts": [
+        "10.10.10.6",
+        "10.10.10.7"
+      ],
+      "executed": false
+    },
+    "exfiltration": {
+      "bytes": 153600,
+      "real_data": false
+    },
+    "mitre_attack": {
+      "recon": {
+        "T1595": "Active Scanning",
+        "T1589": "Gather Victim Identity Info"
+      },
+      "initial": {
+        "T1566": "Phishing",
+        "T1190": "Exploit Public-Facing Application"
+      },
+      "execution": {
+        "T1059": "Command and Scripting Interpreter"
+      },
+      "persistence": {
+        "T1053": "Scheduled Task/Job",
+        "T1543": "Create or Modify System Process"
+      },
+      "privesc": {
+        "T1068": "Exploitation for Privilege Escalation",
+        "T1548": "Abuse Elevation Control"
+      },
+      "lateral": {
+        "T1021": "Remote Services",
+        "T1550": "Use Alternate Authentication Material"
+      },
+      "exfil": {
+        "T1048": "Exfiltration Over Alternative Protocol",
+        "T1041": "Exfiltration Over C2 Channel"
+      }
+    }
+  },
+  "findings": [
+    "recon.osint_emails (5)",
+    "recon.network_hosts (5)",
+    "recon.vulnerabilities (3)",
+    "initial_access.phishing_template",
+    "initial_access.exploit_reference",
+    "execution.technique_T1059",
+    "persistence.technique_T1053",
+    "privesc.local_CVE-2021-4034",
+    "privesc.domain_kerberoasting",
+    "lateral.method_ssh_or_pth",
+    "exfil.simulated_150KB",
+    "mitre_attack.8_techniques"
+  ]
+}
