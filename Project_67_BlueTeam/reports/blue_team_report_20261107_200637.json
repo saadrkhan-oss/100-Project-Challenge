@@ -1,0 +1,152 @@
+{
+  "timestamp": "2026-11-07T20:06:37.811419",
+  "mock_dir": "mock",
+  "phases": {
+    "detection": {
+      "sigma": [
+        {
+          "ip": "10.10.10.50",
+          "user": "admin",
+          "count": 15,
+          "rule": "brute_force"
+        }
+      ],
+      "yara": [
+        {
+          "path": "/tmp/mimikatz.exe",
+          "hash": "abc123",
+          "rule": "mimikatz_or_shell"
+        },
+        {
+          "path": "/var/www/html/shell.php",
+          "hash": "def456",
+          "rule": "mimikatz_or_shell"
+        }
+      ],
+      "ids": [
+        {
+          "ip": "10.10.10.70",
+          "payload": "UNION SELECT",
+          "count": 3,
+          "rule": "sql_injection"
+        },
+        {
+          "ip": "10.10.10.80",
+          "payload": "OR 1=1",
+          "count": 2,
+          "rule": "sql_injection"
+        }
+      ]
+    },
+    "response": {
+      "containment": [
+        "10.10.10.50"
+      ],
+      "eradication": [
+        {
+          "path": "/tmp/mimikatz.exe",
+          "quarantine": "quarantine/_tmp_mimikatz.exe"
+        },
+        {
+          "path": "/var/www/html/shell.php",
+          "quarantine": "quarantine/_var_www_html_shell.php"
+        }
+      ],
+      "recovery": [
+        "restored_from_backup"
+      ]
+    },
+    "hunting": {
+      "ioc_hits": [
+        {
+          "ioc": "192.168.1.100",
+          "type": "ips",
+          "artifact": "capture.pcap"
+        },
+        {
+          "ioc": "203.0.113.5",
+          "type": "ips",
+          "artifact": "capture.pcap"
+        }
+      ],
+      "anomalies": [
+        {
+          "type": "c2_traffic",
+          "count": 2,
+          "target": "192.168.1.100"
+        }
+      ]
+    },
+    "forensics": {
+      "memory": {
+        "process_count": 6,
+        "suspicious_processes": [
+          "mimikatz.exe",
+          "powershell.exe"
+        ],
+        "credentials_found": 3
+      },
+      "disk": {
+        "deleted_files": [
+          "shell.php",
+          "passwords.txt",
+          "config.bak"
+        ],
+        "recovered": 3
+      },
+      "network": {
+        "total_connections": 5,
+        "malicious": [
+          "10.10.10.50 -> 192.168.1.100:4444",
+          "10.10.10.50 -> 192.168.1.100:443",
+          "10.10.10.50 -> 203.0.113.5:80"
+        ]
+      }
+    },
+    "incident_report": {
+      "timeline": [
+        {
+          "time": "10:00",
+          "event": "Brute force detected from 10.10.10.50"
+        },
+        {
+          "time": "10:05",
+          "event": "Malware detected: /tmp/mimikatz.exe"
+        },
+        {
+          "time": "10:05",
+          "event": "Malware detected: /var/www/html/shell.php"
+        },
+        {
+          "time": "10:10",
+          "event": "Host 10.10.10.50 isolated"
+        },
+        {
+          "time": "10:15",
+          "event": "Malware /tmp/mimikatz.exe quarantined"
+        },
+        {
+          "time": "10:15",
+          "event": "Malware /var/www/html/shell.php quarantined"
+        },
+        {
+          "time": "10:20",
+          "event": "System restored from backup"
+        }
+      ],
+      "impact": {
+        "hosts_compromised": 1,
+        "data_exfiltrated_kb": 0,
+        "downtime_minutes": 20,
+        "alerts_total": 5
+      }
+    },
+    "lessons_learned": [
+      "Enable MFA to prevent credential-based brute force",
+      "Update YARA rules with new malware signatures",
+      "Improve IDS rules for SQLi and C2 traffic",
+      "Add network segmentation (VLANs) between prod and users",
+      "Test backups monthly to ensure recovery works"
+    ]
+  }
+}

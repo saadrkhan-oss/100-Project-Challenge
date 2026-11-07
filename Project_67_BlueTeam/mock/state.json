@@ -1,0 +1,66 @@
+{
+  "failed_logins": [
+    {
+      "ip": "10.10.10.50",
+      "user": "admin",
+      "count": 15,
+      "timestamp": "2026-11-07T10:00:00"
+    },
+    {
+      "ip": "10.10.10.60",
+      "user": "root",
+      "count": 8,
+      "timestamp": "2026-11-07T10:05:00"
+    }
+  ],
+  "malware_files": [
+    {
+      "path": "/tmp/mimikatz.exe",
+      "hash": "abc123",
+      "detected": true
+    },
+    {
+      "path": "/var/www/html/shell.php",
+      "hash": "def456",
+      "detected": true
+    }
+  ],
+  "sql_injection_attempts": [
+    {
+      "ip": "10.10.10.70",
+      "payload": "UNION SELECT",
+      "count": 3
+    },
+    {
+      "ip": "10.10.10.80",
+      "payload": "OR 1=1",
+      "count": 2
+    }
+  ],
+  "suspicious_processes": [
+    {
+      "pid": 4096,
+      "name": "mimikatz.exe",
+      "reason": "Known credential dumper"
+    },
+    {
+      "pid": 5120,
+      "name": "powershell.exe",
+      "reason": "Encoded command"
+    }
+  ],
+  "iocs": {
+    "ips": [
+      "192.168.1.100",
+      "203.0.113.5"
+    ],
+    "domains": [
+      "evil-c2.com",
+      "malware-download.net"
+    ],
+    "hashes": [
+      "abc123",
+      "def456"
+    ]
+  }
+}

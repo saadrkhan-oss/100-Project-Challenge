@@ -1,0 +1,11 @@
+MOCK_DISK_IMAGE_FILESYSTEM
+Files in /var/www/html:
+  index.php
+  about.php
+  [DELETED] shell.php  -- recovered
+  [DELETED] passwords.txt  -- recovered
+  [DELETED] config.bak  -- recovered
+Users in /home:
+  admin
+  user1
+  user2

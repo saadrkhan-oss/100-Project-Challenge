@@ -1,0 +1,12 @@
+MOCK_MEMORY_DUMP
+Processes:
+  svchost.exe (PID 1024)
+  explorer.exe (PID 2048)
+  chrome.exe (PID 3072)
+  mimikatz.exe (PID 4096)  -- SUSPICIOUS
+  powershell.exe (PID 5120) -EncodedCommand JABzAD0A...  -- SUSPICIOUS
+  lsass.exe (PID 6144)
+Credentials found in memory:
+  admin:Admin@2024
+  user1:Password123
+  user2:Summer2024!
