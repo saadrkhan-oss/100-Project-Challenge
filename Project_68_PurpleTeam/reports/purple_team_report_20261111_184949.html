@@ -1,0 +1,120 @@
+<!DOCTYPE html><html><head><title>Purple Team Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#cc44cc; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #cc44cc; overflow:auto; }
+</style></head><body>
+<h1>Purple Team Collaboration Report</h1>
+<p><b>Timestamp:</b> 2026-11-11T18:49:49.769316</p>
+<p><b>Findings:</b> 12</p>
+<ul><li>red.RED-001 (T1566)</li><li>red.RED-002 (T1190)</li><li>red.RED-003 (T1053)</li><li>red.RED-004 (T1048)</li><li>blue.BLUE-001 (Sigma: Suspicious Email Subject)</li><li>blue.BLUE-002 (YARA: JNDI Lookup)</li><li>blue.BLUE-003 (Sigma: New Cron Job)</li><li>correlation.mttd (2.7 min)</li><li>correlation.mttr (6.0 min)</li><li>correlation.detection_rate (75.0%)</li><li>gaps.uncovered (T1068)</li><li>gaps.uncovered (T1048)</li></ul>
+<h3>red_team</h3><pre>[
+  {
+    "id": "RED-001",
+    "technique": "T1566",
+    "name": "Phishing",
+    "target": "admin@corp.local",
+    "timestamp": "2026-11-08T10:00:00",
+    "outcome": "email sent (simulated)",
+    "artifact": "phishing_email.eml"
+  },
+  {
+    "id": "RED-002",
+    "technique": "T1190",
+    "name": "Exploit Public-Facing App (Log4Shell)",
+    "target": "10.10.10.5:8080",
+    "timestamp": "2026-11-08T10:02:00",
+    "outcome": "JNDI payload sent (simulated)",
+    "artifact": "jndi_payload.txt"
+  },
+  {
+    "id": "RED-003",
+    "technique": "T1053",
+    "name": "Scheduled Task (cron)",
+    "target": "10.10.10.6",
+    "timestamp": "2026-11-08T10:05:00",
+    "outcome": "cron written (simulated)",
+    "artifact": "cron_entry.txt"
+  },
+  {
+    "id": "RED-004",
+    "technique": "T1048",
+    "name": "Exfiltration via DNS",
+    "target": "10.10.10.6 \u2192 external",
+    "timestamp": "2026-11-08T10:10:00",
+    "outcome": "DNS tunnel (simulated)",
+    "artifact": "dns_exfil.log"
+  }
+]</pre><h3>blue_team</h3><pre>[
+  {
+    "id": "BLUE-001",
+    "rule": "Sigma: Suspicious Email Subject",
+    "matches": "RED-001",
+    "detected_at": "2026-11-08T10:02:00",
+    "mttd_seconds": 120,
+    "response_at": "2026-11-08T10:07:00",
+    "mttr_seconds": 300
+  },
+  {
+    "id": "BLUE-002",
+    "rule": "YARA: JNDI Lookup",
+    "matches": "RED-002",
+    "detected_at": "2026-11-08T10:03:00",
+    "mttd_seconds": 60,
+    "response_at": "2026-11-08T10:06:00",
+    "mttr_seconds": 180
+  },
+  {
+    "id": "BLUE-003",
+    "rule": "Sigma: New Cron Job",
+    "matches": "RED-003",
+    "detected_at": "2026-11-08T10:10:00",
+    "mttd_seconds": 300,
+    "response_at": "2026-11-08T10:20:00",
+    "mttr_seconds": 600
+  }
+]</pre><h3>correlation</h3><pre>{
+  "mttd_avg_seconds": 160.0,
+  "mttd_avg_minutes": 2.7,
+  "mttr_avg_seconds": 360.0,
+  "mttr_avg_minutes": 6.0,
+  "detected": 3,
+  "total_attacks": 4,
+  "missed": [
+    "RED-004"
+  ],
+  "detection_rate_pct": 75.0
+}</pre><h3>gaps</h3><pre>{
+  "uncovered_techniques": [
+    "T1068",
+    "T1048"
+  ],
+  "missed_attacks": "{'RED-004'}",
+  "recommendations": [
+    "Add detection for T1068 (Privesc)",
+    "Add detection for T1048 (Exfiltration)",
+    "Add rule for 1 missed attack(s)"
+  ]
+}</pre><h3>collaborative_report</h3><pre>{
+  "red_attacks": 4,
+  "blue_detections": 3,
+  "detection_rate": 75.0,
+  "mttd_min": 2.7,
+  "mttr_min": 6.0,
+  "gaps": 2
+}</pre><h3>continuous_improvement</h3><pre>{
+  "kpis": {
+    "current_mttd_min": 2.7,
+    "current_mttr_min": 6.0,
+    "current_detection_rate": 75.0,
+    "target_mttd_min": 5,
+    "target_mttr_min": 15,
+    "target_detection_rate": 95
+  },
+  "next_iteration": [
+    "Add detection for T1068 (Privesc)",
+    "Add detection for T1048 (Exfiltration)",
+    "Add rule for 1 missed attack(s)"
+  ]
+}</pre>
+</body></html>

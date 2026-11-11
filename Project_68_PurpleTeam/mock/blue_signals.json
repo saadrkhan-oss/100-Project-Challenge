@@ -1,0 +1,31 @@
+{
+  "detections": [
+    {
+      "id": "BLUE-001",
+      "rule": "Sigma: Suspicious Email Subject",
+      "matches": "RED-001",
+      "detected_at": "2026-11-08T10:02:00",
+      "mttd_seconds": 120,
+      "response_at": "2026-11-08T10:07:00",
+      "mttr_seconds": 300
+    },
+    {
+      "id": "BLUE-002",
+      "rule": "YARA: JNDI Lookup",
+      "matches": "RED-002",
+      "detected_at": "2026-11-08T10:03:00",
+      "mttd_seconds": 60,
+      "response_at": "2026-11-08T10:06:00",
+      "mttr_seconds": 180
+    },
+    {
+      "id": "BLUE-003",
+      "rule": "Sigma: New Cron Job",
+      "matches": "RED-003",
+      "detected_at": "2026-11-08T10:10:00",
+      "mttd_seconds": 300,
+      "response_at": "2026-11-08T10:20:00",
+      "mttr_seconds": 600
+    }
+  ]
+}

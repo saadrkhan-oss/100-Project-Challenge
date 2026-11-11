@@ -1,0 +1,40 @@
+{
+  "attacks": [
+    {
+      "id": "RED-001",
+      "technique": "T1566",
+      "name": "Phishing",
+      "target": "admin@corp.local",
+      "timestamp": "2026-11-08T10:00:00",
+      "outcome": "email sent (simulated)",
+      "artifact": "phishing_email.eml"
+    },
+    {
+      "id": "RED-002",
+      "technique": "T1190",
+      "name": "Exploit Public-Facing App (Log4Shell)",
+      "target": "10.10.10.5:8080",
+      "timestamp": "2026-11-08T10:02:00",
+      "outcome": "JNDI payload sent (simulated)",
+      "artifact": "jndi_payload.txt"
+    },
+    {
+      "id": "RED-003",
+      "technique": "T1053",
+      "name": "Scheduled Task (cron)",
+      "target": "10.10.10.6",
+      "timestamp": "2026-11-08T10:05:00",
+      "outcome": "cron written (simulated)",
+      "artifact": "cron_entry.txt"
+    },
+    {
+      "id": "RED-004",
+      "technique": "T1048",
+      "name": "Exfiltration via DNS",
+      "target": "10.10.10.6 \u2192 external",
+      "timestamp": "2026-11-08T10:10:00",
+      "outcome": "DNS tunnel (simulated)",
+      "artifact": "dns_exfil.log"
+    }
+  ]
+}

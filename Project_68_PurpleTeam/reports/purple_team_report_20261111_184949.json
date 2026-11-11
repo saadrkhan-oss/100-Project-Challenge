@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-11-11T18:49:49.769316",
+  "mock_dir": "mock",
+  "phases": {
+    "red_team": [
+      {
+        "id": "RED-001",
+        "technique": "T1566",
+        "name": "Phishing",
+        "target": "admin@corp.local",
+        "timestamp": "2026-11-08T10:00:00",
+        "outcome": "email sent (simulated)",
+        "artifact": "phishing_email.eml"
+      },
+      {
+        "id": "RED-002",
+        "technique": "T1190",
+        "name": "Exploit Public-Facing App (Log4Shell)",
+        "target": "10.10.10.5:8080",
+        "timestamp": "2026-11-08T10:02:00",
+        "outcome": "JNDI payload sent (simulated)",
+        "artifact": "jndi_payload.txt"
+      },
+      {
+        "id": "RED-003",
+        "technique": "T1053",
+        "name": "Scheduled Task (cron)",
+        "target": "10.10.10.6",
+        "timestamp": "2026-11-08T10:05:00",
+        "outcome": "cron written (simulated)",
+        "artifact": "cron_entry.txt"
+      },
+      {
+        "id": "RED-004",
+        "technique": "T1048",
+        "name": "Exfiltration via DNS",
+        "target": "10.10.10.6 \u2192 external",
+        "timestamp": "2026-11-08T10:10:00",
+        "outcome": "DNS tunnel (simulated)",
+        "artifact": "dns_exfil.log"
+      }
+    ],
+    "blue_team": [
+      {
+        "id": "BLUE-001",
+        "rule": "Sigma: Suspicious Email Subject",
+        "matches": "RED-001",
+        "detected_at": "2026-11-08T10:02:00",
+        "mttd_seconds": 120,
+        "response_at": "2026-11-08T10:07:00",
+        "mttr_seconds": 300
+      },
+      {
+        "id": "BLUE-002",
+        "rule": "YARA: JNDI Lookup",
+        "matches": "RED-002",
+        "detected_at": "2026-11-08T10:03:00",
+        "mttd_seconds": 60,
+        "response_at": "2026-11-08T10:06:00",
+        "mttr_seconds": 180
+      },
+      {
+        "id": "BLUE-003",
+        "rule": "Sigma: New Cron Job",
+        "matches": "RED-003",
+        "detected_at": "2026-11-08T10:10:00",
+        "mttd_seconds": 300,
+        "response_at": "2026-11-08T10:20:00",
+        "mttr_seconds": 600
+      }
+    ],
+    "correlation": {
+      "mttd_avg_seconds": 160.0,
+      "mttd_avg_minutes": 2.7,
+      "mttr_avg_seconds": 360.0,
+      "mttr_avg_minutes": 6.0,
+      "detected": 3,
+      "total_attacks": 4,
+      "missed": [
+        "RED-004"
+      ],
+      "detection_rate_pct": 75.0
+    },
+    "gaps": {
+      "uncovered_techniques": [
+        "T1068",
+        "T1048"
+      ],
+      "missed_attacks": "{'RED-004'}",
+      "recommendations": [
+        "Add detection for T1068 (Privesc)",
+        "Add detection for T1048 (Exfiltration)",
+        "Add rule for 1 missed attack(s)"
+      ]
+    },
+    "collaborative_report": {
+      "red_attacks": 4,
+      "blue_detections": 3,
+      "detection_rate": 75.0,
+      "mttd_min": 2.7,
+      "mttr_min": 6.0,
+      "gaps": 2
+    },
+    "continuous_improvement": {
+      "kpis": {
+        "current_mttd_min": 2.7,
+        "current_mttr_min": 6.0,
+        "current_detection_rate": 75.0,
+        "target_mttd_min": 5,
+        "target_mttr_min": 15,
+        "target_detection_rate": 95
+      },
+      "next_iteration": [
+        "Add detection for T1068 (Privesc)",
+        "Add detection for T1048 (Exfiltration)",
+        "Add rule for 1 missed attack(s)"
+      ]
+    }
+  }
+}
