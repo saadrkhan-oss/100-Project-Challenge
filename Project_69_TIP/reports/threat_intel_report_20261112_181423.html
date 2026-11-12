@@ -1,0 +1,262 @@
+<!DOCTYPE html><html><head><title>Threat Intel Report</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#ffaa00; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #ffaa00; overflow:auto; }
+</style></head><body>
+<h1>Threat Intelligence Platform Report</h1>
+<p><b>Timestamp:</b> 2026-11-12T18:14:23.042537</p>
+<p><b>IOCs:</b> 15</p>
+<p><b>Findings:</b> 10</p>
+<ul><li>collection.total (15)</li><li>enrichment.virustotal (5)</li><li>enrichment.alienvault (5)</li><li>enrichment.misp (3)</li><li>correlation.campaigns (2)</li><li>correlation.actors (3)</li><li>correlation.malware (6)</li><li>scoring.cvss (15)</li><li>stix.objects (26)</li><li>api.endpoints (5)</li></ul>
+<h3>collection</h3><pre>{
+  "count": 15,
+  "by_type": {
+    "ip": 5,
+    "domain": 3,
+    "hash": 5,
+    "url": 2
+  }
+}</pre><h3>enrichment</h3><pre>{
+  "virustotal": [
+    {
+      "ioc": "abc123",
+      "positives": 45,
+      "total": 70
+    },
+    {
+      "ioc": "def456",
+      "positives": 30,
+      "total": 70
+    },
+    {
+      "ioc": "ghi789",
+      "positives": 60,
+      "total": 70
+    },
+    {
+      "ioc": "jkl012",
+      "positives": 25,
+      "total": 70
+    },
+    {
+      "ioc": "mno345",
+      "positives": 50,
+      "total": 70
+    }
+  ],
+  "alienvault": [
+    {
+      "ioc": "192.168.1.100",
+      "pulses": 5
+    },
+    {
+      "ioc": "203.0.113.5",
+      "pulses": 3
+    },
+    {
+      "ioc": "10.10.10.50",
+      "pulses": 0
+    },
+    {
+      "ioc": "10.10.10.70",
+      "pulses": 2
+    },
+    {
+      "ioc": "10.10.10.80",
+      "pulses": 1
+    }
+  ],
+  "misp": [
+    {
+      "ioc": "evil.com",
+      "events": 10
+    },
+    {
+      "ioc": "malware.net",
+      "events": 5
+    },
+    {
+      "ioc": "phishing.org",
+      "events": 3
+    }
+  ]
+}</pre><h3>correlation</h3><pre>{
+  "campaigns": {
+    "Operation X": [
+      "192.168.1.100",
+      "203.0.113.5",
+      "10.10.10.50",
+      "evil.com",
+      "phishing.org",
+      "abc123",
+      "def456",
+      "mno345",
+      "http://evil.com/payload"
+    ],
+    "Ransomware Y": [
+      "10.10.10.70",
+      "10.10.10.80",
+      "malware.net",
+      "ghi789",
+      "jkl012",
+      "http://malware.net/c2"
+    ]
+  },
+  "actors": {
+    "APT28": [
+      "192.168.1.100",
+      "203.0.113.5",
+      "evil.com",
+      "abc123",
+      "def456",
+      "mno345",
+      "http://evil.com/payload"
+    ],
+    "Unknown": [
+      "10.10.10.50",
+      "10.10.10.80",
+      "phishing.org",
+      "jkl012"
+    ],
+    "APT29": [
+      "10.10.10.70",
+      "malware.net",
+      "ghi789",
+      "http://malware.net/c2"
+    ]
+  },
+  "malware": {
+    "Mimikatz": [
+      "192.168.1.100",
+      "203.0.113.5",
+      "abc123"
+    ],
+    "Web Shell": [
+      "10.10.10.50",
+      "evil.com",
+      "def456",
+      "http://evil.com/payload"
+    ],
+    "Ransomware": [
+      "10.10.10.70",
+      "10.10.10.80",
+      "malware.net",
+      "ghi789",
+      "http://malware.net/c2"
+    ],
+    "Phishing Kit": [
+      "phishing.org"
+    ],
+    "Trojan": [
+      "jkl012"
+    ],
+    "Backdoor": [
+      "mno345"
+    ]
+  }
+}</pre><h3>scoring</h3><pre>{
+  "by_cvss": [
+    {
+      "ioc": "192.168.1.100",
+      "cvss": 9.8,
+      "severity": "CRITICAL"
+    },
+    {
+      "ioc": "203.0.113.5",
+      "cvss": 9.5,
+      "severity": "CRITICAL"
+    },
+    {
+      "ioc": "10.10.10.50",
+      "cvss": 7.5,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "10.10.10.70",
+      "cvss": 8.5,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "10.10.10.80",
+      "cvss": 8.0,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "evil.com",
+      "cvss": 8.5,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "malware.net",
+      "cvss": 9.0,
+      "severity": "CRITICAL"
+    },
+    {
+      "ioc": "phishing.org",
+      "cvss": 7.0,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "abc123",
+      "cvss": 9.8,
+      "severity": "CRITICAL"
+    },
+    {
+      "ioc": "def456",
+      "cvss": 8.5,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "ghi789",
+      "cvss": 10.0,
+      "severity": "CRITICAL"
+    },
+    {
+      "ioc": "jkl012",
+      "cvss": 7.5,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "mno345",
+      "cvss": 9.0,
+      "severity": "CRITICAL"
+    },
+    {
+      "ioc": "http://evil.com/payload",
+      "cvss": 8.5,
+      "severity": "HIGH"
+    },
+    {
+      "ioc": "http://malware.net/c2",
+      "cvss": 9.0,
+      "severity": "CRITICAL"
+    }
+  ],
+  "by_confidence": {
+    "HIGH": 10,
+    "MEDIUM": 4,
+    "LOW": 1
+  },
+  "by_risk": {
+    "CRITICAL": 7,
+    "HIGH": 8
+  }
+}</pre><h3>stix</h3><pre>{
+  "indicators": 15,
+  "campaigns": 2,
+  "actors": 3,
+  "malware": 6,
+  "total_objects": 26,
+  "file": "reports/threat_intel_bundle.json"
+}</pre><h3>api</h3><pre>{
+  "endpoints": [
+    "/iocs",
+    "/iocs/<id>",
+    "/campaigns",
+    "/actors",
+    "/stats"
+  ],
+  "port": 5003
+}</pre>
+</body></html>

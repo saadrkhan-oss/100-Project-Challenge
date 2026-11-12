@@ -1,0 +1,253 @@
+{
+  "iocs": [
+    {
+      "id": "IOC-001",
+      "type": "ip",
+      "value": "192.168.1.100",
+      "role": "C2",
+      "campaign": "Operation X",
+      "actor": "APT28",
+      "malware": "Mimikatz",
+      "virustotal": {
+        "positives": 45,
+        "total": 70
+      },
+      "alienvault": {
+        "pulses": 5
+      },
+      "cvss": 9.8,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-002",
+      "type": "ip",
+      "value": "203.0.113.5",
+      "role": "C2",
+      "campaign": "Operation X",
+      "actor": "APT28",
+      "malware": "Mimikatz",
+      "virustotal": {
+        "positives": 40,
+        "total": 70
+      },
+      "alienvault": {
+        "pulses": 3
+      },
+      "cvss": 9.5,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-003",
+      "type": "ip",
+      "value": "10.10.10.50",
+      "role": "compromised",
+      "campaign": "Operation X",
+      "actor": "Unknown",
+      "malware": "Web Shell",
+      "virustotal": {
+        "positives": 0,
+        "total": 70
+      },
+      "alienvault": {
+        "pulses": 0
+      },
+      "cvss": 7.5,
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "IOC-004",
+      "type": "ip",
+      "value": "10.10.10.70",
+      "role": "attacker",
+      "campaign": "Ransomware Y",
+      "actor": "APT29",
+      "malware": "Ransomware",
+      "virustotal": {
+        "positives": 35,
+        "total": 70
+      },
+      "alienvault": {
+        "pulses": 2
+      },
+      "cvss": 8.5,
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "IOC-005",
+      "type": "ip",
+      "value": "10.10.10.80",
+      "role": "attacker",
+      "campaign": "Ransomware Y",
+      "actor": "Unknown",
+      "malware": "Ransomware",
+      "virustotal": {
+        "positives": 30,
+        "total": 70
+      },
+      "alienvault": {
+        "pulses": 1
+      },
+      "cvss": 8.0,
+      "confidence": "LOW"
+    },
+    {
+      "id": "IOC-006",
+      "type": "domain",
+      "value": "evil.com",
+      "role": "C2",
+      "campaign": "Operation X",
+      "actor": "APT28",
+      "malware": "Web Shell",
+      "virustotal": {
+        "positives": 20,
+        "total": 70
+      },
+      "misp": {
+        "events": 10
+      },
+      "cvss": 8.5,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-007",
+      "type": "domain",
+      "value": "malware.net",
+      "role": "distribution",
+      "campaign": "Ransomware Y",
+      "actor": "APT29",
+      "malware": "Ransomware",
+      "virustotal": {
+        "positives": 25,
+        "total": 70
+      },
+      "misp": {
+        "events": 5
+      },
+      "cvss": 9.0,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-008",
+      "type": "domain",
+      "value": "phishing.org",
+      "role": "phishing",
+      "campaign": "Operation X",
+      "actor": "Unknown",
+      "malware": "Phishing Kit",
+      "virustotal": {
+        "positives": 15,
+        "total": 70
+      },
+      "misp": {
+        "events": 3
+      },
+      "cvss": 7.0,
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "IOC-009",
+      "type": "hash",
+      "value": "abc123",
+      "role": "malware",
+      "campaign": "Operation X",
+      "actor": "APT28",
+      "malware": "Mimikatz",
+      "virustotal": {
+        "positives": 45,
+        "total": 70
+      },
+      "cvss": 9.8,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-010",
+      "type": "hash",
+      "value": "def456",
+      "role": "malware",
+      "campaign": "Operation X",
+      "actor": "APT28",
+      "malware": "Web Shell",
+      "virustotal": {
+        "positives": 30,
+        "total": 70
+      },
+      "cvss": 8.5,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-011",
+      "type": "hash",
+      "value": "ghi789",
+      "role": "malware",
+      "campaign": "Ransomware Y",
+      "actor": "APT29",
+      "malware": "Ransomware",
+      "virustotal": {
+        "positives": 60,
+        "total": 70
+      },
+      "cvss": 10.0,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-012",
+      "type": "hash",
+      "value": "jkl012",
+      "role": "malware",
+      "campaign": "Ransomware Y",
+      "actor": "Unknown",
+      "malware": "Trojan",
+      "virustotal": {
+        "positives": 25,
+        "total": 70
+      },
+      "cvss": 7.5,
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "IOC-013",
+      "type": "hash",
+      "value": "mno345",
+      "role": "malware",
+      "campaign": "Operation X",
+      "actor": "APT28",
+      "malware": "Backdoor",
+      "virustotal": {
+        "positives": 50,
+        "total": 70
+      },
+      "cvss": 9.0,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-014",
+      "type": "url",
+      "value": "http://evil.com/payload",
+      "role": "payload",
+      "campaign": "Operation X",
+      "actor": "APT28",
+      "malware": "Web Shell",
+      "virustotal": {
+        "positives": 20,
+        "total": 70
+      },
+      "cvss": 8.5,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "IOC-015",
+      "type": "url",
+      "value": "http://malware.net/c2",
+      "role": "c2",
+      "campaign": "Ransomware Y",
+      "actor": "APT29",
+      "malware": "Ransomware",
+      "virustotal": {
+        "positives": 25,
+        "total": 70
+      },
+      "cvss": 9.0,
+      "confidence": "HIGH"
+    }
+  ]
+}

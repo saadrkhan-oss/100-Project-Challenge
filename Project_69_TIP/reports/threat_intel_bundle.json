@@ -1,0 +1,181 @@
+{
+  "type": "bundle",
+  "id": "bundle--1794489263.043698",
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-001",
+      "name": "192.168.1.100",
+      "pattern": "[ip:value = '192.168.1.100']",
+      "valid_from": "2026-11-12T18:14:23.043726Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-002",
+      "name": "203.0.113.5",
+      "pattern": "[ip:value = '203.0.113.5']",
+      "valid_from": "2026-11-12T18:14:23.043745Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-003",
+      "name": "10.10.10.50",
+      "pattern": "[ip:value = '10.10.10.50']",
+      "valid_from": "2026-11-12T18:14:23.043758Z",
+      "confidence": 60
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-004",
+      "name": "10.10.10.70",
+      "pattern": "[ip:value = '10.10.10.70']",
+      "valid_from": "2026-11-12T18:14:23.043762Z",
+      "confidence": 60
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-005",
+      "name": "10.10.10.80",
+      "pattern": "[ip:value = '10.10.10.80']",
+      "valid_from": "2026-11-12T18:14:23.043766Z",
+      "confidence": 30
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-006",
+      "name": "evil.com",
+      "pattern": "[domain:value = 'evil.com']",
+      "valid_from": "2026-11-12T18:14:23.043769Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-007",
+      "name": "malware.net",
+      "pattern": "[domain:value = 'malware.net']",
+      "valid_from": "2026-11-12T18:14:23.043774Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-008",
+      "name": "phishing.org",
+      "pattern": "[domain:value = 'phishing.org']",
+      "valid_from": "2026-11-12T18:14:23.043778Z",
+      "confidence": 60
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-009",
+      "name": "abc123",
+      "pattern": "[hash:value = 'abc123']",
+      "valid_from": "2026-11-12T18:14:23.043781Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-010",
+      "name": "def456",
+      "pattern": "[hash:value = 'def456']",
+      "valid_from": "2026-11-12T18:14:23.043785Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-011",
+      "name": "ghi789",
+      "pattern": "[hash:value = 'ghi789']",
+      "valid_from": "2026-11-12T18:14:23.043790Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-012",
+      "name": "jkl012",
+      "pattern": "[hash:value = 'jkl012']",
+      "valid_from": "2026-11-12T18:14:23.043794Z",
+      "confidence": 60
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-013",
+      "name": "mno345",
+      "pattern": "[hash:value = 'mno345']",
+      "valid_from": "2026-11-12T18:14:23.043798Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-014",
+      "name": "http://evil.com/payload",
+      "pattern": "[url:value = 'http://evil.com/payload']",
+      "valid_from": "2026-11-12T18:14:23.043802Z",
+      "confidence": 90
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--IOC-015",
+      "name": "http://malware.net/c2",
+      "pattern": "[url:value = 'http://malware.net/c2']",
+      "valid_from": "2026-11-12T18:14:23.043807Z",
+      "confidence": 90
+    },
+    {
+      "type": "campaign",
+      "id": "campaign---4950983997543525631",
+      "name": "Operation X"
+    },
+    {
+      "type": "campaign",
+      "id": "campaign---5333945193564249081",
+      "name": "Ransomware Y"
+    },
+    {
+      "type": "threat-actor",
+      "id": "threat-actor--6425656889251397849",
+      "name": "Unknown"
+    },
+    {
+      "type": "threat-actor",
+      "id": "threat-actor---7965375276079071550",
+      "name": "APT28"
+    },
+    {
+      "type": "threat-actor",
+      "id": "threat-actor--7418195569729072450",
+      "name": "APT29"
+    },
+    {
+      "type": "malware",
+      "id": "malware--3925636259849431521",
+      "name": "Mimikatz"
+    },
+    {
+      "type": "malware",
+      "id": "malware---4004099998249455099",
+      "name": "Trojan"
+    },
+    {
+      "type": "malware",
+      "id": "malware--9165249950028135909",
+      "name": "Backdoor"
+    },
+    {
+      "type": "malware",
+      "id": "malware---638267962557846803",
+      "name": "Phishing Kit"
+    },
+    {
+      "type": "malware",
+      "id": "malware--4915474970357439125",
+      "name": "Ransomware"
+    },
+    {
+      "type": "malware",
+      "id": "malware---2947316767082370247",
+      "name": "Web Shell"
+    }
+  ]
+}
