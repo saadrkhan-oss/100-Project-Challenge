@@ -1,0 +1,206 @@
+{
+  "timestamp": "2026-11-13T17:42:50.741837",
+  "target": "https://vulnerable-app.local (simulated)",
+  "phases": {
+    "scope": {
+      "target": "https://vulnerable-app.local (simulated)",
+      "type": "Web Application",
+      "methodology": "OWASP Testing Guide v4.2",
+      "standards": [
+        "OWASP Top 10 2021",
+        "NIST 800-115",
+        "CIS Benchmarks"
+      ],
+      "date": "2026-11-13",
+      "assessor": "Saad (Portfolio Project)"
+    },
+    "recon": {
+      "subdomains": [
+        "api",
+        "admin",
+        "dev",
+        "staging",
+        "mail",
+        "blog"
+      ],
+      "open_ports": [
+        22,
+        80,
+        443,
+        3306,
+        8080
+      ],
+      "technologies": [
+        "Apache 2.4.41",
+        "PHP 7.4",
+        "MySQL 5.7",
+        "WordPress 6.0"
+      ]
+    },
+    "scan": {
+      "VULN-001": {
+        "id": "VULN-001",
+        "name": "SQL Injection (Login)",
+        "cvss": 9.8,
+        "severity": "CRITICAL",
+        "owasp": "A03:2021 \u2013 Injection",
+        "cwe": "CWE-89",
+        "evidence": "POST /login username=admin' OR '1'='1 \u2192 200 OK + user data",
+        "impact": "Full database compromise (user credentials, PII)",
+        "remediation": "Use parameterized queries (PDO/MySQLi)"
+      },
+      "VULN-002": {
+        "id": "VULN-002",
+        "name": "Reflected XSS (Search)",
+        "cvss": 6.1,
+        "severity": "HIGH",
+        "owasp": "A03:2021 \u2013 Injection",
+        "cwe": "CWE-79",
+        "evidence": "GET /search?q=<script>alert(1)</script> \u2192 reflected in HTML",
+        "impact": "Session hijacking, phishing, defacement",
+        "remediation": "Output encoding (htmlspecialchars), CSP header"
+      },
+      "VULN-003": {
+        "id": "VULN-003",
+        "name": "SSRF (Image Fetch)",
+        "cvss": 8.6,
+        "severity": "HIGH",
+        "owasp": "A10:2021 \u2013 SSRF",
+        "cwe": "CWE-918",
+        "evidence": "GET /fetch?url=http://169.254.169.254/ \u2192 AWS metadata returned",
+        "impact": "Cloud credential theft, internal network scan",
+        "remediation": "Whitelist URLs, block private IP ranges"
+      },
+      "VULN-004": {
+        "id": "VULN-004",
+        "name": "XXE (XML Upload)",
+        "cvss": 9.1,
+        "severity": "CRITICAL",
+        "owasp": "A05:2021 \u2013 Security Misconfiguration",
+        "cwe": "CWE-611",
+        "evidence": "POST /upload XML with <!ENTITY xxe SYSTEM 'file:///etc/passwd'> \u2192 file content",
+        "impact": "File disclosure, SSRF, RCE potential",
+        "remediation": "Disable external entities (defusedxml)"
+      },
+      "VULN-005": {
+        "id": "VULN-005",
+        "name": "IDOR (User Profile)",
+        "cvss": 8.1,
+        "severity": "HIGH",
+        "owasp": "A01:2021 \u2013 Broken Access Control",
+        "cwe": "CWE-639",
+        "evidence": "GET /api/users/2 with user1's token \u2192 user2's data",
+        "impact": "Horizontal privilege escalation (all users' data)",
+        "remediation": "Enforce ownership check (user_id == token.sub)"
+      },
+      "VULN-006": {
+        "id": "VULN-006",
+        "name": "Broken Authentication (Weak JWT)",
+        "cvss": 9.1,
+        "severity": "CRITICAL",
+        "owasp": "A07:2021 \u2013 Identification and Authentication Failures",
+        "cwe": "CWE-798",
+        "evidence": "JWT secret 'secret123' cracked in <1s (hashcat)",
+        "impact": "Full account takeover (forge any token)",
+        "remediation": "Strong random secret (32+ bytes), rotate regularly"
+      },
+      "VULN-007": {
+        "id": "VULN-007",
+        "name": "Security Misconfiguration (Debug)",
+        "cvss": 7.5,
+        "severity": "HIGH",
+        "owasp": "A05:2021 \u2013 Security Misconfiguration",
+        "cwe": "CWE-489",
+        "evidence": "GET /debug \u2192 Werkzeug debugger with interactive shell",
+        "impact": "RCE via debugger (PIN bypass)",
+        "remediation": "Disable debug=True in production"
+      }
+    },
+    "exploit": {
+      "VULN-001": {
+        "evidence": "POST /login username=admin' OR '1'='1 \u2192 200 OK + user data",
+        "impact": "Full database compromise (user credentials, PII)"
+      },
+      "VULN-002": {
+        "evidence": "GET /search?q=<script>alert(1)</script> \u2192 reflected in HTML",
+        "impact": "Session hijacking, phishing, defacement"
+      },
+      "VULN-003": {
+        "evidence": "GET /fetch?url=http://169.254.169.254/ \u2192 AWS metadata returned",
+        "impact": "Cloud credential theft, internal network scan"
+      },
+      "VULN-004": {
+        "evidence": "POST /upload XML with <!ENTITY xxe SYSTEM 'file:///etc/passwd'> \u2192 file content",
+        "impact": "File disclosure, SSRF, RCE potential"
+      },
+      "VULN-005": {
+        "evidence": "GET /api/users/2 with user1's token \u2192 user2's data",
+        "impact": "Horizontal privilege escalation (all users' data)"
+      },
+      "VULN-006": {
+        "evidence": "JWT secret 'secret123' cracked in <1s (hashcat)",
+        "impact": "Full account takeover (forge any token)"
+      },
+      "VULN-007": {
+        "evidence": "GET /debug \u2192 Werkzeug debugger with interactive shell",
+        "impact": "RCE via debugger (PIN bypass)"
+      }
+    },
+    "post_exploit": {
+      "privesc": "Local user \u2192 root via sudo misconfig (documented)",
+      "lateral": "Pivot to 2 hosts via SSH keys (documented)",
+      "persistence": "Cron backdoor (documented, not installed)"
+    },
+    "standards": {
+      "owasp": {
+        "A03:2021 \u2013 Injection": 2,
+        "A10:2021 \u2013 SSRF": 1,
+        "A05:2021 \u2013 Security Misconfiguration": 2,
+        "A01:2021 \u2013 Broken Access Control": 1,
+        "A07:2021 \u2013 Identification and Authentication Failures": 1
+      },
+      "nist": [
+        "Planning",
+        "Discovery",
+        "Attack",
+        "Reporting"
+      ],
+      "cis": [
+        "Web Server 5.1-5.3",
+        "Database 4.1-4.2"
+      ]
+    },
+    "remediation": {
+      "immediate": [
+        "SQL Injection (VULN-001): parameterized queries (PDO/MySQLi)",
+        "Weak JWT (VULN-006): rotate secret, 32+ random bytes",
+        "Reflected XSS (VULN-002): output encoding + CSP"
+      ],
+      "short_term": [
+        "XXE (VULN-004): disable external entities (defusedxml)",
+        "SSRF (VULN-003): URL whitelist + block 169.254.169.254",
+        "IDOR (VULN-005): ownership check (user_id == token.sub)",
+        "Debug (VULN-007): set debug=False in production"
+      ],
+      "long_term": [
+        "Implement WAF (ModSecurity / Cloudflare)",
+        "Security awareness training for all developers",
+        "Quarterly penetration testing"
+      ]
+    },
+    "business_impact": {
+      "financial": "$500,000 (average data breach cost)",
+      "reputation": "High (customer trust loss)",
+      "legal": "GDPR fines (up to 4% annual revenue)",
+      "operational": "2 weeks downtime"
+    },
+    "pdf": {
+      "path": "reports/security_assessment_report.pdf",
+      "size": 7956
+    },
+    "portfolio": {
+      "path": "reports/portfolio.html",
+      "size": 5488
+    }
+  }
+}

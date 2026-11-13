@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html><head><title>Security Portfolio</title>
+<style>
+body { font-family: monospace; background:#0a0a0a; color:#e0e0e0; padding:20px; }
+h1 { color:#ff4444; }
+h2 { color:#55ff55; border-bottom:1px solid #333; padding-bottom:10px; }
+.vuln { background:#1a1a1a; padding:15px; margin:15px 0; border-radius:6px; }
+.vuln h3 { color:#e0e0e0; margin-bottom:10px; }
+.vuln p { margin:5px 0; }
+.header { text-align:center; padding:40px; background:linear-gradient(135deg,#1a1a2e,#16213e); border-radius:12px; margin-bottom:20px; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin:20px 0; }
+.stat { background:#1a1a1a; padding:20px; text-align:center; border-radius:8px; }
+.stat-num { font-size:2em; color:#ff4444; }
+</style></head><body>
+<div class="header">
+    <h1>Security Assessment Portfolio</h1>
+    <p>Target: https://vulnerable-app.local (simulated)</p>
+    <p>Date: 2026-11-13</p>
+    <p>Assessor: Saad (Portfolio Project)</p>
+</div>
+<div class="stats">
+    <div class="stat"><div class="stat-num">7</div><div>Vulnerabilities</div></div>
+    <div class="stat"><div class="stat-num">3</div><div>Critical</div></div>
+    <div class="stat"><div class="stat-num">4</div><div>High</div></div>
+</div>
+<h2>Findings</h2>
+
+            <div class="vuln" style="border-left:6px solid #ff4444">
+                <h3>VULN-001: SQL Injection (Login)</h3>
+                <p><b>CVSS:</b> 9.8 <span style="color:#ff4444">CRITICAL</span></p>
+                <p><b>OWASP:</b> A03:2021 – Injection</p>
+                <p><b>CWE:</b> CWE-89</p>
+                <p><b>Evidence:</b> POST /login username=admin' OR '1'='1 → 200 OK + user data</p>
+                <p><b>Impact:</b> Full database compromise (user credentials, PII)</p>
+                <p><b>Fix:</b> Use parameterized queries (PDO/MySQLi)</p>
+            </div>
+            <div class="vuln" style="border-left:6px solid #ff8800">
+                <h3>VULN-002: Reflected XSS (Search)</h3>
+                <p><b>CVSS:</b> 6.1 <span style="color:#ff8800">HIGH</span></p>
+                <p><b>OWASP:</b> A03:2021 – Injection</p>
+                <p><b>CWE:</b> CWE-79</p>
+                <p><b>Evidence:</b> GET /search?q=<script>alert(1)</script> → reflected in HTML</p>
+                <p><b>Impact:</b> Session hijacking, phishing, defacement</p>
+                <p><b>Fix:</b> Output encoding (htmlspecialchars), CSP header</p>
+            </div>
+            <div class="vuln" style="border-left:6px solid #ff8800">
+                <h3>VULN-003: SSRF (Image Fetch)</h3>
+                <p><b>CVSS:</b> 8.6 <span style="color:#ff8800">HIGH</span></p>
+                <p><b>OWASP:</b> A10:2021 – SSRF</p>
+                <p><b>CWE:</b> CWE-918</p>
+                <p><b>Evidence:</b> GET /fetch?url=http://169.254.169.254/ → AWS metadata returned</p>
+                <p><b>Impact:</b> Cloud credential theft, internal network scan</p>
+                <p><b>Fix:</b> Whitelist URLs, block private IP ranges</p>
+            </div>
+            <div class="vuln" style="border-left:6px solid #ff4444">
+                <h3>VULN-004: XXE (XML Upload)</h3>
+                <p><b>CVSS:</b> 9.1 <span style="color:#ff4444">CRITICAL</span></p>
+                <p><b>OWASP:</b> A05:2021 – Security Misconfiguration</p>
+                <p><b>CWE:</b> CWE-611</p>
+                <p><b>Evidence:</b> POST /upload XML with <!ENTITY xxe SYSTEM 'file:///etc/passwd'> → file content</p>
+                <p><b>Impact:</b> File disclosure, SSRF, RCE potential</p>
+                <p><b>Fix:</b> Disable external entities (defusedxml)</p>
+            </div>
+            <div class="vuln" style="border-left:6px solid #ff8800">
+                <h3>VULN-005: IDOR (User Profile)</h3>
+                <p><b>CVSS:</b> 8.1 <span style="color:#ff8800">HIGH</span></p>
+                <p><b>OWASP:</b> A01:2021 – Broken Access Control</p>
+                <p><b>CWE:</b> CWE-639</p>
+                <p><b>Evidence:</b> GET /api/users/2 with user1's token → user2's data</p>
+                <p><b>Impact:</b> Horizontal privilege escalation (all users' data)</p>
+                <p><b>Fix:</b> Enforce ownership check (user_id == token.sub)</p>
+            </div>
+            <div class="vuln" style="border-left:6px solid #ff4444">
+                <h3>VULN-006: Broken Authentication (Weak JWT)</h3>
+                <p><b>CVSS:</b> 9.1 <span style="color:#ff4444">CRITICAL</span></p>
+                <p><b>OWASP:</b> A07:2021 – Identification and Authentication Failures</p>
+                <p><b>CWE:</b> CWE-798</p>
+                <p><b>Evidence:</b> JWT secret 'secret123' cracked in <1s (hashcat)</p>
+                <p><b>Impact:</b> Full account takeover (forge any token)</p>
+                <p><b>Fix:</b> Strong random secret (32+ bytes), rotate regularly</p>
+            </div>
+            <div class="vuln" style="border-left:6px solid #ff8800">
+                <h3>VULN-007: Security Misconfiguration (Debug)</h3>
+                <p><b>CVSS:</b> 7.5 <span style="color:#ff8800">HIGH</span></p>
+                <p><b>OWASP:</b> A05:2021 – Security Misconfiguration</p>
+                <p><b>CWE:</b> CWE-489</p>
+                <p><b>Evidence:</b> GET /debug → Werkzeug debugger with interactive shell</p>
+                <p><b>Impact:</b> RCE via debugger (PIN bypass)</p>
+                <p><b>Fix:</b> Disable debug=True in production</p>
+            </div>
+</body></html>
