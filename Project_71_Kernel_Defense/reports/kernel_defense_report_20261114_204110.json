@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-11-14T20:41:10.768395",
+  "hostname": "Faded-PC",
+  "kernel": "6.6.87.2-microsoft-standard-WSL2",
+  "phases": {
+    "mitigations": {
+      "kaslr": {
+        "enabled": true,
+        "cmdline": "initrd=\\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=12 hv_utils.timesync_implicit=1 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1 ipv6.disable=1"
+      },
+      "kpti": {
+        "enabled": true
+      },
+      "smep": {
+        "supported": true
+      },
+      "smap": {
+        "supported": true
+      },
+      "aslr": {
+        "randomize_va_space": "2"
+      },
+      "dmesg_restrict": {
+        "value": "0"
+      },
+      "kptr_restrict": {
+        "value": "1"
+      }
+    },
+    "exploitation_signs": {
+      "accessible": true,
+      "hits": {}
+    },
+    "module_audit": {
+      "count": 16,
+      "suspicious": [],
+      "signature_enforce": "unknown"
+    },
+    "dev_audit": {
+      "count": 50,
+      "suspicious": []
+    }
+  }
+}
