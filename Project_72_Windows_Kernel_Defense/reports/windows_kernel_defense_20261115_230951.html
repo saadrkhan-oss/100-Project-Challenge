@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><title>Windows Kernel Defense</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#4488ff; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #4488ff; overflow:auto; }
+</style></head><body>
+<h1>Windows Kernel Defense Report</h1>
+<p><b>Hostname:</b> FADED-PC</p>
+<p><b>Timestamp:</b> 2026-11-15T23:09:04.704711</p>
+<p><b>Findings:</b> 8</p>
+<ul><li>mitigation.dep_disabled</li><li>mitigation.kaslr_enabled</li><li>mitigation.smep_disabled</li><li>mitigation.cfg_disabled</li><li>mitigation.cet_disabled</li><li>mitigation.hvci_disabled</li><li>exploitation.panic (1)</li><li>hardening.driver_signing_enabled</li></ul>
+<h3>mitigations</h3><pre>{
+  "dep": {
+    "enabled": false,
+    "raw": ""
+  },
+  "kaslr": {
+    "enabled": true,
+    "raw": ""
+  },
+  "smep": {
+    "supported": false,
+    "raw": "False"
+  },
+  "cfg": {
+    "enabled": false,
+    "raw": ""
+  },
+  "cet": {
+    "enabled": false,
+    "raw": ""
+  },
+  "hvci": {
+    "enabled": false,
+    "raw": ""
+  }
+}</pre><h3>driver_audit</h3><pre>{
+  "loaded": 465,
+  "unsigned": [],
+  "suspicious": []
+}</pre><h3>exploitation</h3><pre>{
+  "crash_dumps": [],
+  "bsod_count": 0,
+  "panic_count": 1
+}</pre><h3>hardening</h3><pre>{
+  "secure_boot": {
+    "enabled": false
+  },
+  "driver_signing": {
+    "enforced": true
+  },
+  "aslr": {
+    "enabled": false
+  },
+  "cfi": {
+    "enabled": false
+  }
+}</pre>
+</body></html>

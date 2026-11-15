@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-11-15T23:09:04.704711",
+  "hostname": "FADED-PC",
+  "phases": {
+    "mitigations": {
+      "dep": {
+        "enabled": false,
+        "raw": ""
+      },
+      "kaslr": {
+        "enabled": true,
+        "raw": ""
+      },
+      "smep": {
+        "supported": false,
+        "raw": "False"
+      },
+      "cfg": {
+        "enabled": false,
+        "raw": ""
+      },
+      "cet": {
+        "enabled": false,
+        "raw": ""
+      },
+      "hvci": {
+        "enabled": false,
+        "raw": ""
+      }
+    },
+    "driver_audit": {
+      "loaded": 465,
+      "unsigned": [],
+      "suspicious": []
+    },
+    "exploitation": {
+      "crash_dumps": [],
+      "bsod_count": 0,
+      "panic_count": 1
+    },
+    "hardening": {
+      "secure_boot": {
+        "enabled": false
+      },
+      "driver_signing": {
+        "enforced": true
+      },
+      "aslr": {
+        "enabled": false
+      },
+      "cfi": {
+        "enabled": false
+      }
+    }
+  }
+}
