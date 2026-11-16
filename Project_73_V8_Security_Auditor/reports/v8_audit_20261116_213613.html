@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><title>V8 Security Audit</title>
+<style>
+body { font-family: monospace; background:#111; color:#eee; padding:20px; }
+h1 { color:#aa44ff; } h3 { color:#55ff55; border-bottom:1px solid #333; }
+pre { background:#1a1a1a; padding:10px; border-left:3px solid #aa44ff; overflow:auto; }
+</style></head><body>
+<h1>V8 Security Auditor Report</h1>
+<p><b>Timestamp:</b> 2026-11-16T21:36:13.342422</p>
+<p><b>Findings:</b> 2</p>
+<ul><li>hardening.flags_available (5)</li><li>hardening.dangerous_flags (1)</li></ul>
+<h3>version</h3><pre>{
+  "browsers": [],
+  "v8_node": null
+}</pre><h3>security_status</h3><pre>{
+  "checks": [
+    {
+      "v8": "unknown",
+      "status": "UNKNOWN",
+      "note": "not in database"
+    }
+  ]
+}</pre><h3>hardening</h3><pre>{
+  "hardening": [
+    "--jitless",
+    "--no-expose-wasm",
+    "--disallow-unsafe-eval",
+    "--no-opt",
+    "--enable-sandbox"
+  ],
+  "dangerous": [
+    "--disable-web-security"
+  ]
+}</pre><h3>cache_audit</h3><pre>{
+  "cache_dirs": [],
+  "suspicious": []
+}</pre>
+</body></html>

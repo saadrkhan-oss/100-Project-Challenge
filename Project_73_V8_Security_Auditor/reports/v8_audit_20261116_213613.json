@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-11-16T21:36:13.342422",
+  "phases": {
+    "version": {
+      "browsers": [],
+      "v8_node": null
+    },
+    "security_status": {
+      "checks": [
+        {
+          "v8": "unknown",
+          "status": "UNKNOWN",
+          "note": "not in database"
+        }
+      ]
+    },
+    "hardening": {
+      "hardening": [
+        "--jitless",
+        "--no-expose-wasm",
+        "--disallow-unsafe-eval",
+        "--no-opt",
+        "--enable-sandbox"
+      ],
+      "dangerous": [
+        "--disable-web-security"
+      ]
+    },
+    "cache_audit": {
+      "cache_dirs": [],
+      "suspicious": []
+    }
+  }
+}
