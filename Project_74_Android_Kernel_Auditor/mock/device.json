@@ -1,0 +1,37 @@
+{
+  "build": {
+    "android_version": "13",
+    "sdk": "33",
+    "security_patch": "2023-01-01",
+    "build_id": "TQ1A.230105.001"
+  },
+  "kernel": {
+    "uname": "5.10.101-android13-4-00003-g6e8d8d4f7b8a",
+    "version": "5.10.101"
+  },
+  "cmdline": "console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.verifiedbootstate=green androidboot.selinux=enforcing",
+  "cpu_flags": "fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp ssbs pxn pan",
+  "selinux": {
+    "getenforce": "Enforcing",
+    "boot_selinux": "enforcing"
+  },
+  "bootloader": {
+    "flash_locked": "1",
+    "verified_boot_state": "green",
+    "verity_mode": "enforcing"
+  },
+  "cve_status": {
+    "dirty_pipe": {
+      "vulnerable": false,
+      "reason": "kernel 5.10.101 > 5.16.11 (patched)"
+    },
+    "pwnkit": {
+      "vulnerable": false,
+      "reason": "pkexec patched in 2023-01-01 patch"
+    },
+    "dirty_cow": {
+      "vulnerable": false,
+      "reason": "kernel 5.10.101 > 3.9 (patched)"
+    }
+  }
+}

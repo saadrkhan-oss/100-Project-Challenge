@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-11-17T20:06:24.587659",
+  "phases": {
+    "version": {
+      "android_version": "13",
+      "sdk": "33",
+      "security_patch": "2023-01-01",
+      "build_id": "TQ1A.230105.001"
+    },
+    "mitigations": {
+      "kaslr": {
+        "enabled": true
+      },
+      "pxn": {
+        "enabled": true
+      },
+      "pan": {
+        "enabled": true
+      },
+      "selinux": {
+        "state": "Enforcing",
+        "enforcing": true
+      },
+      "verified_boot": {
+        "state": "green",
+        "green": true
+      }
+    },
+    "selinux": {
+      "getenforce": "Enforcing",
+      "enforcing": true
+    },
+    "cve": {
+      "dirty_pipe": {
+        "name": "CVE-2022-0847 (Dirty Pipe)",
+        "vulnerable": true,
+        "kernel_range": ">=5.8 <5.16.11"
+      },
+      "dirty_cow": {
+        "name": "CVE-2016-5195 (Dirty COW)",
+        "vulnerable": false,
+        "kernel_range": ">=2.6.22 <3.9"
+      },
+      "pwnkit": {
+        "patched": true,
+        "patch_date": "2023-01-01"
+      }
+    },
+    "bootloader": {
+      "locked": true,
+      "verified_boot_state": "green",
+      "verity_mode": "enforcing"
+    }
+  }
+}
