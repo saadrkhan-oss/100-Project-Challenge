@@ -1,0 +1,9 @@
+# Compiled binary (rebuild with AFL_USE_ASAN=1 afl-clang-fast)
+target/vuln_instrumented
+
+# Raw fuzzing output (regenerate with afl-fuzz)
+findings/
+
+# Python cache
+__pycache__/
+*.pyc
