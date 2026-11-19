@@ -1,0 +1,53 @@
+{
+  "generated": "2026-11-19T16:32:40.298484Z",
+  "project": "Project 76 \u2014 Symbolic Execution (angr + claripy)",
+  "target": "target/vuln_angr",
+  "analysis": {
+    "arch": "AMD64",
+    "entry": "0x401160",
+    "functions": 62,
+    "imports": 14,
+    "target_func": "check_password",
+    "target_addr": "0x401249"
+  },
+  "path": {
+    "strcmp_call": "0x401289",
+    "success_addr": "0x401299",
+    "denied_addr": "0x4012a0"
+  },
+  "solution": "SECRET123",
+  "poc_argv1": "PSECRET123",
+  "reproduction": {
+    "exit": 0,
+    "output": "Access granted!",
+    "success": true
+  },
+  "findings": [
+    {
+      "id": "binary_analysis",
+      "severity": "Info",
+      "detail": "62 functions, 14 imports"
+    },
+    {
+      "id": "path_discovery",
+      "severity": "Info",
+      "detail": "strcmp@0x401289 -> puts@0x401299"
+    },
+    {
+      "id": "constraint_solved",
+      "severity": "Info",
+      "detail": "input = b'SECRET123'"
+    },
+    {
+      "id": "exploit_generation",
+      "severity": "High",
+      "detail": "argv[1] = b'PSECRET123'"
+    },
+    {
+      "id": "reproduction",
+      "severity": "High",
+      "detail": "Access granted"
+    }
+  ],
+  "elapsed_s": 0.35
+}
