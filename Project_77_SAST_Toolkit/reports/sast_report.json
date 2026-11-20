@@ -1,0 +1,286 @@
+{
+  "generated": "2026-11-20T16:11:06.552076Z",
+  "project": "Project 77 \u2014 SAST Toolkit",
+  "target": "vulnerable_app",
+  "summary": {
+    "files_scanned": 4,
+    "languages": {
+      "C": 1,
+      "Java": 1,
+      "JavaScript": 1,
+      "Python": 1
+    },
+    "total_findings": 25,
+    "by_severity": {
+      "High": 15,
+      "Critical": 7,
+      "Medium": 3
+    },
+    "by_cwe": {
+      "CWE-89": 3,
+      "CWE-78": 4,
+      "CWE-79": 2,
+      "CWE-798": 6,
+      "CWE-120": 2,
+      "CWE-134": 1,
+      "CWE-242": 1,
+      "CWE-95": 3,
+      "CWE-16": 1,
+      "CWE-489": 1,
+      "CWE-295": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "gets",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/c/main.c",
+      "line": 19,
+      "code": "gets(name);",
+      "cwe": "CWE-242",
+      "severity": "Critical",
+      "remediation": "Replace gets() with fgets(buf, sizeof(buf), stdin).",
+      "match": "gets("
+    },
+    {
+      "rule": "aws_key",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/java/App.java",
+      "line": 5,
+      "code": "private static final String API_KEY = \"AKIAABCDEFGHIJKLMNOP\";",
+      "cwe": "CWE-798",
+      "severity": "Critical",
+      "remediation": "Remove key; rotate in AWS IAM; use AWS Secrets Manager or env vars.",
+      "match": "AKIAABCDEFGHIJKLMNOP"
+    },
+    {
+      "rule": "cmdi",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/java/App.java",
+      "line": 16,
+      "code": "Runtime.getRuntime().exec(cmd);",
+      "cwe": "CWE-78",
+      "severity": "Critical",
+      "remediation": "Avoid exec(); if needed, use child_process.spawn with argument array.",
+      "match": "exec(cmd"
+    },
+    {
+      "rule": "cmdi",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/js/app.js",
+      "line": 15,
+      "code": "exec(userInput);",
+      "cwe": "CWE-78",
+      "severity": "Critical",
+      "remediation": "Avoid exec(); if needed, use child_process.spawn with argument array.",
+      "match": "exec(user"
+    },
+    {
+      "rule": "aws_key",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 8,
+      "code": "AWS_KEY = \"AKIAIOSFODNN7EXAMPLE\"",
+      "cwe": "CWE-798",
+      "severity": "Critical",
+      "remediation": "Remove key; rotate in AWS IAM; use AWS Secrets Manager or env vars.",
+      "match": "AKIAIOSFODNN7EXAMPLE"
+    },
+    {
+      "rule": "cmdi",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 28,
+      "code": "os.system(cmd)",
+      "cwe": "CWE-78",
+      "severity": "Critical",
+      "remediation": "Use subprocess with a list of args and shell=False; validate with shlex.quote.",
+      "match": "os.system("
+    },
+    {
+      "rule": "system",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 28,
+      "code": "os.system(cmd)",
+      "cwe": "CWE-78",
+      "severity": "Critical",
+      "remediation": "Use subprocess with list args and shell=False.",
+      "match": "os.system("
+    },
+    {
+      "rule": "strcpy",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/c/main.c",
+      "line": 7,
+      "code": "strcpy(buffer, input);",
+      "cwe": "CWE-120",
+      "severity": "High",
+      "remediation": "Use strncpy / strlcpy / snprintf with explicit size bounds.",
+      "match": "strcpy("
+    },
+    {
+      "rule": "sprintf",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/c/main.c",
+      "line": 13,
+      "code": "sprintf(buf, \"User: %s\", input);",
+      "cwe": "CWE-120",
+      "severity": "High",
+      "remediation": "Use snprintf with sizeof(buffer) to bound output.",
+      "match": "sprintf("
+    },
+    {
+      "rule": "printf_unfmt",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/c/main.c",
+      "line": 14,
+      "code": "printf(buf);",
+      "cwe": "CWE-134",
+      "severity": "High",
+      "remediation": "Use printf(\"%s\", buf) to avoid format-string vulnerability.",
+      "match": "printf(buf)"
+    },
+    {
+      "rule": "api_key",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/java/App.java",
+      "line": 5,
+      "code": "private static final String API_KEY = \"AKIAABCDEFGHIJKLMNOP\";",
+      "cwe": "CWE-798",
+      "severity": "High",
+      "remediation": "Move API key to environment variable or secret store; rotate immediately.",
+      "match": "API_KEY = \"AKIAABCDEFGHIJKLMNOP\""
+    },
+    {
+      "rule": "sqli",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/java/App.java",
+      "line": 11,
+      "code": "String query = \"SELECT * FROM users WHERE name='\" + user + \"' AND pass='\" + pass + \"'\";",
+      "cwe": "CWE-89",
+      "severity": "High",
+      "remediation": "Use parameterized queries (prepared statements) instead of string concatenation.",
+      "match": "\"SELECT * FROM users WHERE name='\" +"
+    },
+    {
+      "rule": "exec",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/java/App.java",
+      "line": 16,
+      "code": "Runtime.getRuntime().exec(cmd);",
+      "cwe": "CWE-95",
+      "severity": "High",
+      "remediation": "Avoid exec(); if unavoidable, validate against strict allow-list.",
+      "match": "exec("
+    },
+    {
+      "rule": "api_key",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/js/app.js",
+      "line": 1,
+      "code": "const API_KEY = \"sk-js-1234567890\";",
+      "cwe": "CWE-798",
+      "severity": "High",
+      "remediation": "Move API key to environment variable or secret store; rotate immediately.",
+      "match": "API_KEY = \"sk-js-1234567890\""
+    },
+    {
+      "rule": "password",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/js/app.js",
+      "line": 2,
+      "code": "const password = \"js_password_2024\";",
+      "cwe": "CWE-798",
+      "severity": "High",
+      "remediation": "Remove hardcoded password; load from env / vault / secrets manager.",
+      "match": "password = \"js_password_2024\""
+    },
+    {
+      "rule": "xss",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/js/app.js",
+      "line": 5,
+      "code": "document.getElementById(\"out\").innerHTML = input;",
+      "cwe": "CWE-79",
+      "severity": "High",
+      "remediation": "Use textContent / safe templating; sanitize with DOMPurify before inserting HTML.",
+      "match": ".innerHTML ="
+    },
+    {
+      "rule": "sqli",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/js/app.js",
+      "line": 9,
+      "code": "const query = \"SELECT * FROM users WHERE id = \" + userId;",
+      "cwe": "CWE-89",
+      "severity": "High",
+      "remediation": "Use parameterized queries (prepared statements) instead of string concatenation.",
+      "match": "\"SELECT * FROM users WHERE id = \" +"
+    },
+    {
+      "rule": "exec",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/js/app.js",
+      "line": 15,
+      "code": "exec(userInput);",
+      "cwe": "CWE-95",
+      "severity": "High",
+      "remediation": "Avoid exec(); if unavoidable, validate against strict allow-list.",
+      "match": "exec("
+    },
+    {
+      "rule": "api_key",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 9,
+      "code": "API_KEY = \"sk-1234567890abcdef\"",
+      "cwe": "CWE-798",
+      "severity": "High",
+      "remediation": "Move API key to environment variable or secret store; rotate immediately.",
+      "match": "API_KEY = \"sk-1234567890abcdef\""
+    },
+    {
+      "rule": "sqli",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 17,
+      "code": "query = \"SELECT * FROM users WHERE id=\" + uid",
+      "cwe": "CWE-89",
+      "severity": "High",
+      "remediation": "Use parameterized queries (prepared statements) instead of string concatenation.",
+      "match": "\"SELECT * FROM users WHERE id=\" +"
+    },
+    {
+      "rule": "eval",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 31,
+      "code": "return eval(code)",
+      "cwe": "CWE-95",
+      "severity": "High",
+      "remediation": "Avoid eval(); use ast.literal_eval for data, or refactor to avoid dynamic code.",
+      "match": "eval("
+    },
+    {
+      "rule": "ssl",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 35,
+      "code": "return requests.get(url, verify=False)",
+      "cwe": "CWE-295",
+      "severity": "High",
+      "remediation": "Enable certificate verification (verify=True); pin CA bundle if needed.",
+      "match": "verify=False"
+    },
+    {
+      "rule": "cors",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/js/app.js",
+      "line": 21,
+      "code": "res.setHeader('Access-Control-Allow-Origin', '*');",
+      "cwe": "CWE-16",
+      "severity": "Medium",
+      "remediation": "Restrict CORS to explicit trusted origins; never use wildcard with credentials.",
+      "match": "Access-Control-Allow-Origin', '*"
+    },
+    {
+      "rule": "debug",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 6,
+      "code": "app.config['DEBUG'] = True",
+      "cwe": "CWE-489",
+      "severity": "Medium",
+      "remediation": "Disable debug mode in production; use DEBUG env var defaulted to false.",
+      "match": "app.config['DEBUG'] = True"
+    },
+    {
+      "rule": "xss",
+      "file": "/mnt/d/100 Project Challenge/Project_77_SAST_Toolkit/vulnerable_app/py/app.py",
+      "line": 24,
+      "code": "return f\"<div>{term}</div>\"",
+      "cwe": "CWE-79",
+      "severity": "Medium",
+      "remediation": "Use Jinja2 autoescape ({{ }}) or markupsafe.escape() on user input.",
+      "match": "return f\"<div>{term}"
+    }
+  ],
+  "elapsed_s": 0.11
+}

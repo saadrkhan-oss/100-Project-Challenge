@@ -1,0 +1,234 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Project 77 — SAST Report</title>
+<style>
+ body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:2rem;background:#fafafa;color:#1a1a1a}
+ h1{border-bottom:3px solid #1976d2;padding-bottom:.4rem}
+ .meta{color:#666;font-size:.9rem;margin-bottom:1rem}
+ .cards{display:flex;gap:1rem;margin:1rem 0 2rem;flex-wrap:wrap}
+ .card{flex:1;min-width:120px;background:#fff;padding:.8rem 1rem;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid #1976d2;font-size:.85rem;color:#666}
+ .card b{display:block;font-size:1.5rem;color:#1a1a1a}
+ table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+ th,td{padding:.6rem .7rem;text-align:left;border-bottom:1px solid #eee;font-size:.82rem;vertical-align:top}
+ th{background:#263238;color:#fff}
+ code{background:#f2f2f2;padding:.1rem .3rem;border-radius:3px;font-size:.78rem}
+ .code-snippet{display:inline-block;max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}
+ .badge{padding:.1rem .45rem;border-radius:10px;color:#fff;font-weight:600;font-size:.72rem}
+ .badge.critical{background:#b71c1c} .badge.high{background:#d32f2f}
+ .badge.medium{background:#f57c00} .badge.low{background:#388e3c} .badge.info{background:#0288d1}
+ tr.sev-critical td{background:#ffebee}
+ tr.sev-high td{background:#fff3e0}
+</style></head><body>
+<h1>🔍 Project 77 — SAST Report</h1>
+<div class="meta">
+  Target <code>vulnerable_app</code> · 4 files ·
+  25 findings · Generated 2026-11-20T16:11:06.552076Z
+</div>
+<div class="cards"><div class="card"><b>7</b>Critical</div>
+<div class="card"><b>15</b>High</div>
+<div class="card"><b>3</b>Medium</div></div>
+<h2>Findings</h2>
+<table>
+<thead><tr><th>Severity</th><th>CWE</th><th>Rule</th><th>Location</th><th>Code</th><th>Remediation</th></tr></thead>
+<tbody>
+        <tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-242</code></td>
+          <td><b>gets</b></td>
+          <td><code>vulnerable_app/c/main.c:19</code></td>
+          <td><code class="code-snippet">gets(name);</code></td>
+          <td>Replace gets() with fgets(buf, sizeof(buf), stdin).</td>
+        </tr>
+        <tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-798</code></td>
+          <td><b>aws_key</b></td>
+          <td><code>vulnerable_app/java/App.java:5</code></td>
+          <td><code class="code-snippet">private static final String API_KEY = &quot;AKIAABCDEFGHIJKLMNOP&quot;;</code></td>
+          <td>Remove key; rotate in AWS IAM; use AWS Secrets Manager or env vars.</td>
+        </tr>
+        <tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-78</code></td>
+          <td><b>cmdi</b></td>
+          <td><code>vulnerable_app/java/App.java:16</code></td>
+          <td><code class="code-snippet">Runtime.getRuntime().exec(cmd);</code></td>
+          <td>Avoid exec(); if needed, use child_process.spawn with argument array.</td>
+        </tr>
+        <tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-78</code></td>
+          <td><b>cmdi</b></td>
+          <td><code>vulnerable_app/js/app.js:15</code></td>
+          <td><code class="code-snippet">exec(userInput);</code></td>
+          <td>Avoid exec(); if needed, use child_process.spawn with argument array.</td>
+        </tr>
+        <tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-798</code></td>
+          <td><b>aws_key</b></td>
+          <td><code>vulnerable_app/py/app.py:8</code></td>
+          <td><code class="code-snippet">AWS_KEY = &quot;AKIAIOSFODNN7EXAMPLE&quot;</code></td>
+          <td>Remove key; rotate in AWS IAM; use AWS Secrets Manager or env vars.</td>
+        </tr>
+        <tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-78</code></td>
+          <td><b>cmdi</b></td>
+          <td><code>vulnerable_app/py/app.py:28</code></td>
+          <td><code class="code-snippet">os.system(cmd)</code></td>
+          <td>Use subprocess with a list of args and shell=False; validate with shlex.quote.</td>
+        </tr>
+        <tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-78</code></td>
+          <td><b>system</b></td>
+          <td><code>vulnerable_app/py/app.py:28</code></td>
+          <td><code class="code-snippet">os.system(cmd)</code></td>
+          <td>Use subprocess with list args and shell=False.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-120</code></td>
+          <td><b>strcpy</b></td>
+          <td><code>vulnerable_app/c/main.c:7</code></td>
+          <td><code class="code-snippet">strcpy(buffer, input);</code></td>
+          <td>Use strncpy / strlcpy / snprintf with explicit size bounds.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-120</code></td>
+          <td><b>sprintf</b></td>
+          <td><code>vulnerable_app/c/main.c:13</code></td>
+          <td><code class="code-snippet">sprintf(buf, &quot;User: %s&quot;, input);</code></td>
+          <td>Use snprintf with sizeof(buffer) to bound output.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-134</code></td>
+          <td><b>printf_unfmt</b></td>
+          <td><code>vulnerable_app/c/main.c:14</code></td>
+          <td><code class="code-snippet">printf(buf);</code></td>
+          <td>Use printf(&quot;%s&quot;, buf) to avoid format-string vulnerability.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-798</code></td>
+          <td><b>api_key</b></td>
+          <td><code>vulnerable_app/java/App.java:5</code></td>
+          <td><code class="code-snippet">private static final String API_KEY = &quot;AKIAABCDEFGHIJKLMNOP&quot;;</code></td>
+          <td>Move API key to environment variable or secret store; rotate immediately.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-89</code></td>
+          <td><b>sqli</b></td>
+          <td><code>vulnerable_app/java/App.java:11</code></td>
+          <td><code class="code-snippet">String query = &quot;SELECT * FROM users WHERE name=&#x27;&quot; + user + &quot;&#x27; AND pass=&#x27;&quot; + pass + &quot;&#x27;&quot;;</code></td>
+          <td>Use parameterized queries (prepared statements) instead of string concatenation.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-95</code></td>
+          <td><b>exec</b></td>
+          <td><code>vulnerable_app/java/App.java:16</code></td>
+          <td><code class="code-snippet">Runtime.getRuntime().exec(cmd);</code></td>
+          <td>Avoid exec(); if unavoidable, validate against strict allow-list.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-798</code></td>
+          <td><b>api_key</b></td>
+          <td><code>vulnerable_app/js/app.js:1</code></td>
+          <td><code class="code-snippet">const API_KEY = &quot;sk-js-1234567890&quot;;</code></td>
+          <td>Move API key to environment variable or secret store; rotate immediately.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-798</code></td>
+          <td><b>password</b></td>
+          <td><code>vulnerable_app/js/app.js:2</code></td>
+          <td><code class="code-snippet">const password = &quot;js_password_2024&quot;;</code></td>
+          <td>Remove hardcoded password; load from env / vault / secrets manager.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-79</code></td>
+          <td><b>xss</b></td>
+          <td><code>vulnerable_app/js/app.js:5</code></td>
+          <td><code class="code-snippet">document.getElementById(&quot;out&quot;).innerHTML = input;</code></td>
+          <td>Use textContent / safe templating; sanitize with DOMPurify before inserting HTML.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-89</code></td>
+          <td><b>sqli</b></td>
+          <td><code>vulnerable_app/js/app.js:9</code></td>
+          <td><code class="code-snippet">const query = &quot;SELECT * FROM users WHERE id = &quot; + userId;</code></td>
+          <td>Use parameterized queries (prepared statements) instead of string concatenation.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-95</code></td>
+          <td><b>exec</b></td>
+          <td><code>vulnerable_app/js/app.js:15</code></td>
+          <td><code class="code-snippet">exec(userInput);</code></td>
+          <td>Avoid exec(); if unavoidable, validate against strict allow-list.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-798</code></td>
+          <td><b>api_key</b></td>
+          <td><code>vulnerable_app/py/app.py:9</code></td>
+          <td><code class="code-snippet">API_KEY = &quot;sk-1234567890abcdef&quot;</code></td>
+          <td>Move API key to environment variable or secret store; rotate immediately.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-89</code></td>
+          <td><b>sqli</b></td>
+          <td><code>vulnerable_app/py/app.py:17</code></td>
+          <td><code class="code-snippet">query = &quot;SELECT * FROM users WHERE id=&quot; + uid</code></td>
+          <td>Use parameterized queries (prepared statements) instead of string concatenation.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-95</code></td>
+          <td><b>eval</b></td>
+          <td><code>vulnerable_app/py/app.py:31</code></td>
+          <td><code class="code-snippet">return eval(code)</code></td>
+          <td>Avoid eval(); use ast.literal_eval for data, or refactor to avoid dynamic code.</td>
+        </tr>
+        <tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-295</code></td>
+          <td><b>ssl</b></td>
+          <td><code>vulnerable_app/py/app.py:35</code></td>
+          <td><code class="code-snippet">return requests.get(url, verify=False)</code></td>
+          <td>Enable certificate verification (verify=True); pin CA bundle if needed.</td>
+        </tr>
+        <tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-16</code></td>
+          <td><b>cors</b></td>
+          <td><code>vulnerable_app/js/app.js:21</code></td>
+          <td><code class="code-snippet">res.setHeader(&#x27;Access-Control-Allow-Origin&#x27;, &#x27;*&#x27;);</code></td>
+          <td>Restrict CORS to explicit trusted origins; never use wildcard with credentials.</td>
+        </tr>
+        <tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-489</code></td>
+          <td><b>debug</b></td>
+          <td><code>vulnerable_app/py/app.py:6</code></td>
+          <td><code class="code-snippet">app.config[&#x27;DEBUG&#x27;] = True</code></td>
+          <td>Disable debug mode in production; use DEBUG env var defaulted to false.</td>
+        </tr>
+        <tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-79</code></td>
+          <td><b>xss</b></td>
+          <td><code>vulnerable_app/py/app.py:24</code></td>
+          <td><code class="code-snippet">return f&quot;&lt;div&gt;{term}&lt;/div&gt;&quot;</code></td>
+          <td>Use Jinja2 autoescape ({{ }}) or markupsafe.escape() on user input.</td>
+        </tr></tbody></table>
+<p style="margin-top:2rem;color:#888;font-size:.8rem">Generated by sast_toolkit.py — defensive/educational use only</p>
+</body></html>
