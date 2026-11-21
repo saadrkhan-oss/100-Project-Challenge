@@ -1,0 +1,35 @@
+{
+  "device_name": "ESP32-DevKitC",
+  "chip": "ESP32-D0WDQ6",
+  "flash_size": "4MB",
+  "interfaces": {
+    "uart": {
+      "device": "/dev/ttyUSB0",
+      "baud": 115200,
+      "detected": true
+    },
+    "jtag": {
+      "adapter": "FTDI FT2232H",
+      "usb_id": "0403:6010",
+      "detected": true
+    },
+    "spi": {
+      "device": "/dev/spidev0.0",
+      "detected": false
+    },
+    "i2c": {
+      "device": "/dev/i2c-1",
+      "detected": false
+    },
+    "swd": {
+      "adapter": "ST-Link V2",
+      "detected": false
+    }
+  },
+  "protections": {
+    "readout_protection": "RDP Level 1 (enabled)",
+    "secure_boot": "Enabled (v2)",
+    "flash_encryption": "Enabled (AES-256)",
+    "debug_lock": "Enabled"
+  }
+}

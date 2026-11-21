@@ -1,0 +1,171 @@
+{
+  "generated": "2026-11-21T17:27:29.779377Z",
+  "project": "Project 78 \u2014 Hardware Security (JTAG/UART)",
+  "device": {
+    "name": "ESP32-DevKitC",
+    "chip": "ESP32-D0WDQ6",
+    "flash": "4MB"
+  },
+  "interfaces": [
+    {
+      "interface": "uart",
+      "device": "/dev/ttyUSB0",
+      "baud": 115200,
+      "detected": true
+    },
+    {
+      "interface": "jtag",
+      "adapter": "FTDI FT2232H",
+      "usb_id": "0403:6010",
+      "detected": true
+    }
+  ],
+  "firmware": {
+    "path": "/mnt/d/100 Project Challenge/Project_78_Hardware_Security_Toolkit/mock_firmware/firmware_dump.bin",
+    "size": 82080,
+    "dumps": 2,
+    "via": [
+      "uart",
+      "jtag"
+    ]
+  },
+  "analysis": {
+    "signatures": [
+      {
+        "offset": 4096,
+        "type": "SquashFS filesystem"
+      },
+      {
+        "offset": 69728,
+        "type": "JFFS2 filesystem"
+      }
+    ],
+    "strings_count": 84,
+    "entropy": 1.86
+  },
+  "cwe_map": {
+    "CWE-798": 4,
+    "CWE-312": 2,
+    "CWE-522": 1,
+    "CWE-693": 1,
+    "CWE-345": 1,
+    "CWE-311": 1,
+    "CWE-489": 1
+  },
+  "summary": {
+    "total_findings": 13,
+    "by_severity": {
+      "Critical": 1,
+      "High": 8,
+      "Medium": 2,
+      "Info": 2
+    }
+  },
+  "findings": [
+    {
+      "id": "secret_aws_key",
+      "severity": "Critical",
+      "cwe": "CWE-798",
+      "detail": "Hardcoded aws_key at offset 0x00009d: AKIAIOSFODNN7EXAMPLE",
+      "context": "-1234567890abcdef\" AWS_KEY = \"AKIAIOSFODNN7EXAMPLE\" secret_key_2024 = \"admin123\"",
+      "remediation": "Rotate AWS key in IAM; move to AWS Secrets Manager; enable CloudTrail alerting."
+    },
+    {
+      "id": "bypass_readout_protection",
+      "severity": "High",
+      "cwe": "CWE-693",
+      "detail": "Readout protection (RDP) is enabled but bypassable via fault injection",
+      "context": "techniques: Voltage glitch during boot; RDP regression via debug interface; UV-C fault injection on STM32 (CVE-2020-XXXXX)",
+      "remediation": "Enable RDP Level 2 (permanent); use secure element for key storage."
+    },
+    {
+      "id": "bypass_secure_boot",
+      "severity": "High",
+      "cwe": "CWE-345",
+      "detail": "Secure boot can be bypassed via firmware downgrade",
+      "context": "techniques: Firmware downgrade to unsigned build; Rollback to vulnerable bootloader",
+      "remediation": "Enforce anti-rollback counter (OTP fuse); sign every stage."
+    },
+    {
+      "id": "secret_api_key",
+      "severity": "High",
+      "cwe": "CWE-798",
+      "detail": "Hardcoded api_key at offset 0x000072: api_key = \"sk-1234567890abcdef\"",
+      "context": "password = \"MySecretWiFi2024\" api_key = \"sk-1234567890abcdef\" AWS_KEY = \"AKIAIOSFODNN7EXAMP",
+      "remediation": "Move API keys off-device; use short-lived tokens provisioned at runtime."
+    },
+    {
+      "id": "secret_password",
+      "severity": "High",
+      "cwe": "CWE-798",
+      "detail": "Hardcoded password at offset 0x000054: password = \"MySecretWiFi2024\"",
+      "context": "G: enabled, IDCODE=0x4BA00477 password = \"MySecretWiFi2024\" api_key = \"sk-1234567890abcde",
+      "remediation": "Never hardcode passwords in firmware; use secure element or encrypted NVS."
+    },
+    {
+      "id": "secret_shadow",
+      "severity": "High",
+      "cwe": "CWE-522",
+      "detail": "Hardcoded shadow at offset 0x00106c: root:x:0:",
+      "context": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000/etc/passwd root:x:0:0:root:/root:/bin/sh admin:$1$",
+      "remediation": "Ship /etc/shadow only with locked service accounts; use stronger hashes."
+    },
+    {
+      "id": "secret_token",
+      "severity": "High",
+      "cwe": "CWE-798",
+      "detail": "Hardcoded token at offset 0x0000d0: token = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\"",
+      "context": " secret_key_2024 = \"admin123\" token = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\" \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "remediation": "Use hardware-backed keystore; never persist long-lived tokens."
+    },
+    {
+      "id": "secret_wifi_psk",
+      "severity": "High",
+      "cwe": "CWE-312",
+      "detail": "Hardcoded wifi_psk at offset 0x00110d: ssid=HomeNet",
+      "context": "999:7::: /etc/config/wireless ssid=HomeNet key=MySecretWiFi2024 /www/cgi",
+      "remediation": "Provision WiFi credentials at runtime via BLE/AP pairing; never bake into image."
+    },
+    {
+      "id": "secret_wifi_psk",
+      "severity": "High",
+      "cwe": "CWE-312",
+      "detail": "Hardcoded wifi_psk at offset 0x00111a: key=MySecretWiFi2024",
+      "context": "/config/wireless ssid=HomeNet key=MySecretWiFi2024 /www/cgi-bin/login strcmp(use",
+      "remediation": "Provision WiFi credentials at runtime via BLE/AP pairing; never bake into image."
+    },
+    {
+      "id": "bypass_debug_lock",
+      "severity": "Medium",
+      "cwe": "CWE-489",
+      "detail": "Debug interface lock is software-only",
+      "context": "techniques: JTAG re-enable via glitch; UART console escape to shell",
+      "remediation": "Blow eFuse to permanently disable JTAG in production; verify via openocd."
+    },
+    {
+      "id": "bypass_flash_encryption",
+      "severity": "Medium",
+      "cwe": "CWE-311",
+      "detail": "Flash encryption key may be extractable via side-channel",
+      "context": "techniques: Key extraction from side-channel; Cold-boot attack on RAM",
+      "remediation": "Use AES-XTS with per-device key in OTP; enable DPA countermeasures."
+    },
+    {
+      "id": "signature_JFFS2_filesystem",
+      "severity": "Info",
+      "cwe": "CWE-200",
+      "detail": "JFFS2 filesystem region @ offset 0x011060",
+      "context": "Filesystem/compressed region detected in firmware",
+      "remediation": "Encrypt firmware at rest; verify only signed images on boot."
+    },
+    {
+      "id": "signature_SquashFS_filesystem",
+      "severity": "Info",
+      "cwe": "CWE-200",
+      "detail": "SquashFS filesystem region @ offset 0x001000",
+      "context": "Filesystem/compressed region detected in firmware",
+      "remediation": "Encrypt firmware at rest; verify only signed images on boot."
+    }
+  ],
+  "elapsed_s": 0.21
+}
