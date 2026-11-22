@@ -1,0 +1,191 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Project 79 — Wireless Security Report</title>
+<style>
+ body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:2rem;background:#fafafa;color:#1a1a1a}
+ h1{border-bottom:3px solid #00897b;padding-bottom:.4rem}
+ .meta{color:#666;font-size:.9rem;margin-bottom:1rem}
+ .warning{background:#fff3e0;border-left:4px solid #f57c00;padding:.7rem 1rem;border-radius:6px;
+          font-size:.85rem;margin-bottom:1rem}
+ .cards{display:flex;gap:1rem;margin:1rem 0 1.5rem;flex-wrap:wrap}
+ .card{flex:1;min-width:110px;background:#fff;padding:.8rem 1rem;border-radius:8px;
+       box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid #00897b;font-size:.85rem;color:#666}
+ .card b{display:block;font-size:1.5rem;color:#1a1a1a}
+ .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin:1rem 0 2rem}
+ .fact{background:#fff;padding:.8rem 1rem;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);font-size:.85rem;color:#666}
+ .fact b{display:block;color:#00897b;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+ table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;
+        box-shadow:0 1px 3px rgba(0,0,0,.08)}
+ th,td{padding:.6rem .7rem;text-align:left;border-bottom:1px solid #eee;font-size:.82rem;vertical-align:top}
+ th{background:#263238;color:#fff}
+ code{background:#f2f2f2;padding:.1rem .3rem;border-radius:3px;font-size:.78rem}
+ .badge{padding:.1rem .45rem;border-radius:10px;color:#fff;font-weight:600;font-size:.72rem}
+ .badge.critical{background:#b71c1c} .badge.high{background:#d32f2f}
+ .badge.medium{background:#f57c00} .badge.low{background:#388e3c} .badge.info{background:#0288d1}
+ tr.sev-critical td{background:#ffebee} tr.sev-high td{background:#fff3e0}
+</style></head><body>
+<h1>📡 Project 79 — RF & Wireless Security Report</h1>
+<div class="meta">Environment: Smart Home Lab (authorized test range) · Generated 2026-11-22T14:58:31.205707Z</div>
+<div class="warning">⚠️ All capture/replay/jamming operations are SIMULATED against mock data.
+No RF was transmitted. Complies with PTA/FCC regulatory requirements.</div>
+<div class="facts"><div class="fact"><b>BLE</b>5 detected</div>
+<div class="fact"><b>ZIGBEE</b>3 detected</div>
+<div class="fact"><b>RFID</b>2 detected</div>
+<div class="fact"><b>WIFI</b>3 detected</div>
+  <div class="fact"><b>CAPTURE</b>2,400,000 bytes @ 433.92 MHz</div>
+  <div class="fact"><b>REPLAY VECTORS</b>5</div>
+  <div class="fact"><b>JAMMING RISKS</b>3</div>
+</div>
+<div class="cards"><div class="card"><b>4</b>Critical</div>
+<div class="card"><b>9</b>High</div>
+<div class="card"><b>5</b>Medium</div></div>
+<h2>Findings</h2>
+<table>
+<thead><tr><th>Severity</th><th>CWE</th><th>Protocol</th><th>Target</th><th>Detail</th><th>Remediation</th></tr></thead>
+<tbody><tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-294</code></td>
+          <td><b>RFID</b></td>
+          <td>DEADBEEF</td>
+          <td>Replay feasible: MIFARE Classic default key FFFFFFFFFFFF</td>
+          <td>Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>RFID</b></td>
+          <td>DEADBEEF</td>
+          <td>MIFARE Classic 1K tag DEADBEEF uses default key FFFFFFFFFFFF</td>
+          <td>Migrate to MIFARE DESFire EV2/EV3; rotate keys; never ship default keys.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>WiFi</b></td>
+          <td>GuestWiFi</td>
+          <td>Network GuestWiFi is OPEN (no encryption)</td>
+          <td>Enable WPA3-SAE; never expose an open SSID for IoT.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-327</code></td>
+          <td><b>WiFi</b></td>
+          <td>IoT-Devices</td>
+          <td>Network IoT-Devices uses deprecated WEP</td>
+          <td>Migrate to WPA3; WEP is broken in seconds via aircrack-ng.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>BLE</b></td>
+          <td>AA:BB:CC:DD:EE:01</td>
+          <td>ADV_IND packet from AA:BB:CC:DD:EE:01 is unencrypted (32 bytes)</td>
+          <td>Enable BLE LE Secure Connections (LESC) pairing; require bonding.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>BLE</b></td>
+          <td>AA:BB:CC:DD:EE:03</td>
+          <td>SCAN_RSP packet from AA:BB:CC:DD:EE:03 is unencrypted (40 bytes)</td>
+          <td>Enable BLE LE Secure Connections (LESC) pairing; require bonding.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>BLE</b></td>
+          <td>AA:BB:CC:DD:EE:01</td>
+          <td>DATA packet from AA:BB:CC:DD:EE:01 is unencrypted (64 bytes)</td>
+          <td>Enable BLE LE Secure Connections (LESC) pairing; require bonding.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-294</code></td>
+          <td><b>BLE</b></td>
+          <td>SmartLock-Pro</td>
+          <td>Replay feasible: Unencrypted connection, no replay protection</td>
+          <td>Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-294</code></td>
+          <td><b>BLE</b></td>
+          <td>BLE-Keyboard</td>
+          <td>Replay feasible: Unencrypted connection, no replay protection</td>
+          <td>Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-294</code></td>
+          <td><b>BLE</b></td>
+          <td>SmartBulb</td>
+          <td>Replay feasible: Unencrypted connection, no replay protection</td>
+          <td>Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-294</code></td>
+          <td><b>RF</b></td>
+          <td>433.92</td>
+          <td>Replay feasible: Static IQ, no rolling-code mitigation</td>
+          <td>Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>Zigbee</b></td>
+          <td>0x00124B0001</td>
+          <td>Zigbee device Zigbee-Plug (0x00124B0001) on PAN 0x1A62 uses no encryption</td>
+          <td>Enable Zigbee network key (well-known key is public); use install codes.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>Zigbee</b></td>
+          <td>0x00124B0003</td>
+          <td>Zigbee device Zigbee-Light (0x00124B0003) on PAN 0x99AA uses no encryption</td>
+          <td>Enable Zigbee network key (well-known key is public); use install codes.</td>
+        </tr>
+<tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-400</code></td>
+          <td><b>BLE 2.4 GHz</b></td>
+          <td>5 devices</td>
+          <td>5 BLE 2.4 GHz devices susceptible to jamming</td>
+          <td>Implement frequency hopping or channel switching; detect RSSI anomalies as jamming indicator.</td>
+        </tr>
+<tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-400</code></td>
+          <td><b>RF 433 MHz</b></td>
+          <td>5 devices</td>
+          <td>5 RF 433 MHz devices susceptible to jamming</td>
+          <td>Implement frequency hopping or channel switching; detect RSSI anomalies as jamming indicator.</td>
+        </tr>
+<tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-400</code></td>
+          <td><b>Zigbee 2.4 GHz</b></td>
+          <td>3 devices</td>
+          <td>3 Zigbee 2.4 GHz devices susceptible to jamming</td>
+          <td>Implement frequency hopping or channel switching; detect RSSI anomalies as jamming indicator.</td>
+        </tr>
+<tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-330</code></td>
+          <td><b>WiFi</b></td>
+          <td>HomeNet</td>
+          <td>Network HomeNet has WPS enabled (PIN brute-forceable)</td>
+          <td>Disable WPS in router settings; WPS PIN can be brute-forced in ~10 hours.</td>
+        </tr>
+<tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>CWE-330</code></td>
+          <td><b>WiFi</b></td>
+          <td>IoT-Devices</td>
+          <td>Network IoT-Devices has WPS enabled (PIN brute-forceable)</td>
+          <td>Disable WPS in router settings; WPS PIN can be brute-forced in ~10 hours.</td>
+        </tr></tbody></table>
+<p style="margin-top:2rem;color:#888;font-size:.8rem">
+Generated by wireless_toolkit.py — defensive/educational use only. Only scan your own devices.
+</p>
+</body></html>

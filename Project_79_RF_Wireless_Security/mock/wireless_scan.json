@@ -1,0 +1,162 @@
+{
+  "environment": "Smart Home Lab (authorized test range)",
+  "ble": {
+    "scanner": "hcitool lescan (simulated)",
+    "devices": [
+      {
+        "addr": "AA:BB:CC:DD:EE:01",
+        "name": "SmartLock-Pro",
+        "rssi": -52,
+        "encrypted": false,
+        "services": [
+          "battery",
+          "lock-control"
+        ]
+      },
+      {
+        "addr": "AA:BB:CC:DD:EE:02",
+        "name": "ThermoStat",
+        "rssi": -61,
+        "encrypted": true,
+        "services": [
+          "temperature"
+        ]
+      },
+      {
+        "addr": "AA:BB:CC:DD:EE:03",
+        "name": "BLE-Keyboard",
+        "rssi": -45,
+        "encrypted": false,
+        "services": [
+          "hid"
+        ]
+      },
+      {
+        "addr": "AA:BB:CC:DD:EE:04",
+        "name": "FitBand",
+        "rssi": -70,
+        "encrypted": true,
+        "services": [
+          "heart-rate"
+        ]
+      },
+      {
+        "addr": "AA:BB:CC:DD:EE:05",
+        "name": "SmartBulb",
+        "rssi": -58,
+        "encrypted": false,
+        "services": [
+          "light-control"
+        ]
+      }
+    ],
+    "packets": [
+      {
+        "type": "ADV_IND",
+        "src": "AA:BB:CC:DD:EE:01",
+        "len": 32,
+        "encrypted": false
+      },
+      {
+        "type": "ADV_IND",
+        "src": "AA:BB:CC:DD:EE:02",
+        "len": 28,
+        "encrypted": true
+      },
+      {
+        "type": "SCAN_RSP",
+        "src": "AA:BB:CC:DD:EE:03",
+        "len": 40,
+        "encrypted": false
+      },
+      {
+        "type": "DATA",
+        "src": "AA:BB:CC:DD:EE:01",
+        "len": 64,
+        "encrypted": false
+      },
+      {
+        "type": "DATA",
+        "src": "AA:BB:CC:DD:EE:04",
+        "len": 52,
+        "encrypted": true
+      }
+    ]
+  },
+  "zigbee": {
+    "scanner": "KillerBee / rtl_433 2405 MHz (simulated)",
+    "devices": [
+      {
+        "addr": "0x00124B0001",
+        "name": "Zigbee-Plug",
+        "pan": "0x1A62",
+        "channel": 11,
+        "encrypted": false
+      },
+      {
+        "addr": "0x00124B0002",
+        "name": "Zigbee-Sensor",
+        "pan": "0x1A62",
+        "channel": 15,
+        "encrypted": true
+      },
+      {
+        "addr": "0x00124B0003",
+        "name": "Zigbee-Light",
+        "pan": "0x99AA",
+        "channel": 20,
+        "encrypted": false
+      }
+    ]
+  },
+  "rfid": {
+    "scanner": "Proxmark3 (simulated)",
+    "tags": [
+      {
+        "uid": "DEADBEEF",
+        "type": "MIFARE Classic 1K",
+        "encrypted": false,
+        "key": "FFFFFFFFFFFF"
+      },
+      {
+        "uid": "CAFEBABE",
+        "type": "MIFARE DESFire",
+        "encrypted": true,
+        "key": null
+      }
+    ]
+  },
+  "wifi": {
+    "scanner": "iwlist scan (simulated)",
+    "networks": [
+      {
+        "ssid": "HomeNet",
+        "bssid": "11:22:33:44:55:01",
+        "channel": 6,
+        "encryption": "WPA2",
+        "wps": true
+      },
+      {
+        "ssid": "GuestWiFi",
+        "bssid": "11:22:33:44:55:02",
+        "channel": 11,
+        "encryption": "Open",
+        "wps": false
+      },
+      {
+        "ssid": "IoT-Devices",
+        "bssid": "11:22:33:44:55:03",
+        "channel": 1,
+        "encryption": "WEP",
+        "wps": true
+      }
+    ]
+  },
+  "sdr_capture": {
+    "frequency_mhz": 433.92,
+    "sample_rate": "2.4 MS/s",
+    "duration_s": 10,
+    "captured_bytes": 2400000,
+    "file": "mock/capture_433.92M.iq"
+  }
+}

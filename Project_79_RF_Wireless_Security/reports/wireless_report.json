@@ -1,0 +1,198 @@
+{
+  "generated": "2026-11-22T14:58:31.205707Z",
+  "project": "Project 79 \u2014 RF & Wireless Security Toolkit",
+  "environment": "Smart Home Lab (authorized test range)",
+  "protocols_detected": {
+    "ble": 5,
+    "zigbee": 3,
+    "rfid": 2,
+    "wifi": 3
+  },
+  "capture": {
+    "sdr_bytes": 2400000,
+    "ble_packets": 5,
+    "frequency_mhz": 433.92,
+    "iq_ok": true
+  },
+  "summary": {
+    "total_findings": 18,
+    "by_severity": {
+      "Critical": 4,
+      "High": 9,
+      "Medium": 5
+    },
+    "cwes": [
+      "CWE-294",
+      "CWE-319",
+      "CWE-327",
+      "CWE-330",
+      "CWE-400"
+    ]
+  },
+  "findings": [
+    {
+      "id": "replay_rfid",
+      "severity": "Critical",
+      "cwe": "CWE-294",
+      "protocol": "RFID",
+      "target": "DEADBEEF",
+      "detail": "Replay feasible: MIFARE Classic default key FFFFFFFFFFFF",
+      "remediation": "Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response."
+    },
+    {
+      "id": "rfid_unencrypted",
+      "severity": "Critical",
+      "cwe": "CWE-319",
+      "protocol": "RFID",
+      "target": "DEADBEEF",
+      "detail": "MIFARE Classic 1K tag DEADBEEF uses default key FFFFFFFFFFFF",
+      "remediation": "Migrate to MIFARE DESFire EV2/EV3; rotate keys; never ship default keys."
+    },
+    {
+      "id": "wifi_open",
+      "severity": "Critical",
+      "cwe": "CWE-319",
+      "protocol": "WiFi",
+      "target": "GuestWiFi",
+      "detail": "Network GuestWiFi is OPEN (no encryption)",
+      "remediation": "Enable WPA3-SAE; never expose an open SSID for IoT."
+    },
+    {
+      "id": "wifi_wep",
+      "severity": "Critical",
+      "cwe": "CWE-327",
+      "protocol": "WiFi",
+      "target": "IoT-Devices",
+      "detail": "Network IoT-Devices uses deprecated WEP",
+      "remediation": "Migrate to WPA3; WEP is broken in seconds via aircrack-ng."
+    },
+    {
+      "id": "ble_unencrypted",
+      "severity": "High",
+      "cwe": "CWE-319",
+      "protocol": "BLE",
+      "target": "AA:BB:CC:DD:EE:01",
+      "detail": "ADV_IND packet from AA:BB:CC:DD:EE:01 is unencrypted (32 bytes)",
+      "remediation": "Enable BLE LE Secure Connections (LESC) pairing; require bonding."
+    },
+    {
+      "id": "ble_unencrypted",
+      "severity": "High",
+      "cwe": "CWE-319",
+      "protocol": "BLE",
+      "target": "AA:BB:CC:DD:EE:03",
+      "detail": "SCAN_RSP packet from AA:BB:CC:DD:EE:03 is unencrypted (40 bytes)",
+      "remediation": "Enable BLE LE Secure Connections (LESC) pairing; require bonding."
+    },
+    {
+      "id": "ble_unencrypted",
+      "severity": "High",
+      "cwe": "CWE-319",
+      "protocol": "BLE",
+      "target": "AA:BB:CC:DD:EE:01",
+      "detail": "DATA packet from AA:BB:CC:DD:EE:01 is unencrypted (64 bytes)",
+      "remediation": "Enable BLE LE Secure Connections (LESC) pairing; require bonding."
+    },
+    {
+      "id": "replay_ble",
+      "severity": "High",
+      "cwe": "CWE-294",
+      "protocol": "BLE",
+      "target": "SmartLock-Pro",
+      "detail": "Replay feasible: Unencrypted connection, no replay protection",
+      "remediation": "Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response."
+    },
+    {
+      "id": "replay_ble",
+      "severity": "High",
+      "cwe": "CWE-294",
+      "protocol": "BLE",
+      "target": "BLE-Keyboard",
+      "detail": "Replay feasible: Unencrypted connection, no replay protection",
+      "remediation": "Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response."
+    },
+    {
+      "id": "replay_ble",
+      "severity": "High",
+      "cwe": "CWE-294",
+      "protocol": "BLE",
+      "target": "SmartBulb",
+      "detail": "Replay feasible: Unencrypted connection, no replay protection",
+      "remediation": "Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response."
+    },
+    {
+      "id": "replay_rf",
+      "severity": "High",
+      "cwe": "CWE-294",
+      "protocol": "RF",
+      "target": 433.92,
+      "detail": "Replay feasible: Static IQ, no rolling-code mitigation",
+      "remediation": "Use rolling codes (KeeLoq/TR-31); enforce BLE LE Secure Connections; migrate RFID to DESFire EV3 with challenge-response."
+    },
+    {
+      "id": "zigbee_unencrypted",
+      "severity": "High",
+      "cwe": "CWE-319",
+      "protocol": "Zigbee",
+      "target": "0x00124B0001",
+      "detail": "Zigbee device Zigbee-Plug (0x00124B0001) on PAN 0x1A62 uses no encryption",
+      "remediation": "Enable Zigbee network key (well-known key is public); use install codes."
+    },
+    {
+      "id": "zigbee_unencrypted",
+      "severity": "High",
+      "cwe": "CWE-319",
+      "protocol": "Zigbee",
+      "target": "0x00124B0003",
+      "detail": "Zigbee device Zigbee-Light (0x00124B0003) on PAN 0x99AA uses no encryption",
+      "remediation": "Enable Zigbee network key (well-known key is public); use install codes."
+    },
+    {
+      "id": "jamming_ble_24_ghz",
+      "severity": "Medium",
+      "cwe": "CWE-400",
+      "protocol": "BLE 2.4 GHz",
+      "target": "5 devices",
+      "detail": "5 BLE 2.4 GHz devices susceptible to jamming",
+      "remediation": "Implement frequency hopping or channel switching; detect RSSI anomalies as jamming indicator."
+    },
+    {
+      "id": "jamming_rf_433_mhz",
+      "severity": "Medium",
+      "cwe": "CWE-400",
+      "protocol": "RF 433 MHz",
+      "target": "5 devices",
+      "detail": "5 RF 433 MHz devices susceptible to jamming",
+      "remediation": "Implement frequency hopping or channel switching; detect RSSI anomalies as jamming indicator."
+    },
+    {
+      "id": "jamming_zigbee_24_ghz",
+      "severity": "Medium",
+      "cwe": "CWE-400",
+      "protocol": "Zigbee 2.4 GHz",
+      "target": "3 devices",
+      "detail": "3 Zigbee 2.4 GHz devices susceptible to jamming",
+      "remediation": "Implement frequency hopping or channel switching; detect RSSI anomalies as jamming indicator."
+    },
+    {
+      "id": "wifi_wps",
+      "severity": "Medium",
+      "cwe": "CWE-330",
+      "protocol": "WiFi",
+      "target": "HomeNet",
+      "detail": "Network HomeNet has WPS enabled (PIN brute-forceable)",
+      "remediation": "Disable WPS in router settings; WPS PIN can be brute-forced in ~10 hours."
+    },
+    {
+      "id": "wifi_wps",
+      "severity": "Medium",
+      "cwe": "CWE-330",
+      "protocol": "WiFi",
+      "target": "IoT-Devices",
+      "detail": "Network IoT-Devices has WPS enabled (PIN brute-forceable)",
+      "remediation": "Disable WPS in router settings; WPS PIN can be brute-forced in ~10 hours."
+    }
+  ],
+  "elapsed_s": 0.03,
+  "disclaimer": "All capture/replay/jamming operations SIMULATED. No RF transmitted. Defensive/educational use only."
+}
