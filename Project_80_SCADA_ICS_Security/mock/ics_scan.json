@@ -1,0 +1,238 @@
+{
+  "environment": "ICS Lab (authorized test range)",
+  "modbus": {
+    "scanner": "nmap -p 502 --script modbus-discover (simulated)",
+    "devices": [
+      {
+        "ip": "192.168.1.10",
+        "port": 502,
+        "type": "PLC",
+        "vendor": "Siemens",
+        "model": "S7-1200",
+        "unit_id": 1
+      },
+      {
+        "ip": "192.168.1.11",
+        "port": 502,
+        "type": "RTU",
+        "vendor": "Schneider",
+        "model": "SCADAPack",
+        "unit_id": 2
+      },
+      {
+        "ip": "192.168.1.12",
+        "port": 502,
+        "type": "HMI",
+        "vendor": "Allen-Bradley",
+        "model": "PanelView",
+        "unit_id": 3
+      }
+    ],
+    "function_codes": [
+      {
+        "code": 1,
+        "name": "Read Coils"
+      },
+      {
+        "code": 2,
+        "name": "Read Discrete Inputs"
+      },
+      {
+        "code": 3,
+        "name": "Read Holding Registers"
+      },
+      {
+        "code": 4,
+        "name": "Read Input Registers"
+      },
+      {
+        "code": 5,
+        "name": "Write Single Coil"
+      },
+      {
+        "code": 6,
+        "name": "Write Single Register"
+      },
+      {
+        "code": 15,
+        "name": "Write Multiple Coils"
+      },
+      {
+        "code": 16,
+        "name": "Write Multiple Registers"
+      }
+    ]
+  },
+  "dnp3": {
+    "scanner": "nmap -p 20000 --script dnp3-info (simulated)",
+    "devices": [
+      {
+        "ip": "192.168.1.20",
+        "port": 20000,
+        "type": "RTU",
+        "vendor": "ABB",
+        "model": "RTU560"
+      },
+      {
+        "ip": "192.168.1.21",
+        "port": 20000,
+        "type": "PLC",
+        "vendor": "GE",
+        "model": "D20MX"
+      }
+    ],
+    "function_codes": [
+      {
+        "code": 1,
+        "name": "Read"
+      },
+      {
+        "code": 2,
+        "name": "Write"
+      },
+      {
+        "code": 3,
+        "name": "Select"
+      },
+      {
+        "code": 4,
+        "name": "Operate"
+      },
+      {
+        "code": 5,
+        "name": "Direct Operate"
+      }
+    ]
+  },
+  "opc": {
+    "scanner": "nmap -p 4840 --script opcua (simulated)",
+    "devices": [
+      {
+        "ip": "192.168.1.30",
+        "port": 4840,
+        "type": "OPC UA Server",
+        "vendor": "Kepware",
+        "endpoint": "opc.tcp://192.168.1.30:4840"
+      }
+    ],
+    "endpoints": [
+      "None",
+      "Sign",
+      "SignAndEncrypt"
+    ],
+    "auth": "Anonymous allowed"
+  },
+  "s7": {
+    "scanner": "nmap -p 102 --script s7-info (simulated)",
+    "devices": [
+      {
+        "ip": "192.168.1.40",
+        "port": 102,
+        "type": "PLC",
+        "vendor": "Siemens",
+        "model": "S7-1500",
+        "firmware": "V2.8"
+      },
+      {
+        "ip": "192.168.1.41",
+        "port": 102,
+        "type": "PLC",
+        "vendor": "Siemens",
+        "model": "S7-300",
+        "firmware": "V3.2"
+      }
+    ],
+    "function_codes": [
+      {
+        "code": "0x04",
+        "name": "Read Variable"
+      },
+      {
+        "code": "0x05",
+        "name": "Write Variable"
+      },
+      {
+        "code": "0x1a",
+        "name": "Request Download"
+      }
+    ]
+  },
+  "config_audit": {
+    "default_credentials": [
+      {
+        "ip": "192.168.1.10",
+        "user": "admin",
+        "pass": "admin"
+      },
+      {
+        "ip": "192.168.1.20",
+        "user": "admin",
+        "pass": "password"
+      },
+      {
+        "ip": "192.168.1.30",
+        "user": "root",
+        "pass": "root"
+      }
+    ],
+    "open_ports": [
+      502,
+      102,
+      20000,
+      4840,
+      80,
+      443
+    ],
+    "unencrypted_protocols": [
+      "Modbus",
+      "DNP3",
+      "S7comm"
+    ],
+    "firmware": [
+      {
+        "ip": "192.168.1.40",
+        "version": "V2.8",
+        "latest": "V3.1",
+        "outdated": true
+      },
+      {
+        "ip": "192.168.1.41",
+        "version": "V3.2",
+        "latest": "V3.2",
+        "outdated": false
+      }
+    ]
+  },
+  "cve_db": [
+    {
+      "cve": "CVE-2020-1234",
+      "device": "Siemens S7-1200",
+      "cvss": 9.8,
+      "desc": "Unauthenticated remote code execution via S7comm"
+    },
+    {
+      "cve": "CVE-2020-5678",
+      "device": "Modbus TCP",
+      "cvss": 7.5,
+      "desc": "No authentication on Modbus write functions"
+    },
+    {
+      "cve": "CVE-2019-10929",
+      "device": "Schneider SCADAPack",
+      "cvss": 8.1,
+      "desc": "Hardcoded credentials in firmware"
+    },
+    {
+      "cve": "CVE-2021-22779",
+      "device": "ABB RTU560",
+      "cvss": 9.1,
+      "desc": "DNP3 stack overflow"
+    },
+    {
+      "cve": "CVE-2022-38465",
+      "device": "Siemens S7-1500",
+      "cvss": 7.5,
+      "desc": "Improper input validation in S7comm"
+    }
+  ]
+}

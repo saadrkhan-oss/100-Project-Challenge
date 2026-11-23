@@ -1,0 +1,173 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Project 80 — ICS Security Report</title>
+<style>
+ body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:2rem;background:#fafafa;color:#1a1a1a}
+ h1{border-bottom:3px solid #c62828;padding-bottom:.4rem}
+ .meta{color:#666;font-size:.9rem;margin-bottom:1rem}
+ .warning{background:#fff3e0;border-left:4px solid #f57c00;padding:.7rem 1rem;border-radius:6px;
+          font-size:.85rem;margin-bottom:1rem}
+ .cards{display:flex;gap:1rem;margin:1rem 0 1.5rem;flex-wrap:wrap}
+ .card{flex:1;min-width:110px;background:#fff;padding:.8rem 1rem;border-radius:8px;
+       box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid #c62828;font-size:.85rem;color:#666}
+ .card b{display:block;font-size:1.5rem;color:#1a1a1a}
+ .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin:1rem 0 2rem}
+ .fact{background:#fff;padding:.8rem 1rem;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);font-size:.85rem;color:#666}
+ .fact b{display:block;color:#c62828;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+ table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;
+        box-shadow:0 1px 3px rgba(0,0,0,.08)}
+ th,td{padding:.6rem .7rem;text-align:left;border-bottom:1px solid #eee;font-size:.82rem;vertical-align:top}
+ th{background:#263238;color:#fff}
+ code{background:#f2f2f2;padding:.1rem .3rem;border-radius:3px;font-size:.78rem}
+ .badge{padding:.1rem .45rem;border-radius:10px;color:#fff;font-weight:600;font-size:.72rem}
+ .badge.critical{background:#b71c1c} .badge.high{background:#d32f2f}
+ .badge.medium{background:#f57c00} .badge.low{background:#388e3c} .badge.info{background:#0288d1}
+ tr.sev-critical td{background:#ffebee} tr.sev-high td{background:#fff3e0}
+</style></head><body>
+<h1>🏭 Project 80 — SCADA/ICS Security Report</h1>
+<div class="meta">Environment: ICS Lab (authorized test range) · Generated 2026-11-23T18:14:06.239405Z</div>
+<div class="warning">⚠️ All scanning and protocol analysis SIMULATED against mock data.
+No network traffic generated. Defensive/educational use only.</div>
+<div class="facts"><div class="fact"><b>MODBUS</b>3 device(s)</div>
+<div class="fact"><b>DNP3</b>2 device(s)</div>
+<div class="fact"><b>OPC</b>1 device(s)</div>
+<div class="fact"><b>S7</b>2 device(s)</div>
+  <div class="fact"><b>DEVICE TYPES</b>4</div>
+  <div class="fact"><b>CVEs</b>5</div>
+</div>
+<div class="cards"><div class="card"><b>6</b>Critical</div>
+<div class="card"><b>10</b>High</div></div>
+<h2>Findings</h2>
+<table>
+<thead><tr><th>Severity</th><th>CWE</th><th>ID</th><th>Target</th><th>Detail</th><th>Remediation</th></tr></thead>
+<tbody><tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-1104</code></td>
+          <td><b>cve_CVE-2020-1234</b></td>
+          <td>Siemens S7-1200</td>
+          <td>CVE-2020-1234 (CVSS 9.8): Unauthenticated remote code execution via S7comm</td>
+          <td>Apply vendor patch for CVE-2020-1234; verify mitigations per CISA ICS advisory.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-1104</code></td>
+          <td><b>cve_CVE-2021-22779</b></td>
+          <td>ABB RTU560</td>
+          <td>CVE-2021-22779 (CVSS 9.1): DNP3 stack overflow</td>
+          <td>Apply vendor patch for CVE-2021-22779; verify mitigations per CISA ICS advisory.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-1392</code></td>
+          <td><b>default_credentials</b></td>
+          <td>192.168.1.10</td>
+          <td>Default credentials admin:admin on 192.168.1.10</td>
+          <td>Change default passwords immediately; enforce strong auth; use IEC 62443 account management controls.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-1392</code></td>
+          <td><b>default_credentials</b></td>
+          <td>192.168.1.20</td>
+          <td>Default credentials admin:password on 192.168.1.20</td>
+          <td>Change default passwords immediately; enforce strong auth; use IEC 62443 account management controls.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-1392</code></td>
+          <td><b>default_credentials</b></td>
+          <td>192.168.1.30</td>
+          <td>Default credentials root:root on 192.168.1.30</td>
+          <td>Change default passwords immediately; enforce strong auth; use IEC 62443 account management controls.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>CWE-306</code></td>
+          <td><b>s7_download_enabled</b></td>
+          <td>Siemens PLC network</td>
+          <td>S7comm Request Download enabled — PLC logic can be replaced remotely</td>
+          <td>Disable PG/download access in TIA Portal; enable S7-1500 integrity protection; restrict port 102 to engineering workstations.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-1104</code></td>
+          <td><b>cve_CVE-2019-10929</b></td>
+          <td>Schneider SCADAPack</td>
+          <td>CVE-2019-10929 (CVSS 8.1): Hardcoded credentials in firmware</td>
+          <td>Apply vendor patch for CVE-2019-10929; verify mitigations per CISA ICS advisory.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-1104</code></td>
+          <td><b>cve_CVE-2020-5678</b></td>
+          <td>Modbus TCP</td>
+          <td>CVE-2020-5678 (CVSS 7.5): No authentication on Modbus write functions</td>
+          <td>Apply vendor patch for CVE-2020-5678; verify mitigations per CISA ICS advisory.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-1104</code></td>
+          <td><b>cve_CVE-2022-38465</b></td>
+          <td>Siemens S7-1500</td>
+          <td>CVE-2022-38465 (CVSS 7.5): Improper input validation in S7comm</td>
+          <td>Apply vendor patch for CVE-2022-38465; verify mitigations per CISA ICS advisory.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-306</code></td>
+          <td><b>dnp3_control_ops</b></td>
+          <td>DNP3 network</td>
+          <td>Control operations enabled without Secure Auth: Operate, Direct Operate</td>
+          <td>Enable DNP3 Secure Authentication v5; restrict operate commands to authorized masters only.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-284</code></td>
+          <td><b>exposed_ics_ports</b></td>
+          <td>network</td>
+          <td>ICS ports exposed: 502, 102, 20000, 4840, 80, 443</td>
+          <td>Segment ICS network from IT (Purdue model); firewall port 502/102/20000/4840; deploy unidirectional gateways where possible.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-306</code></td>
+          <td><b>modbus_write_functions</b></td>
+          <td>Modbus network</td>
+          <td>Write function codes enabled without auth: Write Single Coil, Write Single Register, Write Multiple Coils, Write Multiple Registers</td>
+          <td>Disable write function codes for read-only devices; enforce Modbus/TCP Security (TLS + cert); deploy deep-packet inspection.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-306</code></td>
+          <td><b>opcua_anonymous</b></td>
+          <td>OPC UA Server</td>
+          <td>OPC UA allows anonymous authentication</td>
+          <td>Require certificate-based authentication; disable None security policy; use SignAndEncrypt for all sessions.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>opcua_no_encryption</b></td>
+          <td>OPC UA Server</td>
+          <td>OPC UA endpoint accepts None security policy (no encryption)</td>
+          <td>Remove None endpoint; enforce SignAndEncrypt with AES-256.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-1104</code></td>
+          <td><b>outdated_firmware</b></td>
+          <td>192.168.1.40</td>
+          <td>Firmware V2.8 outdated (latest V3.1) on 192.168.1.40</td>
+          <td>Patch firmware per vendor advisory; establish change management and staged rollouts for ICS environments.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>CWE-319</code></td>
+          <td><b>unencrypted_ics_protocols</b></td>
+          <td>network</td>
+          <td>Unencrypted protocols in use: Modbus, DNP3, S7comm</td>
+          <td>Use Modbus/TCP Security (TLS), DNP3 Secure Auth, OPC UA SignAndEncrypt; tunnel legacy protocols through VPN/IPsec.</td>
+        </tr></tbody></table>
+<p style="margin-top:2rem;color:#888;font-size:.8rem">
+Generated by ics_toolkit.py — defensive/educational use only. Only scan your own ICS lab.
+</p>
+</body></html>

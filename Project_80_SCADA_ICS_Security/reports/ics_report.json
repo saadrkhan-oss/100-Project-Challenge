@@ -1,0 +1,163 @@
+{
+  "generated": "2026-11-23T18:14:06.239405Z",
+  "project": "Project 80 \u2014 SCADA/ICS Security Toolkit",
+  "environment": "ICS Lab (authorized test range)",
+  "protocols": {
+    "modbus": 3,
+    "dnp3": 2,
+    "opc": 1,
+    "s7": 2
+  },
+  "device_types": {
+    "PLC": 4,
+    "RTU": 2,
+    "HMI": 1,
+    "OPC UA Server": 1
+  },
+  "summary": {
+    "total_findings": 16,
+    "by_severity": {
+      "Critical": 6,
+      "High": 10
+    },
+    "cwes": [
+      "CWE-1104",
+      "CWE-1392",
+      "CWE-284",
+      "CWE-306",
+      "CWE-319"
+    ]
+  },
+  "findings": [
+    {
+      "id": "cve_CVE-2020-1234",
+      "severity": "Critical",
+      "cwe": "CWE-1104",
+      "target": "Siemens S7-1200",
+      "detail": "CVE-2020-1234 (CVSS 9.8): Unauthenticated remote code execution via S7comm",
+      "remediation": "Apply vendor patch for CVE-2020-1234; verify mitigations per CISA ICS advisory."
+    },
+    {
+      "id": "cve_CVE-2021-22779",
+      "severity": "Critical",
+      "cwe": "CWE-1104",
+      "target": "ABB RTU560",
+      "detail": "CVE-2021-22779 (CVSS 9.1): DNP3 stack overflow",
+      "remediation": "Apply vendor patch for CVE-2021-22779; verify mitigations per CISA ICS advisory."
+    },
+    {
+      "id": "default_credentials",
+      "severity": "Critical",
+      "cwe": "CWE-1392",
+      "target": "192.168.1.10",
+      "detail": "Default credentials admin:admin on 192.168.1.10",
+      "remediation": "Change default passwords immediately; enforce strong auth; use IEC 62443 account management controls."
+    },
+    {
+      "id": "default_credentials",
+      "severity": "Critical",
+      "cwe": "CWE-1392",
+      "target": "192.168.1.20",
+      "detail": "Default credentials admin:password on 192.168.1.20",
+      "remediation": "Change default passwords immediately; enforce strong auth; use IEC 62443 account management controls."
+    },
+    {
+      "id": "default_credentials",
+      "severity": "Critical",
+      "cwe": "CWE-1392",
+      "target": "192.168.1.30",
+      "detail": "Default credentials root:root on 192.168.1.30",
+      "remediation": "Change default passwords immediately; enforce strong auth; use IEC 62443 account management controls."
+    },
+    {
+      "id": "s7_download_enabled",
+      "severity": "Critical",
+      "cwe": "CWE-306",
+      "target": "Siemens PLC network",
+      "detail": "S7comm Request Download enabled \u2014 PLC logic can be replaced remotely",
+      "remediation": "Disable PG/download access in TIA Portal; enable S7-1500 integrity protection; restrict port 102 to engineering workstations."
+    },
+    {
+      "id": "cve_CVE-2019-10929",
+      "severity": "High",
+      "cwe": "CWE-1104",
+      "target": "Schneider SCADAPack",
+      "detail": "CVE-2019-10929 (CVSS 8.1): Hardcoded credentials in firmware",
+      "remediation": "Apply vendor patch for CVE-2019-10929; verify mitigations per CISA ICS advisory."
+    },
+    {
+      "id": "cve_CVE-2020-5678",
+      "severity": "High",
+      "cwe": "CWE-1104",
+      "target": "Modbus TCP",
+      "detail": "CVE-2020-5678 (CVSS 7.5): No authentication on Modbus write functions",
+      "remediation": "Apply vendor patch for CVE-2020-5678; verify mitigations per CISA ICS advisory."
+    },
+    {
+      "id": "cve_CVE-2022-38465",
+      "severity": "High",
+      "cwe": "CWE-1104",
+      "target": "Siemens S7-1500",
+      "detail": "CVE-2022-38465 (CVSS 7.5): Improper input validation in S7comm",
+      "remediation": "Apply vendor patch for CVE-2022-38465; verify mitigations per CISA ICS advisory."
+    },
+    {
+      "id": "dnp3_control_ops",
+      "severity": "High",
+      "cwe": "CWE-306",
+      "target": "DNP3 network",
+      "detail": "Control operations enabled without Secure Auth: Operate, Direct Operate",
+      "remediation": "Enable DNP3 Secure Authentication v5; restrict operate commands to authorized masters only."
+    },
+    {
+      "id": "exposed_ics_ports",
+      "severity": "High",
+      "cwe": "CWE-284",
+      "target": "network",
+      "detail": "ICS ports exposed: 502, 102, 20000, 4840, 80, 443",
+      "remediation": "Segment ICS network from IT (Purdue model); firewall port 502/102/20000/4840; deploy unidirectional gateways where possible."
+    },
+    {
+      "id": "modbus_write_functions",
+      "severity": "High",
+      "cwe": "CWE-306",
+      "target": "Modbus network",
+      "detail": "Write function codes enabled without auth: Write Single Coil, Write Single Register, Write Multiple Coils, Write Multiple Registers",
+      "remediation": "Disable write function codes for read-only devices; enforce Modbus/TCP Security (TLS + cert); deploy deep-packet inspection."
+    },
+    {
+      "id": "opcua_anonymous",
+      "severity": "High",
+      "cwe": "CWE-306",
+      "target": "OPC UA Server",
+      "detail": "OPC UA allows anonymous authentication",
+      "remediation": "Require certificate-based authentication; disable None security policy; use SignAndEncrypt for all sessions."
+    },
+    {
+      "id": "opcua_no_encryption",
+      "severity": "High",
+      "cwe": "CWE-319",
+      "target": "OPC UA Server",
+      "detail": "OPC UA endpoint accepts None security policy (no encryption)",
+      "remediation": "Remove None endpoint; enforce SignAndEncrypt with AES-256."
+    },
+    {
+      "id": "outdated_firmware",
+      "severity": "High",
+      "cwe": "CWE-1104",
+      "target": "192.168.1.40",
+      "detail": "Firmware V2.8 outdated (latest V3.1) on 192.168.1.40",
+      "remediation": "Patch firmware per vendor advisory; establish change management and staged rollouts for ICS environments."
+    },
+    {
+      "id": "unencrypted_ics_protocols",
+      "severity": "High",
+      "cwe": "CWE-319",
+      "target": "network",
+      "detail": "Unencrypted protocols in use: Modbus, DNP3, S7comm",
+      "remediation": "Use Modbus/TCP Security (TLS), DNP3 Secure Auth, OPC UA SignAndEncrypt; tunnel legacy protocols through VPN/IPsec."
+    }
+  ],
+  "elapsed_s": 0.03,
+  "disclaimer": "All scanning and protocol analysis SIMULATED against mock data. No network traffic generated. Defensive/educational use only."
+}
