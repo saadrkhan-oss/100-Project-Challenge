@@ -1,0 +1,303 @@
+{
+  "generated": "2026-11-24T17:25:41.435011Z",
+  "project": "Project 81 \u2014 Blockchain Security Toolkit",
+  "contracts_analyzed": [
+    {
+      "file": "contracts/VulnerableBank.sol",
+      "lang": "Solidity",
+      "pragma": "^0.7.0",
+      "functions": 5
+    },
+    {
+      "file": "contracts/VulnerableLending.sol",
+      "lang": "Solidity",
+      "pragma": "^0.8.0",
+      "functions": 5
+    },
+    {
+      "file": "contracts/VulnerableToken.vy",
+      "lang": "Vyper",
+      "pragma": "^0.3.0",
+      "functions": 3
+    }
+  ],
+  "summary": {
+    "total_findings": 13,
+    "by_severity": {
+      "Critical": 2,
+      "High": 10,
+      "Medium": 1
+    },
+    "swcs": [
+      "SWC-101",
+      "SWC-105",
+      "SWC-107",
+      "SWC-114"
+    ]
+  },
+  "findings": [
+    {
+      "id": "flash_loan",
+      "severity": "Critical",
+      "swc": "SWC-114",
+      "cwe": "CWE-841",
+      "file": "contracts/VulnerableLending.sol",
+      "detail": "flashLoan() lacks collateral/fee enforcement",
+      "remediation": "Require repayment + fee in same tx; verify balanceBefore <= balanceAfter."
+    },
+    {
+      "id": "reentrancy",
+      "severity": "Critical",
+      "swc": "SWC-107",
+      "cwe": "CWE-841",
+      "file": "contracts/VulnerableBank.sol",
+      "function": "withdraw",
+      "detail": "External call before state update in withdraw()",
+      "remediation": "Use Checks-Effects-Interactions pattern; add reentrancy guard (nonReentrant)."
+    },
+    {
+      "id": "access_control",
+      "severity": "High",
+      "swc": "SWC-105",
+      "cwe": "CWE-284",
+      "file": "contracts/VulnerableBank.sol",
+      "function": "withdraw",
+      "detail": "withdraw() has no access control",
+      "remediation": "Add onlyOwner/onlyRole modifier; validate msg.sender."
+    },
+    {
+      "id": "access_control",
+      "severity": "High",
+      "swc": "SWC-105",
+      "cwe": "CWE-284",
+      "file": "contracts/VulnerableBank.sol",
+      "function": "setOwner",
+      "detail": "setOwner() has no access control",
+      "remediation": "Add onlyOwner/onlyRole modifier; validate msg.sender."
+    },
+    {
+      "id": "access_control",
+      "severity": "High",
+      "swc": "SWC-105",
+      "cwe": "CWE-284",
+      "file": "contracts/VulnerableLending.sol",
+      "function": "emergencyWithdraw",
+      "detail": "emergencyWithdraw() has no access control",
+      "remediation": "Add onlyOwner/onlyRole modifier; validate msg.sender."
+    },
+    {
+      "id": "access_control",
+      "severity": "High",
+      "swc": "SWC-105",
+      "cwe": "CWE-284",
+      "file": "contracts/VulnerableToken.vy",
+      "function": "mint",
+      "detail": "Vyper mint() has no msg.sender check",
+      "remediation": "Add `assert msg.sender == self.owner` at top of function."
+    },
+    {
+      "id": "governance_attack",
+      "severity": "High",
+      "swc": "SWC-105",
+      "cwe": "CWE-284",
+      "file": "contracts/VulnerableLending.sol",
+      "detail": "emergencyWithdraw() allows single owner to drain contract",
+      "remediation": "Use multi-sig + timelock; require DAO vote for emergency functions."
+    },
+    {
+      "id": "integer_overflow",
+      "severity": "High",
+      "swc": "SWC-101",
+      "cwe": "CWE-190",
+      "file": "contracts/VulnerableBank.sol",
+      "function": "deposit",
+      "detail": "Unchecked arithmetic in deposit() (Solidity ^0.7.0, no SafeMath)",
+      "remediation": "Upgrade to Solidity 0.8+ (built-in overflow checks) or use SafeMath."
+    },
+    {
+      "id": "integer_overflow",
+      "severity": "High",
+      "swc": "SWC-101",
+      "cwe": "CWE-190",
+      "file": "contracts/VulnerableBank.sol",
+      "function": "transfer",
+      "detail": "Unchecked arithmetic in transfer() (Solidity ^0.7.0, no SafeMath)",
+      "remediation": "Upgrade to Solidity 0.8+ (built-in overflow checks) or use SafeMath."
+    },
+    {
+      "id": "integer_underflow",
+      "severity": "High",
+      "swc": "SWC-101",
+      "cwe": "CWE-191",
+      "file": "contracts/VulnerableToken.vy",
+      "function": "transfer",
+      "detail": "Vyper transfer() subtracts without bound check",
+      "remediation": "Add `assert self.balances[msg.sender] >= amount` before subtraction."
+    },
+    {
+      "id": "liquidity_manipulation",
+      "severity": "High",
+      "swc": "SWC-114",
+      "cwe": "CWE-682",
+      "file": "contracts/VulnerableBank.sol",
+      "detail": "Contract uses own balance as price source \u2014 manipulable via donation",
+      "remediation": "Use external DEX TWAP; never use address(this).balance as price input."
+    },
+    {
+      "id": "liquidity_manipulation",
+      "severity": "High",
+      "swc": "SWC-114",
+      "cwe": "CWE-682",
+      "file": "contracts/VulnerableLending.sol",
+      "detail": "Contract uses own balance as price source \u2014 manipulable via donation",
+      "remediation": "Use external DEX TWAP; never use address(this).balance as price input."
+    },
+    {
+      "id": "front_running",
+      "severity": "Medium",
+      "swc": "SWC-114",
+      "cwe": "CWE-362",
+      "file": "contracts/VulnerableBank.sol",
+      "function": "swap",
+      "detail": "swap() is front-runnable (state depends on balance ratio)",
+      "remediation": "Use commit-reveal scheme; add slippage protection; use TWAP oracle."
+    }
+  ],
+  "static_analysis": {
+    "slither": [
+      {
+        "detector": "reentrancy",
+        "file": "contracts/VulnerableBank.sol",
+        "function": "withdraw",
+        "confidence": "High",
+        "description": "External call before state update in withdraw()"
+      },
+      {
+        "detector": "integer_overflow",
+        "file": "contracts/VulnerableBank.sol",
+        "function": "deposit",
+        "confidence": "High",
+        "description": "Unchecked arithmetic in deposit() (Solidity ^0.7.0, no SafeMath)"
+      },
+      {
+        "detector": "integer_overflow",
+        "file": "contracts/VulnerableBank.sol",
+        "function": "transfer",
+        "confidence": "High",
+        "description": "Unchecked arithmetic in transfer() (Solidity ^0.7.0, no SafeMath)"
+      },
+      {
+        "detector": "access_control",
+        "file": "contracts/VulnerableBank.sol",
+        "function": "withdraw",
+        "confidence": "High",
+        "description": "withdraw() has no access control"
+      },
+      {
+        "detector": "access_control",
+        "file": "contracts/VulnerableBank.sol",
+        "function": "setOwner",
+        "confidence": "High",
+        "description": "setOwner() has no access control"
+      },
+      {
+        "detector": "front_running",
+        "file": "contracts/VulnerableBank.sol",
+        "function": "swap",
+        "confidence": "Medium",
+        "description": "swap() is front-runnable (state depends on balance ratio)"
+      },
+      {
+        "detector": "access_control",
+        "file": "contracts/VulnerableLending.sol",
+        "function": "emergencyWithdraw",
+        "confidence": "High",
+        "description": "emergencyWithdraw() has no access control"
+      },
+      {
+        "detector": "access_control",
+        "file": "contracts/VulnerableToken.vy",
+        "function": "mint",
+        "confidence": "High",
+        "description": "Vyper mint() has no msg.sender check"
+      },
+      {
+        "detector": "integer_underflow",
+        "file": "contracts/VulnerableToken.vy",
+        "function": "transfer",
+        "confidence": "High",
+        "description": "Vyper transfer() subtracts without bound check"
+      },
+      {
+        "detector": "liquidity_manipulation",
+        "file": "contracts/VulnerableBank.sol",
+        "function": "?",
+        "confidence": "High",
+        "description": "Contract uses own balance as price source \u2014 manipulable via donation"
+      },
+      {
+        "detector": "flash_loan",
+        "file": "contracts/VulnerableLending.sol",
+        "function": "?",
+        "confidence": "High",
+        "description": "flashLoan() lacks collateral/fee enforcement"
+      },
+      {
+        "detector": "liquidity_manipulation",
+        "file": "contracts/VulnerableLending.sol",
+        "function": "?",
+        "confidence": "High",
+        "description": "Contract uses own balance as price source \u2014 manipulable via donation"
+      },
+      {
+        "detector": "governance_attack",
+        "file": "contracts/VulnerableLending.sol",
+        "function": "?",
+        "confidence": "High",
+        "description": "emergencyWithdraw() allows single owner to drain contract"
+      }
+    ],
+    "mythril": [
+      {
+        "contract": "contracts/VulnerableBank.sol",
+        "paths_explored": 15,
+        "assertion_violations": 0
+      },
+      {
+        "contract": "contracts/VulnerableLending.sol",
+        "paths_explored": 15,
+        "assertion_violations": 0
+      },
+      {
+        "contract": "contracts/VulnerableToken.vy",
+        "paths_explored": 9,
+        "assertion_violations": 0
+      }
+    ]
+  },
+  "exploits": [
+    {
+      "name": "reentrancy_drain",
+      "contract": "VulnerableBank",
+      "impact": "Full balance drained",
+      "feasible": true,
+      "poc": "Attacker.sol with fallback() { victim.withdraw(amount); }"
+    },
+    {
+      "name": "flash_loan_drain",
+      "contract": "VulnerableLending",
+      "impact": "Protocol funds at risk",
+      "feasible": true,
+      "poc": "Aave-style flash loan \u2192 price manipulation \u2192 drain"
+    },
+    {
+      "name": "ownership_takeover",
+      "contract": "VulnerableBank",
+      "impact": "Full contract takeover",
+      "feasible": true,
+      "poc": "contract.setOwner(attacker) from any EOA"
+    }
+  ],
+  "elapsed_s": 0.05,
+  "disclaimer": "All exploit testing SIMULATED. No chain deployment. Defensive/educational use only."
+}

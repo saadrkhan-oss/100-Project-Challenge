@@ -1,0 +1,145 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Project 81 — Blockchain Security Report</title>
+<style>
+ body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:2rem;background:#fafafa;color:#1a1a1a}
+ h1{border-bottom:3px solid #f57c00;padding-bottom:.4rem}
+ .meta{color:#666;font-size:.9rem;margin-bottom:1rem}
+ .warning{background:#fff3e0;border-left:4px solid #f57c00;padding:.7rem 1rem;border-radius:6px;
+          font-size:.85rem;margin-bottom:1rem}
+ .cards{display:flex;gap:1rem;margin:1rem 0 1.5rem;flex-wrap:wrap}
+ .card{flex:1;min-width:110px;background:#fff;padding:.8rem 1rem;border-radius:8px;
+       box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid #f57c00;font-size:.85rem;color:#666}
+ .card b{display:block;font-size:1.5rem;color:#1a1a1a}
+ table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;
+        box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:1.5rem}
+ th,td{padding:.6rem .7rem;text-align:left;border-bottom:1px solid #eee;font-size:.82rem;vertical-align:top}
+ th{background:#263238;color:#fff}
+ code{background:#f2f2f2;padding:.1rem .3rem;border-radius:3px;font-size:.78rem}
+ .badge{padding:.1rem .45rem;border-radius:10px;color:#fff;font-weight:600;font-size:.72rem}
+ .badge.critical{background:#b71c1c} .badge.high{background:#d32f2f}
+ .badge.medium{background:#f57c00} .badge.low{background:#388e3c} .badge.info{background:#0288d1}
+ tr.sev-critical td{background:#ffebee} tr.sev-high td{background:#fff3e0}
+</style></head><body>
+<h1>⛓️ Project 81 — Blockchain Security Report</h1>
+<div class="meta">Generated 2026-11-24T17:25:41.435011Z · 3 contracts analyzed</div>
+<div class="warning">⚠️ All exploit testing SIMULATED. No chain deployment. Defensive/educational use only.</div>
+<div class="cards"><div class="card"><b>2</b>Critical</div>
+<div class="card"><b>10</b>High</div>
+<div class="card"><b>1</b>Medium</div></div>
+<h2>Vulnerability Findings</h2>
+<table>
+<thead><tr><th>Severity</th><th>SWC</th><th>ID</th><th>Location</th><th>Detail</th><th>Remediation</th></tr></thead>
+<tbody><tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>SWC-114</code></td>
+          <td><b>flash_loan</b></td>
+          <td><code>contracts/VulnerableLending.sol::—</code></td>
+          <td>flashLoan() lacks collateral/fee enforcement</td>
+          <td>Require repayment + fee in same tx; verify balanceBefore &lt;= balanceAfter.</td>
+        </tr>
+<tr class="sev-critical">
+          <td><span class="badge critical">Critical</span></td>
+          <td><code>SWC-107</code></td>
+          <td><b>reentrancy</b></td>
+          <td><code>contracts/VulnerableBank.sol::withdraw</code></td>
+          <td>External call before state update in withdraw()</td>
+          <td>Use Checks-Effects-Interactions pattern; add reentrancy guard (nonReentrant).</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-105</code></td>
+          <td><b>access_control</b></td>
+          <td><code>contracts/VulnerableBank.sol::withdraw</code></td>
+          <td>withdraw() has no access control</td>
+          <td>Add onlyOwner/onlyRole modifier; validate msg.sender.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-105</code></td>
+          <td><b>access_control</b></td>
+          <td><code>contracts/VulnerableBank.sol::setOwner</code></td>
+          <td>setOwner() has no access control</td>
+          <td>Add onlyOwner/onlyRole modifier; validate msg.sender.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-105</code></td>
+          <td><b>access_control</b></td>
+          <td><code>contracts/VulnerableLending.sol::emergencyWithdraw</code></td>
+          <td>emergencyWithdraw() has no access control</td>
+          <td>Add onlyOwner/onlyRole modifier; validate msg.sender.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-105</code></td>
+          <td><b>access_control</b></td>
+          <td><code>contracts/VulnerableToken.vy::mint</code></td>
+          <td>Vyper mint() has no msg.sender check</td>
+          <td>Add `assert msg.sender == self.owner` at top of function.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-105</code></td>
+          <td><b>governance_attack</b></td>
+          <td><code>contracts/VulnerableLending.sol::—</code></td>
+          <td>emergencyWithdraw() allows single owner to drain contract</td>
+          <td>Use multi-sig + timelock; require DAO vote for emergency functions.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-101</code></td>
+          <td><b>integer_overflow</b></td>
+          <td><code>contracts/VulnerableBank.sol::deposit</code></td>
+          <td>Unchecked arithmetic in deposit() (Solidity ^0.7.0, no SafeMath)</td>
+          <td>Upgrade to Solidity 0.8+ (built-in overflow checks) or use SafeMath.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-101</code></td>
+          <td><b>integer_overflow</b></td>
+          <td><code>contracts/VulnerableBank.sol::transfer</code></td>
+          <td>Unchecked arithmetic in transfer() (Solidity ^0.7.0, no SafeMath)</td>
+          <td>Upgrade to Solidity 0.8+ (built-in overflow checks) or use SafeMath.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-101</code></td>
+          <td><b>integer_underflow</b></td>
+          <td><code>contracts/VulnerableToken.vy::transfer</code></td>
+          <td>Vyper transfer() subtracts without bound check</td>
+          <td>Add `assert self.balances[msg.sender] &gt;= amount` before subtraction.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-114</code></td>
+          <td><b>liquidity_manipulation</b></td>
+          <td><code>contracts/VulnerableBank.sol::—</code></td>
+          <td>Contract uses own balance as price source — manipulable via donation</td>
+          <td>Use external DEX TWAP; never use address(this).balance as price input.</td>
+        </tr>
+<tr class="sev-high">
+          <td><span class="badge high">High</span></td>
+          <td><code>SWC-114</code></td>
+          <td><b>liquidity_manipulation</b></td>
+          <td><code>contracts/VulnerableLending.sol::—</code></td>
+          <td>Contract uses own balance as price source — manipulable via donation</td>
+          <td>Use external DEX TWAP; never use address(this).balance as price input.</td>
+        </tr>
+<tr class="sev-medium">
+          <td><span class="badge medium">Medium</span></td>
+          <td><code>SWC-114</code></td>
+          <td><b>front_running</b></td>
+          <td><code>contracts/VulnerableBank.sol::swap</code></td>
+          <td>swap() is front-runnable (state depends on balance ratio)</td>
+          <td>Use commit-reveal scheme; add slippage protection; use TWAP oracle.</td>
+        </tr></tbody></table>
+<h2>Exploit Scenarios (Simulated)</h2>
+<table>
+<thead><tr><th>Exploit</th><th>Contract</th><th>Impact</th><th>Feasible</th><th>PoC</th></tr></thead>
+<tbody><tr><td><b>reentrancy_drain</b></td><td><code>VulnerableBank</code></td><td>Full balance drained</td><td>✅</td><td><code>Attacker.sol with fallback() { victim.withdraw(amount); }</code></td></tr>
+<tr><td><b>flash_loan_drain</b></td><td><code>VulnerableLending</code></td><td>Protocol funds at risk</td><td>✅</td><td><code>Aave-style flash loan → price manipulation → drain</code></td></tr>
+<tr><td><b>ownership_takeover</b></td><td><code>VulnerableBank</code></td><td>Full contract takeover</td><td>✅</td><td><code>contract.setOwner(attacker) from any EOA</code></td></tr></tbody></table>
+<p style="margin-top:2rem;color:#888;font-size:.8rem">
+Generated by blockchain_toolkit.py — defensive/educational use only. Only test your own contracts.
+</p>
+</body></html>
